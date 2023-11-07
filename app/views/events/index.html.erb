@@ -1,0 +1,13 @@
+<h1>Hello World!</h1>
+<%# for testing %>
+
+<ul>
+  <% @events.each do |event| %>
+    <li><%= event.title %></li>
+    <li><%= event.description %></li>
+    <li><%= event.latitude %></li>
+    <li><%= event.longitude %></li>
+    <li><%= event.start_date %></li>
+    <li><%= event.end_date %></li>
+  <% end %>
+</ul>

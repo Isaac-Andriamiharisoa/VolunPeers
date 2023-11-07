@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   resources :testimonials, only: %i[new create]
+  resources :events, only: [:index, :show, :new, :create]
 end
