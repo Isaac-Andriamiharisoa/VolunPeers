@@ -1,3 +1,4 @@
 class Event < ApplicationRecord
-  has_many :participations,  dependent: :destroy
+  belongs_to :user
+  has_many :participations, dependent: :destroy
 end
