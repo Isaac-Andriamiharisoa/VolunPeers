@@ -4,9 +4,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
-
-  def upload_image_to_cloudinary
-    raise
-    Cloudinary::Uploader.upload(photo.path, public_id: username)
-  end
 end
