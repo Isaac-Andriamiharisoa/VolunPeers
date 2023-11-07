@@ -1,13 +1,15 @@
 <h1>Hello World!</h1>
 <%# for testing %>
 
-<ul>
+<div>
   <% @events.each do |event| %>
-    <li><%= event.title %></li>
-    <li><%= event.description %></li>
-    <li><%= event.latitude %></li>
-    <li><%= event.longitude %></li>
-    <li><%= event.start_date %></li>
-    <li><%= event.end_date %></li>
+    <%= link_to event_path(event) do  %>
+      <h1><%= event.title %></h1>
+      <p><%= event.description %></p>
+      <p><%= event.latitude %></p>
+      <p><%= event.longitude %></p>
+      <p><%= event.start_date %></p>
+      <p><%= event.end_date %></p>
+    <% end %>
   <% end %>
-</ul>
+</div>

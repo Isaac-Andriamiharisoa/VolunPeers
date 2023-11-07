@@ -8,4 +8,8 @@
 <p><%= @event.start_date %></p>
 <p><%= @event.end_date %></p>
 
+<%= link_to "back", events_path  %>
 
+<%= simple_form_for [@event, @participation] do |f| %>
+  <%= f.submit "Participate" %>
+<% end %>
