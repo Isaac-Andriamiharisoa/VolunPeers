@@ -8,6 +8,10 @@
 <p><%= @event.start_date %></p>
 <p><%= @event.end_date %></p>
 
+<% if can? :update, @event %>
+  <%= link_to "Edit Event", edit_event_path(@event) %>
+<% end %>
+
 <%= link_to "back", events_path  %>
 
 <%= simple_form_for [@event, @participation] do |f| %>

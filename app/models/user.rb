@@ -6,4 +6,13 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :participations, dependent: :destroy
   has_many :events, dependent: :destroy
+
+  validates :role, inclusion: { in: %w[normal owner admin] }
+
+  enum role: %i[normal owner admin]
+  after_initialize :set_default_role, if: :new_record?
+  # set default role to user  if not set
+  def set_default_role
+    self.role ||= :user
+  end
 end

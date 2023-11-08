@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @events = Event.all
@@ -15,11 +16,16 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     if @event.save
+      current_user.update(role: 'owner') if current_user.normal?
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
   end
 
   private
@@ -27,6 +33,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date)
   end
-
-
 end
