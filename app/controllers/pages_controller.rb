@@ -6,12 +6,14 @@ class PagesController < ApplicationController
   end
 
   def calendar
-    @events = search
+    @events = search_calendar
   end
 
   private
 
-  def search
+  def search_calendar
+    events = []
+    participations = Participation.where(user_id: current_user.id)
     events = Event.where('title ILIKE ? OR description ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     events.joins(:participations).where(participations: { user_id: current_user.id })
   end
