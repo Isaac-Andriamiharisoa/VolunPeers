@@ -17,42 +17,54 @@ Participation.destroy_all
 @john = User.create(first_name: "John", last_name: "Doe", username: "John Doe", contact: 1234123412, email: "John@email.com", password: "123456", role: "normal")
 
 @event1 = Event.create(
-  title: "event 1",
-  description: "This is event one",
-  latitude: 42.345,
-  longitude: 8.354,
+  title: "Event 1",
+  description: "This is event 1",
+  start_time: "09:00",
+  end_time: "17:00",
+  country: "Country Name",
+  # address: "Street Name, City, State, Zip",
+  contact: 1234567890,
   start_date: "2023-11-08",
   end_date: "2023-12-07",
   user_id: @bob.id
 )
 
 @event2 = Event.create(
-  title: "event 2",
-  description: "This is event two",
-  latitude: 40.123,
-  longitude: 7.890,
-  start_date: "2023-11-15",
-  end_date: "2023-11-20",
+  title: "Event 2",
+  description: "This is event 2",
+  start_time: "10:00",
+  end_time: "18:00",
+  country: "Country Name",
+  # address: "Street Name, City, State, Zip",
+  contact: 1234567891,
+  start_date: "2023-11-09",
+  end_date: "2023-12-08",
   user_id: @bob.id
 )
 
 @event3 = Event.create(
-  title: "event 3",
-  description: "This is event three",
-  latitude: 41.567,
-  longitude: 9.012,
-  start_date: "2023-12-01",
-  end_date: "2023-12-10",
-  user_id: @bob.id
+  title: "Event 3",
+  description: "This is event 3",
+  start_time: "11:00",
+  end_time: "19:00",
+  country: "Country Name",
+  # address: "Street Name, City, State, Zip",
+  contact: 1234567892,
+  start_date: "2023-11-10",
+  end_date: "2023-12-09",
+  user_id: @john.id
 )
 
 @event4 = Event.create(
-  title: "event 4",
-  description: "This is event four",
-  latitude: 39.876,
-  longitude: 6.543,
-  start_date: "2023-12-15",
-  end_date: "2023-12-20",
+  title: "Event 4",
+  description: "This is event 4",
+  start_time: "12:00",
+  end_time: "20:00",
+  country: "Country Name",
+  # address: "Street Name, City, State, Zip",
+  contact: 1234567893,
+  start_date: "2023-11-11",
+  end_date: "2023-12-10",
   user_id: @alice.id
 )
 
