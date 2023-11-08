@@ -7,6 +7,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @participation = Participation.new
+    # @events = Event.geocoded
+    @markers =
+      [{
+        lat: @event.latitude,
+        lng: @event.longitude
+      }]
   end
 
   def new
@@ -15,9 +21,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     if @event.save
       redirect_to event_path(@event)
-
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +32,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date)
+    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time, :end_time, :country, :address, :contact, :participations)
   end
 
 

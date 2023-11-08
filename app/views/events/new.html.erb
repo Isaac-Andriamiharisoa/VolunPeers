@@ -1,12 +1,54 @@
-<h1>Hello World!</h1>
+<h1>Create Events</h1>
+<p>Dream big, plan diligently, create change. Your event can be the catalyst for a better world.</p>
 <%# for testing %>
 
-<%= simple_form_for @event do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :latitude %>
-  <%= f.input :longitude %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.submit %>
-<% end %>
+<div>
+  <%= simple_form_for @event do |f| %>
+    <div>
+      <%= f.input :title %>
+    </div>
+
+
+    <%# Error Because we don't have a seed for country %>
+    <div>
+      <%# <%= f.input :country %>
+    </div>
+
+
+    <div>
+      <%= f.input :contact %>
+    </div>
+
+    <div>
+      <%= f.input :start_date %>
+    </div>
+
+    <div>
+      <%= f.input :end_date %>
+    </div>
+
+    <div>
+      <%= f.input :address %>
+    </div>
+
+    <div>
+      <%= f.input :start_time %>
+    </div>
+
+    <div>
+      <%= f.input :end_time %>
+    </div>
+
+    <div>
+      <%= f.input :description %>
+    </div>
+
+    <div>
+      <%= f.input :photo, as: :file %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
