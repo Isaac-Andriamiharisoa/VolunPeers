@@ -60,3 +60,6 @@ Event.destroy_all
 @partitipation3 = Participation.create(user_id: @john.id, event_id: @event1.id)
 @partitipation4 = Participation.create(user_id: @bob.id, event_id: @event2.id)
 @partitipation5 = Participation.create(user_id: @alice.id, event_id: @event2.id)
+
+@testimonial = Testimonial.create(content: "great event 1", participation_id: @partitipation1.id)
+@testimonial = Testimonial.create(content: "great event 2", participation_id: @partitipation4.id)
