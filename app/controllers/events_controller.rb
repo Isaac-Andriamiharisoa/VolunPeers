@@ -15,10 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @participation = Participation.new
-    @participation.event = @event
-    @participation.user = current_user
-    if @event.save && @participation.save
+    if @event.save
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
