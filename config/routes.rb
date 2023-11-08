@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  get "calendar", to: "pages#calendar"
   resources :testimonials, only: %i[new create]
-  resources :events, only: %i[index show new create delete] do
+  resources :events, only: %i[index show new create edit update delete] do
   resources :participations, only: [:create]
   end
 

@@ -1,0 +1,23 @@
+<div class="search-bar col-5">
+  <%= form_with(url: calendar_path, method: "get") do |f| %>
+    <%= f.button type:"submit", class: "button-search" do%>
+      <i class="fa fa-search"></i>
+    <% end %>
+    <%= f.text_field :search, placeholder: "Search", class: "search-field" %>
+  <% end %>
+</div>
+
+<% @events.each do |event| %>
+  <%= link_to event_path(event) do %>
+    <div>
+      <h3>
+        <%= event.title %>
+      </h3>
+      <p>
+        <%= event.description %>
+      </p>
+      <%= link_to "See details", event_path(event) %>
+      <%= link_to "cancel", "#" %>
+    </div>
+  <% end %>
+<% end %>

@@ -73,6 +73,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
     t.string "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "participation_id", null: false
+    t.index ["participation_id"], name: "index_testimonials_on_participation_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
     t.string "last_name"
     t.integer "contact"
     t.string "username"
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -96,4 +99,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
   add_foreign_key "events", "users"
   add_foreign_key "participations", "events"
   add_foreign_key "participations", "users"
+  add_foreign_key "testimonials", "participations"
 end

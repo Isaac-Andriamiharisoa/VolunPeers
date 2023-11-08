@@ -11,6 +11,13 @@
     <p>by <%= current_user.username %></p>
   </div>
 
+  <% if can? :update, @event %>
+    <%= link_to "Edit Event", edit_event_path(@event) %>
+  <% end %>
+
+<%= link_to "back", events_path  %>
+
+
   <div>
     <p><%= @event.start_date %></p>
     <p><%= @event.country %></p>

@@ -10,10 +10,11 @@
 
 User.destroy_all
 Event.destroy_all
+Participation.destroy_all
 
-@bob = User.create(first_name: "Bob", last_name: "Sullivan", username: "Monster Bob", contact: 1234566789, email: "Bob@email.com", password: "123456")
-@alice = User.create(first_name: "Alice", last_name: "Wonder", username: "Wonder Alice", contact: 0123123013, email: "Alice@email.com", password: "123456")
-@john = User.create(first_name: "John", last_name: "Doe", username: "John Doe", contact: 1234123412, email: "John@email.com", password: "123456")
+@bob = User.create(first_name: "Bob", last_name: "Sullivan", username: "Monster Bob", contact: 1234566789, email: "Bob@email.com", password: "123456", role: 'admin')
+@alice = User.create(first_name: "Alice", last_name: "Wonder", username: "Wonder Alice", contact: 0123123013, email: "Alice@email.com", password: "123456", role: "normal")
+@john = User.create(first_name: "John", last_name: "Doe", username: "John Doe", contact: 1234123412, email: "John@email.com", password: "123456", role: "normal")
 
 @event1 = Event.create(
   title: "Event 1",
@@ -68,7 +69,10 @@ Event.destroy_all
 )
 
 @partitipation1 = Participation.create(user_id: @bob.id, event_id: @event1.id)
-@partitipation2 = Participation.create(user_id: @alice.id, event_id: @event1.id)
+@partitipation2 = Participation.create(user_id: @alice.id, event_id: @event4.id)
 @partitipation3 = Participation.create(user_id: @john.id, event_id: @event1.id)
 @partitipation4 = Participation.create(user_id: @bob.id, event_id: @event2.id)
 @partitipation5 = Participation.create(user_id: @alice.id, event_id: @event2.id)
+
+@testimonial = Testimonial.create(content: "great event 1", participation_id: @partitipation1.id)
+@testimonial = Testimonial.create(content: "great event 2", participation_id: @partitipation4.id)
