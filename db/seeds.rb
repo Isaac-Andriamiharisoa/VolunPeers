@@ -10,6 +10,7 @@
 
 User.destroy_all
 Event.destroy_all
+Participation.destroy_all
 
 @bob = User.create(first_name: "Bob", last_name: "Sullivan", username: "Monster Bob", contact: 1234566789, email: "Bob@email.com", password: "123456")
 @alice = User.create(first_name: "Alice", last_name: "Wonder", username: "Wonder Alice", contact: 0123123013, email: "Alice@email.com", password: "123456")
@@ -52,7 +53,7 @@ Event.destroy_all
   longitude: 6.543,
   start_date: "2023-12-15",
   end_date: "2023-12-20",
-  user_id: @bob.id
+  user_id: @alice.id
 )
 
 @partitipation1 = Participation.create(user_id: @bob.id, event_id: @event1.id)
