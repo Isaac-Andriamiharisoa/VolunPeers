@@ -7,13 +7,21 @@ export default class extends Controller {
     ids: String
   }
 
+  static targets = ["latestMessages", "cleartextField"]
+
   connect() {
     this.channel = []
     this.idsValue.split(',').forEach((id, i) => {
       this.channel[i] = createConsumer().subscriptions.create(
         { channel: "ChatroomChannel", id: parseInt(id) },
-        { received: data => console.log(data) }
+        { received: data => {
+          this.latestMessagesTargets[i].innerHTML += data
+          this.cleartextFieldTarget(i);
+        } }
       )
     })
+  }
+  clearTextField(index) {
+    this.cleartextFieldTargets[index].value = "";
   }
 }

@@ -1,12 +1,13 @@
 <div data-controller="chatroom-subscription" data-chatroom-subscription-ids-value="<%= @chatrooms.map { |c| c.id }.join(',') %>">
   <% @chatrooms.each do |chatroom| %>
     <div class="container chatroom">
-      <h1>#<%= chatroom.name %></h1>
+      <h1><%= chatroom.name %></h1>
 
-      <div class="messages">
+      <div class="messages" style="color: blue">
         <% chatroom.messages.each do |message| %>
           <%= render partial: 'messages/message', locals: { message: } %>
         <% end %>
+        <div data-chatroom-subscription-target="latestMessages"></div>
       </div>
     </div>
 
@@ -14,7 +15,9 @@
       <%= f.input :content,
         label: false,
         placeholder: "Message ##{chatroom.name}",
-        wrapper_html: {class: "flex-grow-1"}
+        html: {class: "textfield"},
+        wrapper_html: {class: "flex-grow-1"},
+        data: {target: "cleartextField"}
       %>
       <%= f.submit "Send", class: "btn btn-primary mb-3" %>
     <% end %>
