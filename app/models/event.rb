@@ -3,8 +3,11 @@ class Event < ApplicationRecord
   has_many :participations, dependent: :destroy
   after_create :create_chatroom
   has_one :chatroom, dependent: :destroy
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def create_chatroom
     Chatroom.create name: title, event_id: id
   end
+
 end

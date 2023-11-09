@@ -4,12 +4,20 @@
 <div>
   <% @events.each do |event| %>
     <%= link_to event_path(event) do  %>
+    <div>
+      <%= cl_image_tag "nhpgh2485vmcbd2ytsg1zlwogkw8" %>
+    </div>
+
+    <div>
       <h1><%= event.title %></h1>
       <p><%= event.description %></p>
-      <p><%= event.latitude %></p>
-      <p><%= event.longitude %></p>
+    </div>
+
+    <div>
       <p><%= event.start_date %></p>
-      <p><%= event.end_date %></p>
+      <p><%= event.country %></p>
+      <p><%= event.participations.count %></p>
+    </div>
     <% end %>
   <% end %>
 </div>
