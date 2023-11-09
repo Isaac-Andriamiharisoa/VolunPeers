@@ -1,5 +1,50 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner d-flex flex-column justify-content-center align-items-center">
+  <h1 class="text-center">
+    "Where Hearts Unite, Change Ignites.
+    <br>
+    Make a differrence!"
+  </h1>
+  <%= link_to "Join a cause", events_path %>
+</div>
+
+<div class="countdown d-flex justify-content-center col-12 mb-6">
+  <div class="countdown-container col-8">
+  <div class="countdown-shadow"></div>
+  </div>
+</div>
+
+<div class="objective col-12 d-flex flex-column align-items-center">
+  <div class="objective-container">
+    <h3 class="objective-title text-center">Our Objectives</h3>
+    <h2 class="objective-subtitle text-center">"Make an Impact by Volunteering for Causes<br>You Care About! Your Time and Skills Can<br>Transform Lives."</h2>
+  </div>
+  <div class="card-container col-8 d-flex justify-content-center ">
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-hand-holding-heart fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Direct help</h3>
+      <p class="card-text mt-4 px-5">
+        Helping empower people to make a difference, even if it is just in a small way
+      </p>
+    </div>
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-hands-holding-child fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Raising awareness</h3>
+      <p class="card-text mt-4 px-5">
+        Your voice and your actions matter, and you can make a difference in the world.
+      </p>
+    </div>
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-handshake-angle fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Giving information</h3>
+      <p class="card-text mt-4 px-5">
+        People who are passionate about a cause are the ones who can make the most difference
+      </p>
+    </div>
+  </div>
+</div>
 
 <% @testimonials.each do |testimonial| %>
   <%= testimonial.content %>
