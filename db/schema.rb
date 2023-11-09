@@ -42,6 +42,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_chatrooms_on_event_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -58,6 +66,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
     t.float "latitude"
     t.float "longitude"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -96,7 +114,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatrooms", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "participations", "events"
   add_foreign_key "participations", "users"
   add_foreign_key "testimonials", "participations"
