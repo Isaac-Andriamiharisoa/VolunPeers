@@ -1,46 +1,79 @@
 .countdown {
   height: 300px;
+  background-color: #fff;
+  background-image: url(layered-waves-haikei-to-white.svg);
 }
 
 .countdown-container {
-  position: relative;
   background-color: #f3f2e7;
   transform: translateY(-30%);
-  z-index: 100;
-
-  .countdown-shadow {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    box-shadow: 0 5px 10px 5px rgb(123, 167, 123);
-    z-index: 1;
-  }
+  box-shadow: 0 10px 10px -5px rgba($color: #000000, $alpha: 0.25);
+  border-radius: 5px;
 }
 
 .objective {
   padding: 50px 0;
 }
 
-.objective-container {
-  .objective-title {
-    color: #009EFF;
+.title {
+    color: #009eff;
   }
 
-  .objective-subtitle {
+.card-no-border {
+  .card-text {
+    color: #3a1700;
+    opacity: 50%;
   }
 }
 
-.card-no-border {
+.stats {
+  background-color: #f3f2e7;
+  padding: 50px 0;
+  box-shadow: 0 0 10px 5px rgba($color: #000000, $alpha: 0.1);
+}
 
-  .card-icon {
+.stat-container {
+  .card-text-stat {
+    height: 150px;
+    width: 30%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #132a13;
+    border-radius: 5px;
+    color: #f3f2e7;
+    box-shadow: 0 10px 5px -5px rgba($color: #000000, $alpha: 0.25);
   }
-  .card-title {
+
+  .card-number > h2 {
+    font-size: 60px;
   }
-  .card-text {
-    color: #3A1700;
-    opacity: 50%;
+
+  .card-stat-item,
+  .card-number {
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .card-stat-item > *,
+  .card-number > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-stat-item {
+    flex-direction: column;
+  }
+}
+
+.testimonials-img-container, .testimonials-img {
+  border-radius: 20px;
+}
+
+.testimonial-text > * {
+  text-align: left;
 }

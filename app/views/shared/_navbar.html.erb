@@ -42,7 +42,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Dashboard", calendar_path, class: "dropdown-item" %>
               <%= link_to "Add a cause", new_event_path, class: "dropdown-item" %>
-              <%= link_to "Edit profile", "#", class: "dropdown-item" %>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
