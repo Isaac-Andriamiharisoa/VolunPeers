@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @events = Event.all
+    if params[:search] && params[:search] != ""
+      @events = Event.where('title ILIKE ? OR description ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @events = Event.all
+    end
   end
 
   def show

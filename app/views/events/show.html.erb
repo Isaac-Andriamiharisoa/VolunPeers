@@ -1,89 +1,91 @@
-<h1>Hello World!</h1>
-<%# for testing %>
 
-<div>
-  <div>
+<div class="show-banner-container">
+
+  <div class="show-ban-pic">
     <%= cl_image_tag "nhpgh2485vmcbd2ytsg1zlwogkw8" %>
   </div>
 
-  <div>
-    <h2><%= @event.title %></h2>
-    <p>by <%= current_user.username %></p>
-  </div>
-
-  <% if can? :update, @event %>
-    <%= link_to "Edit Event", edit_event_path(@event) %>
-  <% end %>
-
-<%= link_to "back", events_path  %>
-
-
-  <div>
-    <p><%= @event.start_date %></p>
-    <p><%= @event.country %></p>
-    <p><%= @event.participations.count %></p>
-  </div>
-
-  <div>
-    <%= simple_form_for [@event, @participation] do |f| %>
-      <%= f.submit "Participate" %>
-    <% end %>
-  </div>
-
-  <div>
-    <%= link_to "back", events_path  %>
-  </div>
-</div>
-
-<div>
-  <h5>Description</h5>
-  <div>
-    <%= @event.description %>
-  </div>
-</div>
-
-
-<div>
-  <h5>Location</h5>
-  <div>
-    <div style="width: 600px; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-
-      <div data-map-target="content" style="width: 100%; height: 600px;"></div>
+  <div class="show-ban-details">
+    <div class="show-ban-title">
+      <h1><%= @event.title %></h1>
+      <p>by  <%= current_user.username %></p>
     </div>
-    <%= @event.address %>
+
+
+    <div class="show-ban-icons">
+      <p><%= @event.start_date %></p>
+      <p>Mur</p>
+      <p><%= @event.participations.count %></p>
+    </div>
+
+    <div class="show-ban-buttons">
+      <%= simple_form_for [@event, @participation] do |f| %>
+        <%= f.submit "Participate" %>
+      <% end %>
+
+      <% if can? :update, @event %>
+        <%= link_to "Edit Event", edit_event_path(@event) %>
+      <% end %>
+
+      <%= link_to "back", events_path  %>
+    </div>
   </div>
+
 </div>
 
-<div>
-  <h5>Details</h5>
-  <div>
-    <p><strong>From <%= @event.start_date.strftime("%A the %d %B, %Y") %> - <%= @event.start_time.strftime("%H:%M") %></strong></p>
-    <p><strong>To <%= @event.end_date.strftime("%A the %d %B, %Y") %> - <%= @event.end_time.strftime("%H:%M") %></strong></p>
+<div class="show-info-container">
+  <div class="show-info-des">
+    <h5>Description</h5>
+    <div class="show-des-details">
+      <%= @event.description %>
+    </div>
   </div>
-</div>
 
-<div>
-  <h5>No. of Participants</h5>
-  <div>
-    <h6><%= @event.participations.count %></h6>
-  </div>
-</div>
 
-<div>
-  <h5>Share with friends</h5>
-  <div>
-    <p>facebook</p>
-    <p>instagram</p>
-    <p>email</p>
-  </div>
-</div>
+  <div class="show-info-loc">
+    <h5>Location</h5>
 
-<div>
-  <h5>Questions</h5>
-  <div>
-    <p><strong><%= @event.contact %></strong></p>
+    <div class="show-loc-map">
+      <div
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
+        <div data-map-target="content" style="width: 600px; height: 600px;"></div>
+      </div>
+      <%= @event.address %>
+    </div>
   </div>
+
+  <div class="show-info-details">
+    <h5>Details</h5>
+    <div class="show-details-time">
+      <p><strong>From <%= @event.start_date.strftime("%A the %d %B, %Y") %> - <%= @event.start_time.strftime("%H:%M") %></strong></p>
+      <p><strong>To <%= @event.end_date.strftime("%A the %d %B, %Y") %> - <%= @event.end_time.strftime("%H:%M") %></strong></p>
+    </div>
+  </div>
+
+  <div class="show-info-participants">
+    <h5>No. of Participants</h5>
+    <div class="show-participants-num">
+      <h6><%= @event.participations.count %></h6>
+    </div>
+  </div>
+
+  <div class="show-info-share">
+    <h5>Share with friends</h5>
+    <div class="show-share-media">
+      <p>facebook</p>
+      <p>instagram</p>
+      <p>email</p>
+    </div>
+  </div>
+
+  <div class="show-info-questions">
+    <h5>Questions</h5>
+    <div class="show-questions-contact">
+      <p><strong><%= @event.contact %></strong></p>
+    </div>
+  </div>
+
 </div>
