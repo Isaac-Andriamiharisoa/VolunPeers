@@ -1,0 +1,38 @@
+.searchcontainer {
+  background-color: #132A13;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3% 0% 3% 0%;
+
+
+
+  .search-field {
+    background-color: #E8E7D8;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    width: 30vw;
+    border-radius: 0 50px 50px 0;
+  }
+
+  .button-search{
+    background-color: #E8E7D8;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    width: 4vw;
+    border-radius: 50px 0 0 50px;
+  }
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+
+  form {
+    display: flex;
+    width: 100%;
+  }
+}
