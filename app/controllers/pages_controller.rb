@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @testimonials = Testimonial.all.limit(3).order(created_at: :desc)
     @event = Event.all.order(start_date: :asc).limit(1)
+    @user = User.first
   end
 
   def calendar
