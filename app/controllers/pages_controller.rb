@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @participations = Participation.where(user_id: current_user.id)
     @events = search_calendar
     @events_count = Event.all.joins(:participations).where(participations: { user_id: current_user.id }).count
     @past_events = past_events
