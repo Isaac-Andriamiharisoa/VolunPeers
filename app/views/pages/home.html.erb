@@ -1,8 +1,131 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner d-flex flex-column justify-content-center align-items-center">
+  <h1 class="text-center">
+    "Where Hearts Unite, Change Ignites.
+    <br>
+    Make a differrence!"
+  </h1>
+  <%= link_to "Join a cause", events_path, class: "button button-banner" %>
+</div>
 
-<% @testimonials.each do |testimonial| %>
-  <%= testimonial.content %>
-<% end %>
+<div class="countdown d-flex justify-content-center col-12">
+  <div class="countdown-container col-8 px-4 d-flex justify-content-between">
+    <div class="countdown-text col-4 d-flex flex-column justify-content-center align-items-center">
+      <h2 class="my-2">
+        <%= @event.first.title %>
+      </h2>
+      <%= link_to "Help us", event_path(@event.first), class: "my-2 button button-primary" %>
+    </div>
+    <div class="countdown-date col-7 d-flex justify-content-around align-items-center text-center">
+      <div class="dates col-3">
+        <h1>4</h1>
+        <p>Days</p>
+      </div>
+      <div class="dates col-3">
+        <h1>13</h1>
+        <p>hours</p>
+      </div>
+      <div class="dates col-3">
+        <h1>21</h1>
+        <p>minutes</p>
+      </div>
+      <div class="dates col-3">
+        <h1>54</h1>
+        <p>seconds</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to "Add testimonial", new_testimonial_path %>
+<div class="objective col-12 d-flex flex-column align-items-center">
+  <div class="objective-container">
+    <h3 class="title text-center">Our Objectives</h3>
+    <h2 class="objective-subtitle text-center">"Make an Impact by Volunteering for Causes<br>You Care About! Your Time and Skills Can<br>Transform Lives."</h2>
+  </div>
+  <div class="card-container col-8 d-flex justify-content-center ">
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-hand-holding-heart fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Direct help</h3>
+      <p class="card-text mt-4 px-5">
+        Helping empower people to make a difference, even if it is just in a small way
+      </p>
+    </div>
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-hands-holding-child fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Raising awareness</h3>
+      <p class="card-text mt-4 px-5">
+        Your voice and your actions matter, and you can make a difference in the world.
+      </p>
+    </div>
+
+    <div class="card-no-border p-3 mt-4 text-center">
+      <i class="fa-solid card-icon fa-handshake-angle fs-1" style="color: #90A955;"></i>
+      <h3 class="card-title">Giving information</h3>
+      <p class="card-text mt-4 px-5">
+        People who are passionate about a cause are the ones who can make the most difference
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="stats col-12 d-flex justify-content-center align-items-center my-5">
+  <div class="stat-container col-8 d-flex justify-content-around align-items-center">
+
+
+    <div class="card-text-stat mx-3">
+      <div class="col-5 card-number">
+        <h2 class="w-100">96</h2>
+      </div>
+      <div class="col-7 card-stat-item">
+        <h4>Volunteers</h4>
+        <p>Active members</p>
+      </div>
+    </div>
+
+    <div class="card-text-stat mx-3">
+      <div class="col-5 card-number">
+        <h2 class="w-100">13</h2>
+      </div>
+      <div class="col-7 card-stat-item">
+        <h4>Events</h4>
+        <p>Worldwide</p>
+      </div>
+    </div>
+
+    <div class="card-text-stat mx-3">
+      <div class="col-5 card-number">
+        <h2 class="w-100">04</h2>
+      </div>
+      <div class="col-7 card-stat-item">
+        <h4>Hosters</h4>
+        <p>Community Admins</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="testimonials col-12 d-flex justify-content-center align-items-center my-5">
+  <div class="testimonials-container d-flex justify-content-between align-items-center col-8">
+    <div class="testimonials-text text-left col-6">
+      <h3 class="title">A testimonial</h3>
+      <h2 class="objective-subtitle">Spread the same unselfish love to others</h2>
+      <p class="testimonial-text">
+        Volunteering is the act of giving help to those in need of it. It is a humanitarian act. It involves giving money, goods or time and effort to those who need it.
+      </p>
+    </div>
+    <div class="testimonials-img-container col-4">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "testimonials-img w-100"%>
+      <% else %>
+        <%= image_tag "logo-space.png", alt: "A planet", class: "testimonials-img w-100" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%# <% @testimonials.each do |testimonial| %>
+  <%# <%= testimonial.content %>
+<%# <% end %>
+
+<%# <%= link_to "Add testimonial", new_testimonial_path %>
