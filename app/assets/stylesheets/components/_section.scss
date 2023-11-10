@@ -1,0 +1,79 @@
+.countdown {
+  height: 300px;
+  background-color: #fff;
+  background-image: url(layered-waves-haikei-to-white.svg);
+}
+
+.countdown-container {
+  background-color: #f3f2e7;
+  transform: translateY(-30%);
+  box-shadow: 0 10px 10px -5px rgba($color: #000000, $alpha: 0.25);
+  border-radius: 5px;
+}
+
+.objective {
+  padding: 50px 0;
+}
+
+.title {
+    color: #009eff;
+  }
+
+.card-no-border {
+  .card-text {
+    color: #3a1700;
+    opacity: 50%;
+  }
+}
+
+.stats {
+  background-color: #f3f2e7;
+  padding: 50px 0;
+  box-shadow: 0 0 10px 5px rgba($color: #000000, $alpha: 0.1);
+}
+
+.stat-container {
+  .card-text-stat {
+    height: 150px;
+    width: 30%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #132a13;
+    border-radius: 5px;
+    color: #f3f2e7;
+    box-shadow: 0 10px 5px -5px rgba($color: #000000, $alpha: 0.25);
+  }
+
+  .card-number > h2 {
+    font-size: 60px;
+  }
+
+  .card-stat-item,
+  .card-number {
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-stat-item > *,
+  .card-number > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-stat-item {
+    flex-direction: column;
+  }
+}
+
+.testimonials-img-container, .testimonials-img {
+  border-radius: 20px;
+}
+
+.testimonial-text > * {
+  text-align: left;
+}

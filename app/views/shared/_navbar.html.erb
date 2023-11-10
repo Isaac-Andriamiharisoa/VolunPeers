@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon py-4">
+  <div class="container-fluid d-flex justify-content-between">
+    <%= link_to root_path, class: "navbar-brand d-flex justify-content-center col-1" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
 
@@ -8,31 +8,61 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto col-12 d-flex justify-content-between align-items-center">
         <% if user_signed_in? %>
+        <div class="link-container col-10 d-flex justify-content-center">
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link px-5 text-center text-light text-bold text-center fs-5" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "Causes list", events_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
           </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "avatar"%>
-          </a>
+          <li class="nav-item">
+            <%= link_to "My agenda", calendar_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Chatrooms", "#", class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "About us", "#", class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
+        </div>
+
+          <li class="nav-item dropdown d-flex justify-content-center col-1 pe-2">
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "avatar-bordered"%>
+              <% else %>
+                <%= image_tag "logo-space.png", alt: "A planet", class: "avatar-bordered" %>
+              <% end %>
+
+            </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Dashboard", calendar_path, class: "dropdown-item" %>
+              <%= link_to "Add a cause", new_event_path, class: "dropdown-item" %>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
+
         <% else %>
+          <li class="nav-item active">
+            <%= link_to "Home", root_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Causes list", events_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "About us", "#", class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
           </li>
         <% end %>
       </ul>
     </div>
+
   </div>
 </div>

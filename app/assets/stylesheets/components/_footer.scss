@@ -1,0 +1,39 @@
+.footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-top {
+  background-color: #132A13;
+  height: 220px;
+
+  .quick-link-container {
+    color: #F3F2E7;
+  }
+}
+
+.footer-title-container {
+  color: #F3F2E7;
+}
+
+.quick-links {
+  color: #F3F2E7;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #F3F2E7;
+  border-radius: 50%;
+}
+
+.footer-bottom{
+  background-color: #F3F2E7;
+  height: 50px;
+
+  p {
+    color: #132A13;
+    margin: 0;
+  }
+}

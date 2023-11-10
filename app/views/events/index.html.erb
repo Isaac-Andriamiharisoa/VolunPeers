@@ -1,15 +1,50 @@
-<h1>Hello World!</h1>
-<%# for testing %>
+<div class="eventindex">
 
-<div>
-  <% @events.each do |event| %>
-    <%= link_to event_path(event) do  %>
-      <h1><%= event.title %></h1>
-      <p><%= event.description %></p>
-      <p><%= event.latitude %></p>
-      <p><%= event.longitude %></p>
-      <p><%= event.start_date %></p>
-      <p><%= event.end_date %></p>
+  <div class="searchcontainer col-12">
+    <div class="eventindextitle">
+      <h1 style="color:white;">Events</h1>
+    </div>
+
+    <div class="searchbar">
+      <%= form_with(url: events_path, method: "get") do |f| %>
+        <%= f.button type:"submit", class: "button-search" do%>
+          <i class="fa fa-search"></i>
+        <% end %>
+        <%= f.text_field :search, placeholder: "Search", class: "search-field" %>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  <div class="event-container">
+    <% @events.each do |event| %>
+        <%= link_to event_path(event), class:"event-card" do  %>
+
+        <div class="event-card-pic-container">
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "event-card-picture"%>
+          <% else %>
+            <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
+          <% end %>
+      </div>
+
+
+        <div class="event-card-details">
+          <h1><%= event.title %></h1>
+          <br>
+          <p><%= event.description %></p>
+        </div>
+
+        <div class="event-card-icons">
+          <p><%= event.start_date.strftime("%d %^b") %> <i class="fa-regular fa-calendar-days fa-2xl" style="color: #3a1700;"></i></p>
+          <br>
+          <p>MUR <i class="fa-solid fa-location-dot fa-2xl" style="color: #3a1700;"></i></p>
+          <br>
+          <p><%= event.participations.count %> <i class="fa-solid fa-handshake-angle fa-2xl" style="color: #3a1700;"></i></p>
+        </div>
+        <% end %>
     <% end %>
-  <% end %>
+  </div>
+
 </div>

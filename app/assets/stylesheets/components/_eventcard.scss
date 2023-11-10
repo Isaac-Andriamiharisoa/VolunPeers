@@ -1,0 +1,42 @@
+.event-card {
+  height: 17vw;
+  background-color: #F3F2E7;
+  max-width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3% auto;
+  padding: 0 5% 0 5%;
+  box-shadow: 0 10px 10px #e2e3e5c4;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #3A1701;
+}
+
+.event-card-picture {
+  width: 200px;
+  border-radius: 5px;
+}
+
+.event-card-icons {
+  width: 15%;
+  height: 80.5%;
+  display: inline-grid;
+  border-radius: 5px;
+  box-shadow: inset 0px 5px 6px 0px #00000036;
+  align-content: space-evenly;
+  justify-items: center;
+  padding: 2%;
+}
+
+.event-card-details h1 {
+  font-family: 'Rowdies', sans-serif;
+}
+
+.event-card-details p {
+  font-family: 'Manrope', sans-serif;
+}
+
+.event-card-icons p {
+  font-family: 'Rowdies', sans-serif;
+}

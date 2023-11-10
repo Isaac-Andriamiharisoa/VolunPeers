@@ -8,9 +8,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  get "calendar", to: "pages#calendar"
   resources :testimonials, only: %i[new create]
-  resources :events, only: [:index, :show, :new, :create] do
-  resources :participations, only: [:create]
+
+  resources :chatrooms, only: :index do
+    resources :messages, only: :create
+  end
+  resources :events, only: %i[index show new create edit update delete] do
+    resources :participations, only: [:create]
   end
 
+  mount ActionCable.server => '/cable'
 end

@@ -1,12 +1,22 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource
 
   def index
-    @events = Event.all
+    if params[:search] && params[:search] != ""
+      @events = Event.where('title ILIKE ? OR description ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @events = Event.all
+    end
   end
 
   def show
     @event = Event.find(params[:id])
     @participation = Participation.new
+    @markers =
+      [{
+        lat: @event.latitude,
+        lng: @event.longitude
+      }]
   end
 
   def new
@@ -15,18 +25,21 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     if @event.save
+      current_user.update(role: 'owner') if current_user.normal?
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def edit
+  end
+
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date)
+    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time, :end_time, :country, :address, :contact, :participations)
   end
-
-
 end

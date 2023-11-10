@@ -1,0 +1,46 @@
+<div class="search-container col-12">
+  <div class="search-text col-4">
+      My Agenda
+    </div>
+
+  <div class="search-bar col-4">
+    <%= form_with(url: calendar_path, method: "get") do |f| %>
+      <%= f.button type:"submit", class: "button-search" do%>
+        <i class="fa fa-search"></i>
+      <% end %>
+      <%= f.text_field :search, placeholder: "Search", class: "search-field" %>
+    <% end %>
+  </div>
+
+</div>
+
+
+<div class="card-container col-8 my-5">
+  <% @events.each do |event| %>
+      <div class="card col-3" style="width: 18rem;">
+        <%= link_to event_path(event) do %>
+
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, alt: "event image", class: "card-img-top"%>
+          <% else %>
+            <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+          <% end %>
+
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= event.title %>
+            </h3>
+            <p class="card-text">
+              <%= event.description %>
+            </p>
+            <p class="card-date">
+              <%= event.start_date %>
+              </p>
+            <div class="card-button d-flex flex-column">
+              <%= link_to "Cancel participation", "#", class: "button-primary-revert" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
