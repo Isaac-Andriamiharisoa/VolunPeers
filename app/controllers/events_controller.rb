@@ -27,6 +27,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
+      @participation = Participation.new
+      @participation.user = current_user
+      @participation.event = @event
+      @participation.save
       current_user.update(role: 'owner') if current_user.normal?
       redirect_to event_path(@event)
     else
