@@ -2,8 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #132A13;
-  padding: 50px 0px;
+  background-color: #132a13;
+  padding: 0 0 50px 0;
+}
+
+.search-container-white {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 50px 0;
 
   .search-field {
     background-color: #f3f2e7;
@@ -15,7 +22,7 @@
     border-radius: 0 50px 50px 0;
   }
   .search-text {
-    color: #f3f2e7;
+    color: #132a13;
     font-size: 40px;
     font-weight: bold;
   }
@@ -24,9 +31,11 @@
 .search-bar {
   display: flex;
   justify-content: center;
+  background-color: #f3f2e7;
   height: 50px;
 
   form {
+    color: #132a13;
     display: flex;
     width: 100%;
   }
