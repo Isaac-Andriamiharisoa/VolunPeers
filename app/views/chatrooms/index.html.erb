@@ -1,8 +1,6 @@
 <div data-controller="chatroom-subscription" data-chatroom-subscription-ids-value="<%= @chatrooms.map { |c| c.id }.join(',') %>">
   <% @chatrooms.each do |chatroom| %>
-      <div class="row">
-        <div class="nav_container"></div>
-      </div>
+    
       <div class="row">
         <div class="col-3">
             <h1 id="chatroom_name"><%= chatroom.name %></h1>
@@ -175,7 +173,7 @@
             </div>
             <!-- END SIDEBAR USER TITLE -->
             <!-- SIDEBAR BUTTONS -->
-          
+
             <!-- END SIDEBAR BUTTONS -->
             <!-- SIDEBAR MENU -->
             <div class="profile-usermenu">

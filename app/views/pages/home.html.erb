@@ -115,11 +115,7 @@
       </p>
     </div>
     <div class="testimonials-img-container col-4">
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "testimonials-img w-100"%>
-      <% else %>
         <%= image_tag "logo-space.png", alt: "A planet", class: "testimonials-img w-100" %>
-      <% end %>
     </div>
   </div>
 </div>
