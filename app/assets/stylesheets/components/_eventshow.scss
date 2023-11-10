@@ -86,8 +86,8 @@
 
 .info-container-1 {
   display: flex;
-  justify-content: space-around;
-  margin: 5% 0% 5% 0%;
+  justify-content: space-evenly;
+  margin: 5% 0% 3% 0%;
 
   .show-info-des {
     h5 {
@@ -124,11 +124,15 @@
       align-items: center;
 
       .show-loc-addr {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
         width: 300px;
         height: 100px;
         border-radius: 10px;
         background: var(--Light-Dark-background, #E8E7D8);
         box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+        margin: 8% 0% 0% 0%;
       }
     }
   }
@@ -136,10 +140,90 @@
 
 .info-container-2 {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: 3% 0% 3% 0%;
+
+  .show-info-details {
+
+    h5 {
+      font-family: Rowdies;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .show-details-time {
+      background-color: #F3F2E7;
+      width: 720px;
+      height: 150px;
+      padding: 4%;
+      color: #3A1700;
+      font-family: Rowdies;
+      font-size: 20px;
+      font-weight: 300;
+    }
+  }
+
+  .show-info-participants{
+    h5 {
+      font-family: Rowdies;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .show-participants-num {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: #F3F2E7;
+      width: 350px;
+      height: 150px;
+
+      h6 {
+        font-family: Rowdies;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+    }
+  }
 }
 
 .info-container-3 {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: 3% 0% 3% 0%;
+
+  .show-info-share{
+    h5 {
+      font-family: Rowdies;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .show-share-media{
+      background-color: #F3F2E7;
+      width: 535px;
+      height: 150px;
+    }
+
+  }
+
+  .show-info-questions{
+    h5 {
+      font-family: Rowdies;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .show-questions-contact{
+      background-color: #F3F2E7;
+      width: 535px;
+      height: 150px;
+    }
+  }
 }
