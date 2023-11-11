@@ -208,6 +208,9 @@
       background-color: #F3F2E7;
       width: 535px;
       height: 150px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
     }
 
   }
@@ -220,10 +223,18 @@
       font-weight: 300;
     }
 
-    .show-questions-contact{
+    .show-questions-contact {
       background-color: #F3F2E7;
       width: 535px;
       height: 150px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      p {
+        font-size: 20px;
+        font-family: Rowdies;
+      }
     }
   }
 }
