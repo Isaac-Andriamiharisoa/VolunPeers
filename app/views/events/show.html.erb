@@ -7,9 +7,19 @@
 
   <div class="show-ban-details">
     <div class="show-ban-title">
-      <%= link_to events_path do %>
-        <i class="arrow fa-solid fa-arrow-left-long" style="color: #ffffff;  font-size: 150%;"></i>
-      <% end %>
+      <div class="show-ban-action-icons">
+        <%= link_to events_path do %>
+          <i class="arrow fa-solid fa-arrow-left-long" style="color: #ffffff;  font-size: 150%;"></i>
+        <% end %>
+
+        <% if can? :destroy, @event%>
+          <%= link_to "V",
+            event_path(@event),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "trashcan"
+          %>
+        <% end %>
+      </div>
+
       <h1><%= @event.title %></h1>
       <p>by  <%= current_user.username %></p>
     </div>
@@ -24,7 +34,7 @@
 
       <div class="show-banner-icon">
         <i class="fa-solid fa-location-dot fa-2xl" style="color: #FFFFFF;"></i>
-        <p>Mur</p>
+        <p><%= @event.country %></p>
       </div>
 
       <div class="show-banner-icon">
@@ -45,6 +55,11 @@
       <div class="show-ban-button">
         <% if can? :update, @event %>
           <%= link_to "Edit Event", edit_event_path(@event) %>
+        <% end %>
+
+
+        <% if can? :create, @participation %>
+          <%= link_to "Message", chatrooms_path(@chatrooms) %>
         <% end %>
         <a href="#">Message</a>
       </div>
@@ -116,9 +131,9 @@
     <div class="show-info-share">
       <h5>Share with friends</h5>
       <div class="show-share-media">
-        <a href="https://www.facebook.com/"><i class="fa-brands fa-square-facebook fa-2xl" style="color: #3a1700; width: 50%; height: 50%; border-radius: 50%; font-size: 4em;"></i></a>
-        <a href="https://www.instagram.com/"><i class="fa-brands fa-square-instagram fa-2xl" style="color: #3a1700; color: #3a1700; width: 50%; height: 50%; border-radius: 50%; font-size: 4em;"></i></a>
-        <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter fa-2xl" style="color: #3a1700; color: #3a1700; width: 50%; height: 50%; border-radius: 50%; font-size: 4em;"></i></a>
+        <div class="social-icons"><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f fa-2xl" style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"></i></a></div>
+        <div class="social-icons"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-2xl" style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"></i></a></div>
+        <div class="social-icons"><a href="https://twitter.com/"><i class="fa-brands fa-x-twitter fa-2xl" style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"></i></a></div>
       </div>
     </div>
 

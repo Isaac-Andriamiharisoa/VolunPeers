@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111156) do
     t.string "country"
     t.string "address"
     t.integer "contact"
+    t.integer "time_zone"
     t.float "latitude"
     t.float "longitude"
     t.index ["user_id"], name: "index_events_on_user_id"
