@@ -11,12 +11,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @exist_participation = Participation.where(event_id: params[:id])
     @participation = Participation.new
-    @markers =
-      [{
-        lat: @event.latitude,
-        lng: @event.longitude
-      }]
+    @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end
 
   def new
@@ -42,7 +39,9 @@ class EventsController < ApplicationController
   end
 
   def update
-
+    @event = Event.find(params[:id])
+    @event.update
+    redirect_to event_path(@event)
   end
 
   def destroy

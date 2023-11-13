@@ -33,18 +33,68 @@
       <p>56 t</p>
       <p>Litter cleaned</p>
     </div>
-
-
+      <% @past_events.each do |past_event| %>
+        <div class="icon-items col-12 row">
+          <div class="event-container col-12">
+            <h6>-Completed-</h6>
+            <%= past_event.title %>
+          </div>
+        </div>
+      <% end %>
   </div>
 </div>
 
 <div class="search-container-white col-12">
   <div class="search-text col-4">
-      My Agenda
+      My Causes
     </div>
 
   <div class="search-bar col-4">
-    <%= form_with(url: calendar_path, method: "get") do |f| %>
+    <%= form_with(url: dashboard_path, method: "get") do |f| %>
+      <%= f.button type:"submit", class: "button-search" do%>
+        <i class="fa fa-search"></i>
+      <% end %>
+      <%= f.text_field :created_search, placeholder: "Search", class: "search-field" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="card-container created-events-container col-8 my-5">
+  <% @created_events.each do |created_event| %>
+      <div class="card col-3" style="width: 18rem;">
+        <%= link_to event_path(created_event) do %>
+          <% if created_event.photo.attached? %>
+            <div class="card-img-holder" style="background-image: url('<%= cl_image_path created_event.photo.key, secure: true %>');"></div>
+          <% else %>
+            <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= created_event.title %>
+            </h3>
+            <p class="card-text">
+              Start date: <%= created_event.start_date %>
+            </p>
+            <p class="card-date">
+              End date: <%= created_event.end_date %>
+            </p>
+            <div class="card-button d-flex flex-column">
+                <%= link_to "Delete event", event_path(created_event), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<%# search for agenda %>
+<div class="search-container-white col-12">
+  <div class="search-text col-4">
+      My Participations
+    </div>
+
+  <div class="search-bar col-4">
+    <%= form_with(url: dashboard_path, method: "get") do |f| %>
       <%= f.button type:"submit", class: "button-search" do%>
         <i class="fa fa-search"></i>
       <% end %>
@@ -54,28 +104,30 @@
 </div>
 
 <div class="card-container col-8 my-5">
-  <% @events.each do |event| %>
+  <% @participations.each do |participation| %>
       <div class="card col-3" style="width: 18rem;">
-        <%= link_to event_path(event) do %>
+        <%= link_to event_path(participation.event) do %>
 
-          <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, alt: "event image", class: "card-img-top"%>
+          <% if participation.event.photo.attached? %>
+            <div class="card-img-holder" style="background-image: url('<%= cl_image_path participation.event.photo.key, secure: true %>');"></div>
           <% else %>
             <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
           <% end %>
 
           <div class="card-body">
             <h3 class="card-title">
-              <%= event.title %>
+              <%= participation.event.title %>
             </h3>
             <p class="card-text">
-              <%= event.description %>
+              <%= participation.event.description %>
             </p>
             <p class="card-date">
-              End date: <%= event.end_date %>
+              End date: <%= participation.event.end_date %>
               </p>
             <div class="card-button d-flex flex-column">
-              <%= link_to "Cancel participation", dashboard_path, class: "button-primary-revert" %>
+              <div class="card-button d-flex flex-column">
+                <%= link_to "Cancel participation", event_participation_path(participation.event, participation), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert" %>
+              </div>
             </div>
           </div>
         <% end %>
