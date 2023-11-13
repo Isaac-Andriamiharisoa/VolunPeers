@@ -85,7 +85,11 @@
   <div class="stat-container col-8 d-flex justify-content-around align-items-center">
     <div class="card-text-stat mx-3">
       <div class="col-5 card-number">
-        <h2 class="w-100">96</h2>
+        <h2 class="w-100">
+          <% if @volunteers_count.between?(0, 9) %>
+            0
+          <% end %>
+          <%= @volunteers_count %></h2>
       </div>
       <div class="col-7 card-stat-item">
         <h4>Volunteers</h4>
@@ -95,7 +99,11 @@
 
     <div class="card-text-stat mx-3">
       <div class="col-5 card-number">
-        <h2 class="w-100">13</h2>
+        <h2 class="w-100">
+          <% if @events_count.between?(0, 9) %>
+          0
+          <% end %>
+          <%= @events_count %></h2>
       </div>
       <div class="col-7 card-stat-item">
         <h4>Events</h4>
@@ -105,7 +113,11 @@
 
     <div class="card-text-stat mx-3">
       <div class="col-5 card-number">
-        <h2 class="w-100">04</h2>
+        <h2 class="w-100">
+        <% if @hoster_count.between?(0, 9) %>
+          0
+        <% end %>
+        <%= @hoster_count %></h2>
       </div>
       <div class="col-7 card-stat-item">
         <h4>Hosters</h4>

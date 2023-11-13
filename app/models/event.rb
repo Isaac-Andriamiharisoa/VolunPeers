@@ -8,6 +8,9 @@ class Event < ApplicationRecord
   has_one_attached :photo
   belongs_to :user
 
+  validates :title, :contact, :address, :start_date, :end_date, :start_time, :end_time, presence: true
+  validates :description, presence: true, length: { minimum: 150, maximum: 250 }
+
   pg_search_scope :search_by_title_and_description,
                   against: %i[title description],
                   using: {

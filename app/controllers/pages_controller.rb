@@ -5,6 +5,9 @@ class PagesController < ApplicationController
     @testimonials = Testimonial.all.limit(3).order(created_at: :desc)
     @event = Event.all.order(start_date: :asc).limit(1)
     @user = User.first
+    @volunteers_count = User.count
+    @events_count = Event.count
+    @hoster_count = Event.select(:user_id).distinct.count
   end
 
   def calendar
