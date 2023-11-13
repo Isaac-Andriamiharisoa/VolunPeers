@@ -1,6 +1,9 @@
 <div class="create-events">
-  <h1>Create Events</h1>
-  <p>Dream big, plan diligently, create change. Your event can be the catalyst for a better world.</p>
+
+  <div class="form-banner">
+    <h1>Create Events</h1>
+    <p>Dream big, plan diligently, create change. Your event can be the catalyst for a better world.</p>
+  </div>
 
   <div class="event-form">
     <%= simple_form_for @event do |f| %>
@@ -12,12 +15,12 @@
 
       <div class="form-event-row-1">
 
-        <div class="form-start-time">
-          <%= f.input :start_time %>
+        <div class="form-start-date">
+          <%= f.input :start_date %>
         </div>
 
-        <div class="form-end-time">
-          <%= f.input :end_time %>
+        <div class="form-start-time">
+          <%= f.input :start_time %>
         </div>
 
       </div>
@@ -25,12 +28,12 @@
 
       <div class="form-event-row-2">
 
-        <div class="form-start-date">
-          <%= f.input :start_date %>
-        </div>
-
         <div class="form-end-date">
           <%= f.input :end_date %>
+        </div>
+
+        <div class="form-end-time">
+          <%= f.input :end_time %>
         </div>
 
       </div>
@@ -62,6 +65,20 @@
       </div>
 
 
+      <div class="form-event-row-5">
+
+        <div class="form-action">
+          <%= f.input :action, as: :select, collection: ['Trees Planted', 'People Helped', 'Batiment Built', 'Animal Saved', 'Litter Cleaned' ] %>
+        </div>
+
+
+        <div class="form-quantity">
+          <%= f.input :quantity %>
+        </div>
+
+      </div>
+
+
       <div class="form-description">
         <%= f.input :description %>
       </div>
@@ -69,6 +86,11 @@
       <div class="form-button">
         <%= f.submit %>
       </div>
+
+      <div class="back">
+        <%= link_to "Cancel", :back %>
+      </div>
+
 
     <% end %>
   </div>

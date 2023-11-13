@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @participation = Participation.new
+    @owner = User.find(@event.user_id)
     @markers =
       [{
         lat: @event.latitude,
@@ -55,6 +56,6 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time,
-                                  :end_time, :country, :address, :contact, :participations, :photo)
+                                  :end_time, :country, :address, :contact, :participations, :photo, :action, :quantity)
   end
 end
