@@ -27,7 +27,7 @@
 
 .event-form {
 
-  input, select {
+  input, select, textarea {
     border-radius: 8px;
     border: 0.5px solid #B6B6B6;
     background: #F4F4F4;
@@ -113,8 +113,10 @@
 
 .form-description {
 
-  input {
+  textarea {
     height: 100px;
+    width: 100%;
+    padding: 10px;
   }
 }
 
