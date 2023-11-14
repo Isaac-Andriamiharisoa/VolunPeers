@@ -1,54 +1,99 @@
-<h1>Create Events</h1>
-<p>Dream big, plan diligently, create change. Your event can be the catalyst for a better world.</p>
-<%# for testing %>
+<div class="create-events">
 
-<div>
-  <%= simple_form_for @event do |f| %>
-    <div>
-      <%= f.input :title %>
-    </div>
+  <div class="form-banner">
+    <h1>Create Events</h1>
+    <p>Dream big, plan diligently, create change. Your event can be the catalyst for a better world.</p>
+  </div>
 
+  <div class="event-form">
+    <%= simple_form_for @event do |f| %>
 
-    <%# Error Because we don't have a seed for country %>
-    <%# <div> %>
-      <%# <%= f.input :country %>
-    <%# </div> %>
+      <div class="form-title">
+        <%= f.input :title %>
+      </div>
 
 
-    <div>
-      <%= f.input :contact %>
-    </div>
+      <div class="form-event-row-1">
 
-    <div>
-      <%= f.input :start_date %>
-    </div>
+        <div class="form-start-date">
+          <%= f.input :start_date %>
+        </div>
 
-    <div>
-      <%= f.input :end_date %>
-    </div>
+        <div class="form-start-time">
+          <%= f.input :start_time %>
+        </div>
 
-    <div>
-      <%= f.input :address %>
-    </div>
+      </div>
 
-    <div>
-      <%= f.input :start_time %>
-    </div>
 
-    <div>
-      <%= f.input :end_time %>
-    </div>
+      <div class="form-event-row-2">
 
-    <div>
-      <%= f.input :description %>
-    </div>
+        <div class="form-end-date">
+          <%= f.input :end_date %>
+        </div>
 
-    <div>
-      <%= f.input :photo, as: :file %>
-    </div>
+        <div class="form-end-time">
+          <%= f.input :end_time %>
+        </div>
 
-    <div>
-      <%= f.submit %>
-    </div>
-  <% end %>
+      </div>
+
+
+      <div class="form-event-row-3">
+
+        <div class="form-country">
+          <%= f.input :country %>
+        </div>
+
+        <div class="form-address">
+          <%= f.input :address %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-4">
+
+        <div class="form-photo">
+          <%= f.input :photo, as: :file %>
+        </div>
+
+        <div class="form-contact">
+          <%= f.input :contact %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-5">
+
+        <div class="form-action">
+          <%= f.input :action, as: :select, collection: ['Trees Planted', 'People Helped', 'Batiment Built', 'Animal Saved', 'Litter Cleaned' ] %>
+        </div>
+
+
+        <div class="form-quantity">
+          <%= f.input :quantity %>
+        </div>
+
+      </div>
+
+
+      <div class="form-description">
+        <p>Description</p>
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="form-button">
+        <%= f.submit %>
+      </div>
+
+      <div class="back">
+        <%= link_to "Cancel", :back %>
+      </div>
+
+
+    <% end %>
+  </div>
+
 </div>
