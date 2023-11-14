@@ -2,90 +2,126 @@
 <div class="show-banner-container">
 
   <div class="show-ban-pic">
-    <%= cl_image_tag "nhpgh2485vmcbd2ytsg1zlwogkw8" %>
+    <%= cl_image_tag "mdbg196rgmiuhq3bssnf9p7nqvnz" %>
   </div>
 
   <div class="show-ban-details">
     <div class="show-ban-title">
+      <%= link_to events_path do %>
+        <i class="arrow fa-solid fa-arrow-left-long" style="color: #ffffff;  font-size: 150%;"></i>
+      <% end %>
       <h1><%= @event.title %></h1>
       <p>by  <%= current_user.username %></p>
     </div>
 
 
-    <div class="show-ban-icons">
-      <p><%= @event.start_date %></p>
-      <p>Mur</p>
-      <p><%= @event.participations.count %></p>
+    <div class="show-ban-icons-container">
+
+      <div class="show-banner-icon">
+        <i class="fa-regular fa-calendar-days fa-2xl" style="color: #FFFFFF;"></i>
+        <p><%= @event.start_date.strftime("%d %^b") %></p>
+      </div>
+
+      <div class="show-banner-icon">
+        <i class="fa-solid fa-location-dot fa-2xl" style="color: #FFFFFF;"></i>
+        <p>Mur</p>
+      </div>
+
+      <div class="show-banner-icon">
+        <i class="fa-solid fa-handshake-angle fa-2xl" style="color: #FFFFFF;"></i>
+        <p><%= @event.participations.count %></p>
+      </div>
+
     </div>
 
-    <div class="show-ban-buttons">
-      <%= simple_form_for [@event, @participation] do |f| %>
-        <%= f.submit "Participate" %>
-      <% end %>
+    <div class="show-ban-buttons-container">
 
-      <% if can? :update, @event %>
-        <%= link_to "Edit Event", edit_event_path(@event) %>
-      <% end %>
+      <div class="show-ban-button">
+        <%= simple_form_for [@event, @participation] do |f| %>
+          <%= f.submit "Participate" %>
+        <% end %>
+      </div>
 
-      <%= link_to "back", events_path  %>
+      <div class="show-ban-button">
+        <% if can? :update, @event %>
+          <%= link_to "Edit Event", edit_event_path(@event) %>
+        <% end %>
+        <a href="#">Message</a>
+      </div>
+
     </div>
+
   </div>
 
 </div>
 
 <div class="show-info-container">
-  <div class="show-info-des">
-    <h5>Description</h5>
-    <div class="show-des-details">
-      <%= @event.description %>
-    </div>
-  </div>
 
+  <div class="info-container-1">
 
-  <div class="show-info-loc">
-    <h5>Location</h5>
-
-    <div class="show-loc-map">
-      <div
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-
-        <div data-map-target="content" style="width: 600px; height: 600px;"></div>
+    <div class="show-info-des">
+      <h5>Description</h5>
+      <div class="show-des-details">
+        <%= @event.description %>
       </div>
-      <%= @event.address %>
     </div>
+
+
+    <div class="show-info-loc">
+      <h5>Location</h5>
+
+      <div class="show-loc-map">
+        <div
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
+          <div data-map-target="content" style="width: 300px; height: 320px; box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;"></div>
+        </div>
+        <div class="show-loc-addr">
+          <%= @event.address %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="show-info-details">
-    <h5>Details</h5>
-    <div class="show-details-time">
-      <p><strong>From <%= @event.start_date.strftime("%A the %d %B, %Y") %> - <%= @event.start_time.strftime("%H:%M") %></strong></p>
-      <p><strong>To <%= @event.end_date.strftime("%A the %d %B, %Y") %> - <%= @event.end_time.strftime("%H:%M") %></strong></p>
+  <div class="info-container-2">
+
+    <div class="show-info-details">
+      <h5>Details</h5>
+      <div class="show-details-time">
+        <p><strong>From <%= @event.start_date.strftime("%A the %d %B, %Y") %> - <%= @event.start_time.strftime("%H:%M") %></strong></p>
+        <p><strong>To <%= @event.end_date.strftime("%A the %d %B, %Y") %> - <%= @event.end_time.strftime("%H:%M") %></strong></p>
+      </div>
     </div>
+
+    <div class="show-info-participants">
+      <h5>No. of Participants</h5>
+      <div class="show-participants-num">
+        <h6><%= @event.participations.count %></h6>
+      </div>
+    </div>
+
   </div>
 
-  <div class="show-info-participants">
-    <h5>No. of Participants</h5>
-    <div class="show-participants-num">
-      <h6><%= @event.participations.count %></h6>
+  <div class="info-container-3">
+    <div class="show-info-share">
+      <h5>Share with friends</h5>
+      <div class="show-share-media">
+        <p>facebook</p>
+        <p>instagram</p>
+        <p>email</p>
+      </div>
     </div>
-  </div>
 
-  <div class="show-info-share">
-    <h5>Share with friends</h5>
-    <div class="show-share-media">
-      <p>facebook</p>
-      <p>instagram</p>
-      <p>email</p>
+    <div class="show-info-questions">
+      <h5>Questions</h5>
+      <div class="show-questions-contact">
+        <p><strong><%= @event.contact %></strong></p>
+      </div>
     </div>
-  </div>
 
-  <div class="show-info-questions">
-    <h5>Questions</h5>
-    <div class="show-questions-contact">
-      <p><strong><%= @event.contact %></strong></p>
-    </div>
   </div>
 
 </div>
