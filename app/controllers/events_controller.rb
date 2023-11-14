@@ -13,6 +13,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @exist_participation = Participation.where(event_id: params[:id])
     @participation = Participation.new
+    @owner = User.find(@event.user_id)
     @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end
 
@@ -28,6 +29,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+
     if @event.save
       @participation = Participation.new
       @participation.user = current_user
@@ -41,11 +43,12 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
     @event = Event.find(params[:id])
-    @event.update
+    @event.update(event_params)
     redirect_to event_path(@event)
   end
 
@@ -58,7 +61,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time,
-                                  :end_time, :country, :address, :contact, :participations, :photo)
+    params.require(:event).permit(:title, :description, :start_date, :end_date, :start_time,
+                                  :end_time, :country, :address, :contact, :photo, :action, :quantity)
   end
 end

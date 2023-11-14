@@ -28,7 +28,7 @@
             <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
           <% end %>
       </div>
-
+      
 
         <div class="event-card-details">
           <h1><%= event.title %></h1>
@@ -39,7 +39,7 @@
         <div class="event-card-icons">
           <p><%= event.start_date.strftime("%d %^b") %> <i class="fa-regular fa-calendar-days fa-2xl" style="color: #3a1700;"></i></p>
           <br>
-          <p>MUR <i class="fa-solid fa-location-dot fa-2xl" style="color: #3a1700;"></i></p>
+          <p><%= event.country %> <i class="fa-solid fa-location-dot fa-2xl" style="color: #3a1700;"></i></p>
           <br>
           <p><%= event.participations.count %> <i class="fa-solid fa-handshake-angle fa-2xl" style="color: #3a1700;"></i></p>
         </div>

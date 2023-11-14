@@ -7,6 +7,7 @@ class ChangeColumnType < ActiveRecord::Migration[7.1]
     add_column :events, :country, :string
     add_column :events, :address, :string
     add_column :events, :contact, :integer
+    add_column :events, :time_zone, :integer
     remove_column :events, :latitude, :float
     remove_column :events, :longitude, :float
   end
