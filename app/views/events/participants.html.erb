@@ -1,11 +1,4 @@
-<% @participants.each do |user| %>
-  <div>
-    <%= user.first_name %>
-    <%= user.last_name %>
-  </div>
-<% end %>
-
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-6 offset-md-3">
       <table class="table table-hover">
           <thead>
@@ -17,14 +10,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">
-                <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
-                          alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60" height="60"></th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            <% @participants.each do |user| %>
+              <tr>
+                <td>
+                  <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
+                        alt="avatar" class="avatar">
+                </td>
+                <td><%= user.first_name %> <%= user.last_name %></td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+            <% end %>
           </tbody>
       </table>
     </div>
