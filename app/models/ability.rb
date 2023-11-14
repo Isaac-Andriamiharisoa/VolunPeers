@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new  # Guest user
+    user ||= User.new # Guest user
     # Normal User
     can :read, Event
     if user.admin?
@@ -16,9 +16,10 @@ class Ability
       can :manage, Event, user_id: user.id
     end
 
-    if user.normal?
-      can :create, Event
-    end
+    return unless user.normal?
+
+    can :create, Event
+
     # can :show, Event, user: user
     # Define abilities for the user here. For example:
     #

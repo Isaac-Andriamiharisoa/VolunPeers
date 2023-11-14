@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :events, only: %i[index show new create edit update delete] do
+  resources :events, only: %i[index show new create edit update destroy] do
     resources :participations, only: %i[create destroy]
     get :participants
   end
