@@ -29,6 +29,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+
     if @event.save
       @participation = Participation.new
       @participation.user = current_user
@@ -60,9 +61,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time,
-                                  :end_time, :country, :address, :contact, :participations, :photo, :action, :quantity)
+    params.require(:event).permit(:title, :description, :start_date, :end_date, :start_time,
+                                  :end_time, :country, :address, :contact, :photo, :action, :quantity)
   end
-
-
 end
