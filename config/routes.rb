@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   end
   resources :events, only: %i[index show new create edit update delete] do
     resources :participations, only: [:create]
+    get :participants
+  end
+
+  resources :chatrooms do
+    delete :delete_conversation, on: :member
   end
 
   mount ActionCable.server => '/cable'

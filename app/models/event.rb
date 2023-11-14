@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_many :participations, dependent: :destroy
+  has_many :users, through: :participations
   after_create :create_chatroom
   has_one :chatroom, dependent: :destroy
   geocoded_by :address
@@ -9,5 +10,4 @@ class Event < ApplicationRecord
   def create_chatroom
     Chatroom.create name: title, event_id: id
   end
-
 end
