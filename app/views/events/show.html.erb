@@ -2,7 +2,11 @@
 <div class="show-banner-container">
 
   <div class="show-ban-pic">
-    <%= cl_image_tag "mdbg196rgmiuhq3bssnf9p7nqvnz" %>
+    <% if @event.photo.attached? %>
+      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture" %>
+    <% else %>
+      <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
+    <% end %>
   </div>
 
   <div class="show-ban-details">
@@ -10,13 +14,6 @@
       <div class="show-ban-action-icons">
         <%= link_to events_path do %>
           <i class="arrow fa-solid fa-arrow-left-long" style="color: #ffffff;  font-size: 150%;"></i>
-        <% end %>
-
-        <% if can? :destroy, @event%>
-          <%= link_to "V",
-            event_path(@event),
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "trashcan"
-          %>
         <% end %>
       </div>
 
@@ -38,8 +35,23 @@
       </div>
 
       <div class="show-banner-icon">
-        <i class="fa-solid fa-handshake-angle fa-2xl" style="color: #FFFFFF;"></i>
-        <p><%= @event.participations.count %></p>
+        <% case @event.action %>
+          <% when 'Trees to Plant' %>
+            <i class="fa-solid fa-tree"></i>
+
+          <% when 'People to Help' %>
+            <i class="fa-solid fa-person"></i>
+
+          <% when 'Batiment to Build' %>
+            <i class="fa-solid fa-house-circle-check"></i>
+
+          <% when 'Animal to Save' %>
+            <i class="fa-solid fa-shield-dog"></i>
+
+          <% when 'Litter to Clean' %>
+            <i class="fa-solid fa-recycle"></i>
+        <% end %>
+        <p><%= @event.quantity %></p>
       </div>
 
     </div>
