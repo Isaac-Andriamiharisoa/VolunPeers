@@ -1,41 +1,41 @@
 <div class="stat-section col-12 d-flex justify-content-center">
-  <div class="complete col-3 d-flex justify-content-center align-items-center">
-    <h2><%= @events_count %></h2>
-    <h3>Completed events</h3>
+  <div class="complete col-2 d-flex flex-column justify-content-center align-items-center">
+    <h1><%= @events_count %></h1>
+    <h4>Completed events</h4>
   </div>
-  <div class="icon-container col-5">
+  <div class="icon-container col-6">
     <div class="icon-items">
       <i class="fa-solid fa-tree"></i>
-      <p>130</p>
+      <p><%= @tree_quantity %></p>
       <p>Trees planted</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-person"></i>
-      <p>79</p>
+      <p><%= @people_quantity %></p>
       <p>People helped</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-house-circle-check"></i>
-      <p>32</p>
+      <p><%= @batiment_quantity %></p>
       <p>Batiment built</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-shield-dog"></i>
-      <p>12</p>
+      <p><%= @animal_quantity %></p>
       <p>Animal saved</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-recycle"></i>
-      <p>56 t</p>
+      <p><%= @litter_quantity %> t</p>
       <p>Litter cleaned</p>
     </div>
       <% @past_events.each do |past_event| %>
-        <div class="icon-items col-12 row">
-          <div class="event-container col-12">
+        <div class="icon-items">
+          <div class="completed-event-container">
             <h6>-Completed-</h6>
             <%= past_event.title %>
           </div>

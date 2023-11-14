@@ -18,11 +18,13 @@
       <div class="card col-3" style="width: 18rem;">
         <%= link_to event_path(participation.event) do %>
 
-          <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, alt: "event image", class: "card-img-top"%>
+          <% if participation.event.photo.attached? %>
+            <%= cl_image_tag participation.event.photo.key, alt: "event image", class: "card-img-top"%>
           <% else %>
             <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
           <% end %>
+
+
 
           <div class="card-body">
             <h4 class="card-title">
