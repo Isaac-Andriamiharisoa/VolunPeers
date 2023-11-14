@@ -17,4 +17,7 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  def participated_chatrooms
+    participations.map { |p| p.event.chatroom }
+  end
 end
