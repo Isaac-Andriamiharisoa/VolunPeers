@@ -1,3 +1,8 @@
+#colum_style {
+    height: inherit;
+    overflow: auto;
+}
+
 #chatroom_name{
   color: #3A1700;
   font-size: 28px;
@@ -8,113 +13,147 @@
   margin: 20px;
 }
 
+// .container-fluid {
+//   height: 100vh;
+//   overflow: hidden;
+// }
+.chatroom {
+  height: calc(100vh - 118px);
+}
+.input-group.rounded {
+  // margin: 20px;
+  width: 100%;
+  align-content: center;
+  // padding-right: 20px;
+}
+
+
+// <!-- Col -6 C.hat Messages -->//{}
+
+.messages_container {
+  position: relative;
+  height: inherit;
+}
+
+.scrollable-content {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 121px;
+  position: absolute;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  overflow: hidden;
+  padding: 30px 30px 5px 30px;
+  overflow-y: auto;
+  max-height: 500px;
+  background: #f4f1f1;
+  margin-top: 20px;
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Hide the scrollbar for Firefox */
+.scrollable-content {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
 .text_field {
-  width: auto;
+  margin: 2em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .message {
-  padding-top: 20px;
+  color: #3A1700;
+}
+// Col -3 Event Sidebar//
+.container_side {
+  background: #E8E7D8;
 }
 
-.input-group.rounded {
-  margin: 20px;
-  width: 90%;
+.custom-divider {
+  border: 1px solid black;
+  margin: 1em 0.5em;
 }
 
-.nav_container {
-  background-color: #132A13;
-  height: 40px;
-  color: white;
-  padding: 10px;
-}
 
-.profile-sidebar {
-  padding: 20px 0 10px 0;
-  background: #fff;
-}
-
-.profile-userpic img {
-  float: none;
+#sidebar_img img {
+  border-radius: 15%;
+  width: 100%;
+  height: auto;
+  display: block;
   margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+  padding: 20px;
 }
 
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
+.sidebar_title {
+  color: var(--Light-Primary, #3A1700);
+  font-family: Rowdies;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin: 0 auto;
+  display: block;
+  }
 
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
+#sidebar_subtitle {
+  color: var(--Light-Primary, #3A1700);
+  font-family: Manrope;
   font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 32px;
+  text-align: center;
 }
 
-.profile-usermenu ul li a i {
-  margin-right: 8px;
+#notification_title {
+  padding-left: 40px;
+}
+
+#side_description_title {
+  color: var(--Light-Primary, #3A1700);
+  font-family: Rowdies;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin: 20px 20px 10px 20px;
+}
+
+#side_description_text {
+  color: #3A1700;
+  font-family: Manrope;
   font-size: 14px;
+  font-style: light;
+  font-weight: 100;
+  line-height: normal;
+  margin: 0 20px 20px 20px;
 }
 
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
+#sidebar_delete {
+  font-size: 14px;
+  margin: 0 0 20px 20px;
 }
 
-.profile-usermenu ul li.active {
-  border-bottom: none;
+#sidebar_block {
+  font-size: 14px;
+  margin: 0 0 20px 20px;
 }
 
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
+.clickable {
+  cursor: pointer;
+  color: blue;
 }

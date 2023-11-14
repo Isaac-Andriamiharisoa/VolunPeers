@@ -10,8 +10,7 @@ class ParticipationsController < ApplicationController
 
   def destroy
     @participation = Participation.find(params[:id])
-    raise
     @participation.destroy
-    redirect_to dashboard_path
+    redirect_to calendar_path, notice: "Your participation was cancelled"
   end
 end
