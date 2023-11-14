@@ -1,1 +1,98 @@
-<h1>Edit page for <%= params[:id] %></h1>
+<div class="create-events">
+
+  <div class="form-banner">
+    <h1>Edit page for <%= params[:id] %></h1>
+  </div>
+
+
+  <div class="event-form">
+    <%= simple_form_for @event do |f| %>
+
+      <div class="form-title">
+        <%= f.input :title %>
+      </div>
+
+
+      <div class="form-event-row-1">
+
+        <div class="form-start-date">
+          <%= f.input :start_date %>
+        </div>
+
+        <div class="form-start-time">
+          <%= f.input :start_time %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-2">
+
+        <div class="form-end-date">
+          <%= f.input :end_date %>
+        </div>
+
+        <div class="form-end-time">
+          <%= f.input :end_time %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-3">
+
+        <div class="form-country">
+          <%= f.input :country %>
+        </div>
+
+        <div class="form-address">
+          <%= f.input :address %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-4">
+
+        <div class="form-photo">
+          <%= f.input :photo, as: :file %>
+        </div>
+
+        <div class="form-contact">
+          <%= f.input :contact %>
+        </div>
+
+      </div>
+
+
+      <div class="form-event-row-5">
+
+        <div class="form-action">
+          <%= f.input :action, as: :select, collection: ['Trees Planted', 'People Helped', 'Batiment Built', 'Animal Saved', 'Litter Cleaned' ] %>
+        </div>
+
+
+        <div class="form-quantity">
+          <%= f.input :quantity %>
+        </div>
+
+      </div>
+
+
+      <div class="form-description">
+        <%= f.input :description %>
+        <%= javascript_tag 'application.js' %>
+      </div>
+
+      <div class="form-button">
+        <%= f.submit %>
+      </div>
+
+      <div class="back">
+        <%= link_to "Cancel", :back %>
+      </div>
+
+
+    <% end %>
+  </div>
+</div>

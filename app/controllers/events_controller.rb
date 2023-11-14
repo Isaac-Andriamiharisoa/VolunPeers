@@ -40,10 +40,13 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
-
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+    redirect_to event_path(@event)
   end
 
   def destroy
@@ -58,4 +61,6 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :description, :latitude, :longitude, :start_date, :end_date, :start_time,
                                   :end_time, :country, :address, :contact, :participations, :photo, :action, :quantity)
   end
+
+
 end

@@ -7,7 +7,7 @@
   align-items: center;
   margin: 3% auto;
   padding: 0 5% 0 5%;
-  box-shadow: 0 10px 10px #e2e3e5c4;
+  box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   text-decoration: none;
   color: #3A1701;
@@ -22,8 +22,9 @@
   width: 15%;
   height: 80.5%;
   display: inline-grid;
-  border-radius: 5px;
-  box-shadow: inset 0px 5px 6px 0px #00000036;
+  border-radius: 10px;
+  box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  background-color: #E8E7D8;
   align-content: space-evenly;
   justify-items: center;
   padding: 2%;
