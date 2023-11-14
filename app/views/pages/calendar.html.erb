@@ -1,7 +1,7 @@
-<div class="search-container col-12">
+<div class="search-container-white col-12 mt-5">
   <div class="search-text col-4">
-      My Agenda
-    </div>
+    My Agenda
+  </div>
 
   <div class="search-bar col-4">
     <%= form_with(url: calendar_path, method: "get") do |f| %>
@@ -11,14 +11,12 @@
       <%= f.text_field :search, placeholder: "Search", class: "search-field" %>
     <% end %>
   </div>
-
 </div>
 
-
-<div class="card-container col-8 my-5">
-  <% @events.each do |event| %>
+<div class="card-container col-8 mt-2 mb-5">
+  <% @participations.each do |participation| %>
       <div class="card col-3" style="width: 18rem;">
-        <%= link_to event_path(event) do %>
+        <%= link_to event_path(participation.event) do %>
 
           <% if current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, alt: "event image", class: "card-img-top"%>
@@ -27,17 +25,17 @@
           <% end %>
 
           <div class="card-body">
-            <h3 class="card-title">
-              <%= event.title %>
-            </h3>
+            <h4 class="card-title">
+              <%= participation.event.title %>
+            </h4>
             <p class="card-text">
-              <%= event.description %>
+              <%= participation.event.description %>
             </p>
             <p class="card-date">
-              <%= event.start_date %>
-              </p>
+              End date: <%= participation.event.end_date %>
+            </p>
             <div class="card-button d-flex flex-column">
-              <%= link_to "Cancel participation", "#", class: "button-primary-revert" %>
+              <%= link_to "Cancel participation", event_participation_path(participation.event, participation), data: { turbo_method: :delete }, class: "button-primary-revert" %>
             </div>
           </div>
         <% end %>

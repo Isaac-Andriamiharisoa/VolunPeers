@@ -6,6 +6,13 @@
   align-items: center;
   margin: auto;
 
+  .card-img-holder {
+    width: 286px;
+    height: 286px;
+    background-position: center;
+    background-size: cover;
+  }
+
   .card {
     display: flex;
     flex-direction: column;
@@ -14,13 +21,23 @@
     text-align: center;
     overflow: hidden;
     color: #3a1700;
+    box-shadow: 0 5px 10px -5px rgba($color: #000000, $alpha: 0.25);
   }
 }
 
 .card-body {
+  width: 100%;
+
   .card-title,
   .card-text,
   .card-date {
     color: #3a1700;
+  }
+
+  .card-text {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

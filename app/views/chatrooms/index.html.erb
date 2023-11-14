@@ -1,209 +1,109 @@
 <div data-controller="chatroom-subscription" data-chatroom-subscription-ids-value="<%= @chatrooms.map { |c| c.id }.join(',') %>">
-  <% @chatrooms.each do |chatroom| %>
-    
-      <div class="row">
-        <div class="col-3">
-            <h1 id="chatroom_name"><%= chatroom.name %></h1>
+    <!-- Col -3 Community Forum -->
+    <div class="container-fluid">
+      <div class="row chatroom">
+        <div class="col-md-3" id="colum_style">
+            <h1 id="chatroom_name">Community Forum</h1>
+
           <div class="input-group rounded">
               <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
               <i class="fas fa-search"></i>
             </span>
           </div>
-          <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+          <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;">
             <ul class="list-unstyled mb-0">
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-success badge-dot"></span>
+              <% @chatrooms.each do |chatroom| %>
+                <li class="p-2 border-bottom" data-action="click->chatroom-subscription#selectChat:prevent" data-chatroom-id="<%= chatroom.id %>">
+                  <a href="#!" class="d-flex justify-content-between">
+                    <div class="d-flex flex-row">
+                      <div>
+                        <img
+                          src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
+                          alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60" height="60">
+                      </div>
+                      <div class="pt-1">
+                        <p class="fw-bold mb-0"><%= chatroom.name %></p>
+                        <p class="small text-muted" data-chatroom-subscription-target="latestMessage"><%= chatroom.messages.last.content if chatroom.messages.last %></p>
+                      </div>
                     </div>
                     <div class="pt-1">
-                      <p class="fw-bold mb-0">Marie Horwitz</p>
-                      <p class="small text-muted">Hello, Are you there?</p>
+                      <p class="small text-muted mb-1" data-chatroom-subscription-target="timestamp">
+                        <%= chatroom.messages.last&.created_at %>
+                      </p>
+                      <span class="badge bg-danger rounded-pill float-end">3</span>
                     </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Just now</p>
-                    <span class="badge bg-danger rounded-pill float-end">3</span>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-warning badge-dot"></span>
-                    </div>
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Alexa Chung</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">5 mins ago</p>
-                    <span class="badge bg-danger rounded-pill float-end">2</span>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-success badge-dot"></span>
-                    </div>
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Danny McChain</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-danger badge-dot"></span>
-                    </div>
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Ashley Olsen</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-warning badge-dot"></span>
-                    </div>
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Kate Moss</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
-                        alt="avatar" class="d-flex align-self-center me-3" width="60">
-                      <span class="badge bg-success badge-dot"></span>
-                    </div>
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Ben Smith</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
+                  </a>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
 
-        <div class="col-6">
-          <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
-            <div class="messages">
-              <% chatroom.messages.each do |message| %>
-                <%= render partial: 'messages/message', locals: { message: } %>
-              <% end %>
-              <div data-chatroom-subscription-target="latestMessages"></div>
-            </div>
-          <div class="text_field">
-            <%= simple_form_for [chatroom, @message], html: {class: "d-flex"} do |f| %>
-              <%= f.input :content,
-                label: false,
-                placeholder: "Message ##{chatroom.name}",
-                html: {class: "textfield"},
-                wrapper_html: {class: "flex-grow-1"},
-                data: {target: "cleartextField"}
-              %>
-            <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-              <% end %>
-          </div>
-        </div>
-      </div>
+        <!-- Col -6 Chat Messages -->
 
-        <div class="col-3">
-          <div class="profile-sidebar">
-            <!-- SIDEBAR USERPIC -->
-            <div class="profile-userpic">
-              <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-            </div>
-            <!-- END SIDEBAR USERPIC -->
-            <!-- SIDEBAR USER TITLE -->
-            <div class="profile-usertitle">
-              <div class="profile-usertitle-name">
-                Marcus Doe
-              </div>
-              <div class="profile-usertitle-job">
-                Developer
+          <% @chatrooms.each do |chatroom| %>
+            <div class="col-md-6 event-<%= chatroom.id %>" id="colum_style">
+              <div class="messages_container">
+                <div class="scrollable-content" data-chatroom-subscription-target="scrollContent">
+                  <% chatroom.messages.each do |message| %>
+                    <%= render partial: 'messages/message', locals: { message: } %>
+                  <% end %>
+                  <div data-chatroom-subscription-target="latestMessages"></div>
+                </div>
+
+                <div class="text_field mt-auto p-3">
+                  <%= simple_form_for [chatroom, @message], html: {class: "d-flex"} do |f| %>
+                    <%= f.input :content,
+                      label: false,
+                      placeholder: "Type your message here...",
+                      input_html: {class: "textfield", "data-chatroom-subscription-target": "chatField"},
+                      wrapper_html: {class: "flex-grow-1"}
+                    %>
+                    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+                  <% end %>
+                </div>
               </div>
             </div>
-            <!-- END SIDEBAR USER TITLE -->
-            <!-- SIDEBAR BUTTONS -->
-
-            <!-- END SIDEBAR BUTTONS -->
-            <!-- SIDEBAR MENU -->
-            <div class="profile-usermenu">
-              <ul class="nav">
-                <li class="active">
-                  <a href="#">
-                  <i class="glyphicon glyphicon-home"></i>
-                  Overview </a>
-                </li>
-                <li>
-                  <a href="#">
-                  <i class="glyphicon glyphicon-user"></i>
-                  Account Settings </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank">
-                  <i class="glyphicon glyphicon-ok"></i>
-                  Tasks </a>
-                </li>
-                <li>
-                  <a href="#">
-                  <i class="glyphicon glyphicon-flag"></i>
-                  Help </a>
-                </li>
-              </ul>
+          <% end %>
+        <!-- Col -3 Side Bar -->
+        <% @chatrooms.each do |chatroom| %>
+          <div class="col-md-3 container_side event-<%= chatroom.id %>" id="colum_style">
+            <div id="sidebar_img">
+              <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a">
             </div>
-            <!-- END MENU -->
+            <div class="sidebar_title">
+              <div class="text-center"><%= chatroom.name %></div>
+            </div>
+            <div id="sidebar_subtitle">By Sabrina Terrese </div>
+            <div>
+              <div class="custom-padding-row">
+                <hr class="custom-divider">
+              </div>
+              <div class="row">
+                <div class="col-8" id="notification_title">
+                  Notifications
+                </div>
+                <div class="col-4">
+                  <input type="checkbox" data-toggle="switchbutton" checked data-onstyle="primary" data-offstyle="secondary" checked data-size="xs">
+                </div>
+              </div>
+            <div>
+              <div class="custom-padding-row">
+                <hr class="custom-divider">
+              </div>
+            </div>
+            <div id="side_description_title">Description</div>
+            <div id="side_description_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac nulla tincidunt, sodales ante a, posuere est. Aliquam..See More </div>
+            <div id="sidebar_delete" class="clickable" data-action="click->chatroom-subscription#deleteConversation" data-chatroom-id="<%= chatroom.id %>">
+              Delete Conversation
+            </div>
+            <div id="sidebar_block">Block Community</div>
           </div>
         </div>
+      <% end %>
     </div>
-
-  <% end %>
 </div>
+
+<!-- Add this in your head tag or before the closing body tag -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"></script>
