@@ -29,7 +29,9 @@ puts "creating events"
   contact: 12345678,
   start_date: "2023-11-08",
   end_date: "2023-12-07",
-  user_id: @bob.id
+  user_id: @bob.id,
+  action: "Trees to Plant",
+  quantity: 40
 )
 
 @event2 = Event.create(
@@ -42,7 +44,9 @@ puts "creating events"
   contact: 12345678,
   start_date: "2023-11-09",
   end_date: "2023-12-08",
-  user_id: @bob.id
+  user_id: @bob.id,
+  action: "Batiment to Build",
+  quantity: 12
 )
 
 @event3 = Event.create(
@@ -55,8 +59,11 @@ puts "creating events"
   contact: 12345678,
   start_date: "2023-11-10",
   end_date: "2023-12-09",
-  user_id: @john.id
+  user_id: @john.id,
+  action: "Litter to Clean",
+  quantity: 35
 )
+
 
 @event4 = Event.create(
   title: "Senior Companionship Project",
@@ -68,7 +75,9 @@ puts "creating events"
   contact: 12345678,
   start_date: "2023-12-11",
   end_date: "2023-12-21",
-  user_id: @alice.id
+  user_id: @alice.id,
+  action: "Trees to Plant",
+  quantity: 35
 )
 
 puts "creating partitipations"

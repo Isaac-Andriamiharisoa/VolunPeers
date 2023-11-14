@@ -30,12 +30,20 @@
   padding: 2%;
 }
 
-.event-card-details h1 {
-  font-family: 'Rowdies', sans-serif;
-}
+.event-card-details {
+  width: 50%;
+  height: 85%;
+  overflow: clip;
 
-.event-card-details p {
+  h1 {
+  font-family: 'Rowdies', sans-serif;
+  overflow: hidden;
+  }
+
+  p {
   font-family: 'Manrope', sans-serif;
+  }
+
 }
 
 .event-card-icons p {
