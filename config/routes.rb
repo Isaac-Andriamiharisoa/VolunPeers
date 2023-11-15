@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :chatrooms do
     delete :delete_conversation, on: :member
-    
+
     resources :participations, only: %i[create destroy]
   end
 

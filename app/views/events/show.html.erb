@@ -3,9 +3,9 @@
 
   <div class="show-ban-pic">
     <% if @event.photo.attached? %>
-      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture" %>
+      <div class="event-card-picture" style="background-image: url('<%= cl_image_path @event.photo.key, secure: true %>');"></div>
     <% else %>
-      <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
+      <div class="event-card-picture" style="background-image: url('<%= asset_url("logo-space.png") %>');"></div>
     <% end %>
   </div>
 
@@ -37,19 +37,19 @@
       <div class="show-banner-icon">
         <% case @event.action %>
           <% when 'Trees to Plant' %>
-            <i class="fa-solid fa-tree"></i>
+            <i class="fa-solid fa-tree fa-2xl"></i>
 
           <% when 'People to Help' %>
-            <i class="fa-solid fa-person"></i>
+            <i class="fa-solid fa-person fa-2xl"></i>
 
           <% when 'Batiment to Build' %>
-            <i class="fa-solid fa-house-circle-check"></i>
+            <i class="fa-solid fa-house-circle-check fa-2xl"></i>
 
           <% when 'Animal to Save' %>
-            <i class="fa-solid fa-shield-dog"></i>
+            <i class="fa-solid fa-shield-dog fa-2xl"></i>
 
           <% when 'Litter to Clean' %>
-            <i class="fa-solid fa-recycle"></i>
+            <i class="fa-solid fa-recycle fa-2xl"></i>
         <% end %>
         <p><%= @event.quantity %></p>
       </div>
@@ -59,10 +59,18 @@
     <div class="show-ban-buttons-container">
 
       <div class="show-ban-button">
-        <%= simple_form_for [@event, @participation] do |f| %>
-          <%= f.submit "Participate", class: "button button-primary" %>
+
+        <% if @exist_participation %>
+          <button class="participation-button-disable">Participating</button>
+        <% else %>
+          <%= simple_form_for [@event, @participation] do |f| %>
+            <%= f.submit "Participate", class: "participation-button", id:"participateButton",  data: { status: "participate" }  %>
+          <% end %>
         <% end %>
+
       </div>
+                      <!-- Your existing HTML code -->
+
 
       <div class="show-ban-button">
         <% if can? :update, @event %>

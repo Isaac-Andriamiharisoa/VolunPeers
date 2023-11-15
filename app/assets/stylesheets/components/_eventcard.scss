@@ -13,9 +13,12 @@
   color: #3A1701;
 }
 
-.event-card-picture {
-  width: 200px;
+.event-card-pic-container {
+  width: 275px;
+  height: 200px;
   border-radius: 5px;
+  background-size: cover;
+  background-position: center;
 }
 
 .event-card-icons {

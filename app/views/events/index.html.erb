@@ -21,13 +21,11 @@
     <% @events.each do |event| %>
         <%= link_to event_path(event), class:"event-card" do  %>
 
-        <div class="event-card-pic-container">
-          <% if event.photo.attached? %>
-            <%= cl_image_tag event.photo.key, alt: "dropdown menu", class: "event-card-picture"%>
-          <% else %>
-            <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
-          <% end %>
-      </div>
+            <% if event.photo.attached? %>
+              <div class="event-card-pic-container" style="background-image: url('<%= cl_image_path event.photo.key, secure: true %>');"></div>
+            <% else %>
+              <div class="event-card-pic-container" style="background-image: url('<%= asset_url("logo-space.png") %>');"></div>
+            <% end %>
 
 
         <div class="event-card-details">

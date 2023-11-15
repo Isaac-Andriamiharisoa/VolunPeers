@@ -5,17 +5,20 @@
   flex-direction: row-reverse;
   align-items: center;
   color: white;
+  padding: 4% 0;
 
   h1 {
     font-family: 'Rowdies', sans-serif;
   }
 
-  img {
-    width: 300px;
-    margin: 15% 0 15% 0;
-    border: 5px solid white;
-    border-radius: 30px;
+  .event-card-picture {
+    width: 450px;
+    height: 350px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
   }
+
 }
 
 
@@ -71,7 +74,7 @@
     display: flex;
     justify-content: space-between;
 
-    input {
+    input, button {
     width: 30vw;
     height: 4vw;
     margin: 0% 0% 3% 0%;
@@ -83,7 +86,13 @@
     font-family: 'Rowdies', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
-    }
+
+  }
+
+  .participation-button-disable {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 
     a {
       border: 2px solid #90A955;
@@ -165,7 +174,8 @@
   display: flex;
   justify-content: space-evenly;
   margin: 3% 0% 3% 0%;
-  
+  padding: 0% 10%;
+
 
   .show-info-details {
 
@@ -217,8 +227,10 @@
 
 .info-container-3 {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-evenly;
   margin: 3% 0% 3% 0%;
+  padding: 0% 10%;
 
   .show-info-share{
     h5 {
@@ -241,9 +253,9 @@
         justify-content: center;
         align-items: center;
         background-color: #3A1700;
-        border-radius: 50%;
-        width: 15%;
-        height: 50%;
+        border-radius: 75px;
+        width: 75px;
+        height: 75px;
       }
     }
 
