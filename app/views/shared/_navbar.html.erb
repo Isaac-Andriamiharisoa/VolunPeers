@@ -30,14 +30,8 @@
         </div>
 
           <li class="nav-item dropdown d-flex justify-content-center col-1 pe-2">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-              <% if current_user.photo.attached? %>
-                <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "avatar-bordered"%>
-              <% else %>
-                <%= image_tag "logo-space.png", alt: "A planet", class: "avatar-bordered" %>
-              <% end %>
-
+            <a href="#" class="avatar-bordered" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              style="background-image: url('<%= current_user.photo.url if current_user.photo.attached? || asset_path('logo-space.png') %>');">
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>

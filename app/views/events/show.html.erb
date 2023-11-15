@@ -3,7 +3,7 @@
 
   <div class="show-ban-pic">
     <% if @event.photo.attached? %>
-      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture" %>
+      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture"%>
     <% else %>
       <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
     <% end %>

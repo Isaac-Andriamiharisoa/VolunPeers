@@ -3,7 +3,8 @@ class PagesController < ApplicationController
 
   def home
     @testimonials = Testimonial.all.limit(3).order(created_at: :desc)
-    @event = Event.all.order(start_date: :asc).limit(1)
+    @event = Event.where('start_date > ?', DateTime.now).order(start_date: :asc).first
+    @actual_time = DateTime.now.strftime("%Y-%m-%d %H:%M:%S")
     @user = User.first
     @volunteers_count = User.count
     @events_count = Event.count
@@ -19,6 +20,12 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @tree_quantity = Event.where(action: "Trees Planted", user_id: current_user.id).sum(:quantity)
+    @people_quantity = Event.where(action: "Peoples Helped", user_id: current_user.id).sum(:quantity)
+    @batiment_quantity = Event.where(action: "Batiment built", user_id: current_user.id).sum(:quantity)
+    @animal_quantity = Event.where(action: "Animal saved", user_id: current_user.id).sum(:quantity)
+    @litter_quantity = Event.where(action: "Litter Cleaned", user_id: current_user.id).sum(:quantity)
+
     if params[:search].present? && params[:search] != ""
       @participations = participated_event_search
     else
