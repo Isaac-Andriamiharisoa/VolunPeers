@@ -73,10 +73,7 @@
               <%= created_event.title %>
             </h3>
             <p class="card-text">
-              Start date: <%= created_event.start_date %>
-            </p>
-            <p class="card-date">
-              End date: <%= created_event.end_date %>
+              <%= created_event.start_date.strftime("%d-%m-%Y") %> to <%= created_event.end_date.strftime("%d-%m-%Y") %>
             </p>
             <div class="card-button d-flex flex-column">
                 <%= link_to "Delete event", event_path(created_event), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert" %>

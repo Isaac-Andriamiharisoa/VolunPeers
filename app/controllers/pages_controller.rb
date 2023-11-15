@@ -20,7 +20,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    # ['Trees Planted', 'People Helped', 'Batiment Built', 'Animal Saved', 'Litter Cleaned' ]
     @tree_quantity = Event.where(action: "Trees Planted", user_id: current_user.id).sum(:quantity)
     @people_quantity = Event.where(action: "Peoples Helped", user_id: current_user.id).sum(:quantity)
     @batiment_quantity = Event.where(action: "Batiment built", user_id: current_user.id).sum(:quantity)
