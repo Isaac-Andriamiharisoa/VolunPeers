@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    @testimonials = Testimonial.all.limit(3).order(created_at: :desc)
+    # @testimonials = Testimonial.all.limit(3).order(created_at: :desc)
+    @testimonials = Testimonial.includes(:participation).all.limit(3)
     @event = Event.where('start_date > ?', DateTime.now).order(start_date: :asc).first
     @actual_time = DateTime.now.strftime("%Y-%m-%d %H:%M:%S")
     @user = User.first

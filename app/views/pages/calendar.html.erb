@@ -1,4 +1,4 @@
-<div class="search-container-white col-12 mt-5">
+<div class="search-container col-12">
   <div class="search-text col-4">
     My Agenda
   </div>
@@ -13,33 +13,33 @@
   </div>
 </div>
 
-<div class="card-container col-8 mt-2 mb-5">
+<div class="card-col-2 col-8 mt-5 mb-5">
   <% @participations.each do |participation| %>
-      <div class="card col-3" style="width: 18rem;">
+      <div class="card">
         <%= link_to event_path(participation.event) do %>
 
-          <% if participation.event.photo.attached? %>
-            <%= cl_image_tag participation.event.photo.key, alt: "event image", class: "card-img-top"%>
-          <% else %>
-            <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
-          <% end %>
-
-
+          <div class="card-img-container">
+            <% if participation.event.photo.attached? %>
+              <%= cl_image_tag participation.event.photo.key, alt: "event image", class: "card-img-top"%>
+            <% else %>
+              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+            <% end %>
+          </div>
 
           <div class="card-body">
-            <h4 class="card-title">
+            <h3 class="card-title">
               <%= participation.event.title %>
-            </h4>
-            <p class="card-text">
+            </h3>
+            <h6 class="card-date">
+              <%= participation.event.start_date.strftime("%d-%m-%Y") %> to <%= participation.event.end_date.strftime("%d-%m-%Y") %>
+            </h6>
+            <p class="card-description">
               <%= participation.event.description %>
             </p>
-            <p class="card-date">
-              End date: <%= participation.event.end_date %>
-            </p>
-            <div class="card-button d-flex flex-column">
               <%= link_to "Cancel participation", event_participation_path(participation.event, participation), data: { turbo_method: :delete }, class: "button-primary-revert" %>
-            </div>
           </div>
+
+
         <% end %>
       </div>
   <% end %>

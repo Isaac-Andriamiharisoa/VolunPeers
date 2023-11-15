@@ -13,31 +13,130 @@
     background-size: cover;
   }
 
-  .card {
+  .card-col {
     display: flex;
     flex-direction: column;
+    // grid-template-columns: 1fr;
     align-items: center;
-    border-radius: 5px;
+    justify-content: space-between;
     text-align: center;
+    border-radius: 5px;
     overflow: hidden;
     color: #3a1700;
     box-shadow: 0 5px 10px -5px rgba($color: #000000, $alpha: 0.25);
   }
 }
 
-.card-body {
+.card-col-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  justify-items: center;
+  align-items: center;
+  margin: auto;
+}
+
+.card {
+  width: $card-width;
+  height: calc($card-width * 50%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px -5px rgba($color: #000000, $alpha: 0.25);
+
+  .card-img-container,
+  .card-body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-img-container {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-body {
+    box-shadow: -5px 0 10px -5px rgba($color: #000000, $alpha: 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+}
+
+.card > .card-body {
   width: 100%;
 
   .card-title,
   .card-text,
-  .card-date {
+  .card-date,
+  .card-description {
     color: #3a1700;
   }
 
-  .card-text {
-    width: inherit;
-    white-space: nowrap;
+  .card-title {
+    font-weight: bold;
+  }
+
+  .card-date {
+    opacity: 0.6;
+  }
+
+  .card-description {
+    margin: 15px 0;
+    opacity: 0.8;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+  }
+
+  .button-primary-revert {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+.card-col {
+  width: 18rem;
+  height: 450px;
+  overflow: hidden;
+  background-color: #f3f2e7;
+  box-shadow: 0 5px 10px -5px rgba($color: #000000, $alpha: 0.25);
+
+  .card-body {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .card-title,
+    .card-text,
+    .card-date,
+    .card-description {
+      color: #3a1700;
+    }
+
+    .card-date {
+      opacity: 0.6;
+    }
+
+    .card-description {
+      margin: 15px 0;
+      opacity: 0.8;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Number of lines to show */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .button-primary-revert {
+      width: fit-content;
+      margin: 0 auto;
+    }
   }
 }
