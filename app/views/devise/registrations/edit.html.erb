@@ -1,13 +1,11 @@
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container col-5 p-5" }) do |f| %>
   <div class="form-header col-12">
-    <h2>Edit your profile</h2>
+    <h2 class="page-title">Edit your profile</h2>
     <div class="form-profile-img">
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, alt: "dropdown menu", class: "avatar-jumbo"%>
-      <% else %>
-        <%= image_tag "logo-space.png", alt: "A planet", class: "avatar-jumbo" %>
-      <% end %>
+      <div class="avatar-jumbo"
+            style="background-image: url('<%= current_user.photo.url if current_user.photo.attached? || asset_path('logo-space.png') %>');">
+      </div>
       <h5><%= current_user.username %></h5>
     </div>
   </div>

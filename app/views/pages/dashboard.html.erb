@@ -1,41 +1,41 @@
 <div class="stat-section col-12 d-flex justify-content-center">
-  <div class="complete col-3 d-flex justify-content-center align-items-center">
-    <h2><%= @events_count %></h2>
-    <h3>Completed events</h3>
+  <div class="complete col-2 d-flex flex-column justify-content-center align-items-center">
+    <h1><%= @events_count %></h1>
+    <h4>Completed events</h4>
   </div>
-  <div class="icon-container col-5">
+  <div class="icon-container col-6">
     <div class="icon-items">
       <i class="fa-solid fa-tree"></i>
-      <p>130</p>
+      <p><%= @tree_quantity %></p>
       <p>Trees planted</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-person"></i>
-      <p>79</p>
+      <p><%= @people_quantity %></p>
       <p>People helped</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-house-circle-check"></i>
-      <p>32</p>
+      <p><%= @batiment_quantity %></p>
       <p>Batiment built</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-shield-dog"></i>
-      <p>12</p>
+      <p><%= @animal_quantity %></p>
       <p>Animal saved</p>
     </div>
 
     <div class="icon-items">
       <i class="fa-solid fa-recycle"></i>
-      <p>56 t</p>
+      <p><%= @litter_quantity %> t</p>
       <p>Litter cleaned</p>
     </div>
       <% @past_events.each do |past_event| %>
-        <div class="icon-items col-12 row">
-          <div class="event-container col-12">
+        <div class="icon-items">
+          <div class="completed-event-container">
             <h6>-Completed-</h6>
             <%= past_event.title %>
           </div>
@@ -61,22 +61,23 @@
 
 <div class="card-container created-events-container col-8 my-5">
   <% @created_events.each do |created_event| %>
-      <div class="card col-3" style="width: 18rem;">
+      <div class="card-col">
         <%= link_to event_path(created_event) do %>
-          <% if created_event.photo.attached? %>
-            <div class="card-img-holder" style="background-image: url('<%= cl_image_path created_event.photo.key, secure: true %>');"></div>
-          <% else %>
-            <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
-          <% end %>
+
+          <div class="card-img-container">
+            <% if created_event.photo.attached? %>
+              <div class="card-img-holder" style="background-image: url('<%= cl_image_path created_event.photo.key, secure: true %>');"></div>
+            <% else %>
+              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+            <% end %>
+          </div>
+
           <div class="card-body">
-            <h3 class="card-title">
+            <h4 class="card-title">
               <%= created_event.title %>
-            </h3>
-            <p class="card-text">
-              Start date: <%= created_event.start_date %>
-            </p>
+            </h4>
             <p class="card-date">
-              End date: <%= created_event.end_date %>
+              <%= created_event.start_date.strftime("%d-%m-%Y") %> to <%= created_event.end_date.strftime("%d-%m-%Y") %>
             </p>
             <div class="card-button d-flex flex-column">
                 <%= link_to "Delete event", event_path(created_event), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert" %>
@@ -87,11 +88,14 @@
   <% end %>
 </div>
 
+
+
+
 <%# search for agenda %>
 <div class="search-container-white col-12">
   <div class="search-text col-4">
       My Participations
-    </div>
+  </div>
 
   <div class="search-bar col-4">
     <%= form_with(url: dashboard_path, method: "get") do |f| %>
@@ -105,24 +109,23 @@
 
 <div class="card-container col-8 my-5">
   <% @participations.each do |participation| %>
-      <div class="card col-3" style="width: 18rem;">
+      <div class="card-col">
         <%= link_to event_path(participation.event) do %>
 
-          <% if participation.event.photo.attached? %>
-            <div class="card-img-holder" style="background-image: url('<%= cl_image_path participation.event.photo.key, secure: true %>');"></div>
-          <% else %>
-            <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
-          <% end %>
+          <div class="card-img-container">
+            <% if participation.event.photo.attached? %>
+              <div class="card-img-holder" style="background-image: url('<%= cl_image_path participation.event.photo.key, secure: true %>');"></div>
+            <% else %>
+              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+            <% end %>
+          </div>
 
           <div class="card-body">
-            <h3 class="card-title">
+            <h4 class="card-title">
               <%= participation.event.title %>
-            </h3>
-            <p class="card-text">
-              <%= participation.event.description %>
-            </p>
+            </h4>
             <p class="card-date">
-              End date: <%= participation.event.end_date %>
+              Start date: <%= participation.event.start_date %>
               </p>
             <div class="card-button d-flex flex-column">
               <div class="card-button d-flex flex-column">

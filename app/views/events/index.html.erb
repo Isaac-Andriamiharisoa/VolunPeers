@@ -1,11 +1,11 @@
 <div class="eventindex">
 
-  <div class="searchcontainer col-12">
-    <div class="eventindextitle">
-      <h1 style="color:white; font-family: 'Rowdies', sans-serif; font-size: 300%;">Events</h1>
+  <div class="search-container col-12">
+    <div class="search-text col-4">
+      Causes
     </div>
 
-    <div class="searchbar">
+    <div class="search-bar col-4">
       <%= form_with(url: events_path, method: "get") do |f| %>
         <%= f.button type:"submit", class: "button-search" do%>
           <i class="fa fa-search"></i>
@@ -14,8 +14,6 @@
       <% end %>
     </div>
   </div>
-
-
 
   <div class="event-container">
     <% @events.each do |event| %>

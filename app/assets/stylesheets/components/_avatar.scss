@@ -1,32 +1,46 @@
-.avatar {
-  width: 56px;
+// Common styles for all avatars
+.avatar,
+.avatar-large,
+.avatar-bordered,
+.avatar-square,
+.avatar-jumbo,
+.avatar-jumbo-bordered {
+  background-size: cover;
+  background-position: center;
+}
+
+// Common styles for avatars with rounded borders
+.avatar,
+.avatar-large,
+.avatar-bordered,
+.avatar-jumbo,
+.avatar-jumbo-bordered {
   border-radius: 50%;
 }
+
+// Avatar specific styles
+.avatar, .avatar-bordered, .avatar-square {
+  width: 56px;
+  height: 56px;
+}
+
 .avatar-large {
   width: 60px;
-  border-radius: 50%;
 }
-.avatar-bordered {
-  width: 56px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+.avatar-bordered,
+.avatar-jumbo-bordered {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border: white 2px solid;
 }
+
 .avatar-square {
-  width: 56px;
-  border-radius: 0px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border-radius: 0;
   border: white 1px solid;
 }
 
-.avatar-jumbo {
-  width: 100px;
-  border-radius: 50%;
-}
-
+.avatar-jumbo,
 .avatar-jumbo-bordered {
   width: 100px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 2px solid;
+  height: 100px;
 }
