@@ -60,7 +60,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params[:event].contact = params[:event].contact.gsub(/\D/, '').to_i
+    params[:event]["contact"] = params[:event]["contact"].to_s.gsub(/\D/, '').to_i
     params.require(:event).permit(:title, :description, :start_date, :end_date, :start_time,
                                   :end_time, :country, :address, :contact, :photo, :action, :quantity)
   end
