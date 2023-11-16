@@ -1,17 +1,22 @@
 .event-card {
-  height: 17vw;
+  height: auto;
   background-color: #F3F2E7;
   max-width: 70vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 3% auto;
-  padding: 0 5% 0 5%;
-  box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.25);
+  padding: 25px;
+  box-shadow: 0 15px 20px -10px rgba($color: #000000, $alpha: 0.15);
   border-radius: 5px;
   text-decoration: none;
   color: #3A1701;
+  transform: translateY(0px);
+  transition: 200ms all ease-in-out;
+}
 
+.event-card:hover {
+  transform: translateY(-5px);
 }
 
 .event-card-pic-container {
@@ -27,12 +32,15 @@
   height: 80.5%;
   display: flex;
   border-radius: 10px;
-  box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  background-color: #E8E7D8;
   justify-content: space-around;
   justify-items: center;
   flex-direction: column;
   padding: 2%;
+
+  .icons {
+    height: auto;
+    padding: 15px 0;
+  }
 
   .event-card-icons-stats {
     display: flex;
@@ -44,8 +52,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-top: 2px solid rgba($color: #000000, $alpha: 0.1);
+    border-bottom: 2px solid rgba($color: #000000, $alpha: 0.1);
     padding: 15px 0px;
   }
 

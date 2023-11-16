@@ -1,6 +1,6 @@
 <div class="eventindex">
 
-  <div class="search-container col-12">
+  <div class="search-container-white col-12">
     <div class="search-text col-4">
       Causes
     </div>
@@ -33,17 +33,17 @@
         </div>
 
         <div class="event-card-icons">
-          <div class="event-card-icons-stats">
+          <div class="event-card-icons-stats icons">
             <p><%= event.start_date.strftime("%d %^b") %> </p>
             <i class="fa-regular fa-calendar-days fa-2xl" style="color: #3a1700;"></i>
           </div>
 
-          <div class="event-card-icons-country">
+          <div class="event-card-icons-country icons">
             <p><%= event.country %></p>
             <i class="fa-solid fa-location-dot fa-2xl" style="color: #3a1700;"></i>
           </div>
 
-          <div class="event-card-icons-stats">
+          <div class="event-card-icons-stats icons">
             <p><%= event.quantity %></p>
             <% case event.action %>
               <% when 'Trees to Plant' %>

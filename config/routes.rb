@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   root "pages#home"
   get "calendar", to: "pages#calendar"
   get "dashboard", to: "pages#dashboard"
-  get "aboutus", to: "pages#aboutus"
-  
+  get "about", to: "pages#about"
+
   resources :testimonials, only: %i[new create]
 
   resources :chatrooms, only: :index do
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: %i[index show new create edit update destroy] do
-
+    get "participants", to: "pages#participants"
     resources :participations, only: %i[create destroy]
     get :participants
   end

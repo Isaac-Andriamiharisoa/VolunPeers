@@ -21,11 +21,6 @@ class EventsController < ApplicationController
     @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end
 
-  def participants
-    @event = Event.find(params[:event_id])
-    @participants = @event.users
-  end
-
   def new
     @event = Event.new
   end

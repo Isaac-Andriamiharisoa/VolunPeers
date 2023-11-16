@@ -47,12 +47,10 @@
                 <div class="scrollable-content" data-chatroom-subscription-target="scrollContent">
                   <% chatroom.messages.each do |message| %>
                     <% if message.user == current_user %>
-                      <div class="message right-message">
+                        <%= render partial: 'messages/right_message', locals: { message: message, current_user: current_user } %>
                     <% else %>
-                      <div class="message left-message">
+                        <%= render partial: 'messages/left_message', locals: { message: message, current_user: current_user } %>
                     <% end %>
-                      <%= render partial: 'messages/message', locals: { message: message, current_user: current_user } %>
-                    </div>
                   <% end %>
                   <div data-chatroom-subscription-target="latestMessages"></div>
                 </div>
@@ -100,8 +98,8 @@
               </div>
             </div>
             <div id="side_description_title">Description</div>
-            <div id="side_description_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac nulla tincidunt, sodales ante a, posuere est. Aliquam..See More </div>
-            <div id="sidebar_block" class="clickable">List of Participants</div>
+            <div id="side_description_text"><%= chatroom.event.description %></div>
+              <%= link_to "List of participants", event_participants_path(chatroom.event), id: "sidebar_block" %>
             <div id="sidebar_delete" class="clickable" data-action="click->chatroom-subscription#deleteConversation" data-chatroom-id="<%= chatroom.id %>">
               Delete Conversation
             </div>

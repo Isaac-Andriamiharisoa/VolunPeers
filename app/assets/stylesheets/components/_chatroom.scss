@@ -1,11 +1,13 @@
+/* General Styles */
 #colum_style {
   height: inherit;
   overflow: auto;
-  background: #E8E7D8;
+  background: #e8e7d8;
 }
 
-#chatroom_name{
-  color: #3A1700;
+/* Chatroom Styles */
+#chatroom_name {
+  color: #3a1700;
   font-size: 28px;
   font-family: Rowdies;
   font-weight: 300;
@@ -13,6 +15,7 @@
   padding-left: 20px;
   margin: 20px;
 }
+
 .custom-border {
   border-bottom: 1px solid black;
   opacity: 50%;
@@ -21,25 +24,25 @@
 .chatroom {
   height: calc(100vh - 118px);
 }
+
 .input-group.rounded {
   width: 100%;
   align-content: center;
 }
 
-// <!-- Col -6 C.hat Messages -->//{}
-
+/* Messages Container Styles */
 .messages_container {
   position: relative;
   height: inherit;
-  color:#3A1700;
+  color: #3a1700;
 }
 
 .scrollable-content {
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 121px;
-  position: absolute;
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
   overflow: hidden;
@@ -61,7 +64,6 @@
   background-color: transparent;
 }
 
-/* Hide the scrollbar for Firefox */
 .scrollable-content {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
@@ -72,27 +74,26 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
 
-  .btn {
-    border-radius: 10px;
-  }
-}\
+.text_field .btn {
+  border-radius: 10px;
+}
 
-.textfield{
+.textfield {
   border-radius: 10px;
   padding: 20px;
 }
 
 .message {
-  color: #3A1700;
+  color: #3a1700;
 }
-// Col -3 Event Sidebar//
 
+/* Event Sidebar Styles */
 .custom-divider {
   border: 1px solid black;
   margin: 1em 0.5em;
 }
-
 
 #sidebar_img img {
   border-radius: 15%;
@@ -104,7 +105,7 @@
 }
 
 .sidebar_title {
-  color: var(--Light-Primary, #3A1700);
+  color: var(--Light-Primary, #3a1700);
   font-family: Rowdies;
   font-size: 20px;
   font-style: normal;
@@ -112,10 +113,10 @@
   line-height: normal;
   margin: 0 auto;
   display: block;
-  }
+}
 
 #sidebar_subtitle {
-  color: var(--Light-Primary, #3A1700);
+  color: var(--Light-Primary, #3a1700);
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
@@ -129,7 +130,7 @@
 }
 
 #side_description_title {
-  color: var(--Light-Primary, #3A1700);
+  color: var(--Light-Primary, #3a1700);
   font-family: Rowdies;
   font-size: 18px;
   font-style: normal;
@@ -139,20 +140,20 @@
 }
 
 #side_description_text {
-  color: #3A1700;
+  color: #3a1700;
   font-family: Manrope;
   font-size: 14px;
   font-style: light;
   font-weight: 100;
   line-height: normal;
   margin: 0 30px 20px 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-#sidebar_delete {
-  font-size: 14px;
-  margin: 0 0 20px 20px;
-}
-
+#sidebar_delete,
 #sidebar_block {
   font-size: 14px;
   margin: 0 0 20px 20px;
@@ -160,19 +161,11 @@
 
 .clickable {
   cursor: pointer;
-  color: #0D6EFD;
+  color: #0d6efd;
 }
 
 .right-message {
   text-align: right;
-  // width: 70%;
-  // // // max-width: 400px;
-  // border-radius: 14px;
-  // // padding: 10px;
-  // margin-left: auto;
-  // // width: fit-content;
-  // // // min-height: 80px;
-  // background-color: lightblue;
 }
 
 .left-message {
