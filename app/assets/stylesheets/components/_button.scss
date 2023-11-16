@@ -43,15 +43,26 @@
 
 .button-primary {
   background-image: linear-gradient(#90a955, #90a955);
+  transform: translateY(0px);
+  transition: 200ms all ease-in-out;
 }
 
 .button-primary:hover {
+  background-image: linear-gradient(#90a955, #9cb562);
   opacity: 0.8;
   box-shadow: 0 10px 10px -5px rgba($color: #000000, $alpha: 0.25);
 }
 
 .button-red {
   background-color: #da2c38;
+}
+
+.extra-button {
+  transition: 200ms all ease;
+}
+
+.extra-button:hover {
+  background-image: linear-gradient(#90a955, #90a955);
 }
 
 .button-red-revert {

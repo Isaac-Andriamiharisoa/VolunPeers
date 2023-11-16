@@ -17,5 +17,4 @@ class TestimonialsController < ApplicationController
   def testimonial_params
     params.require(:testimonial).permit(:content)
   end
-
 end

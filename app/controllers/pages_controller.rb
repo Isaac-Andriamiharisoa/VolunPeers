@@ -20,8 +20,17 @@ class PagesController < ApplicationController
     end
   end
 
+  def about
+  end
+
+  def participants
+    @event = Event.find(params[:event_id])
+    @participants = @event.users
+  end
+
   def dashboard
-    @tree_quantity = Event.where(action: "Trees to Plant", user_id: current_user.id).sum(:quantity)
+    @tree_quantity = Event.where(action: "Trees to Plant", user_id: current_user.id).where("end_date < ?",
+                                                                                           DateTime.now).sum(:quantity)
     @people_quantity = Event.where(action: "Peoples to Help", user_id: current_user.id).sum(:quantity)
     @batiment_quantity = Event.where(action: "Batiment to Build", user_id: current_user.id).sum(:quantity)
     @animal_quantity = Event.where(action: "Animal to save", user_id: current_user.id).sum(:quantity)
