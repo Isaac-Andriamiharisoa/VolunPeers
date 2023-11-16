@@ -1,0 +1,9 @@
+meta_product_name: “Volunpeers”
+
+meta_title: “Volunpeers – Help others by joining a cause.”
+
+meta_description: “This is a platform where volunteers can find a cause that fits them and host causes”
+
+meta_image: “cover.png” # should exist in `app/assets/images/`
+
+twitter_account: “@product_twitter_account” # required for Twitter Cards

@@ -9,8 +9,8 @@ class Event < ApplicationRecord
   has_one_attached :photo
   after_create :create_chatroom
 
-  validates :title, :contact, :start_date, :end_date, :start_time, :end_time, presence: true
-  validates :description, presence: true, length: { minimum: 150, maximum: 2000 }
+  # validates :title, :contact, :start_date, :end_date, :start_time, :end_time, presence: true
+  # validates :description, presence: true, length: { minimum: 150, maximum: 2000 }
   validate :start_date_not_after_end_date
 
   pg_search_scope :search_by_title_and_description,

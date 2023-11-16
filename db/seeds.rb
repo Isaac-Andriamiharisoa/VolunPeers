@@ -88,5 +88,5 @@ puts "creating partitipations"
 @partitipation5 = Participation.create(user_id: @alice.id, event_id: @event2.id)
 
 puts "creating testimonials"
-@testimonial = Testimonial.create(content: "great event 1", participation_id: @partitipation1.id)
-@testimonial = Testimonial.create(content: "great event 2", participation_id: @partitipation4.id)
+@testimonial = Testimonial.create(content: "Community Cleanup Day was a fantastic experience! Working together to spruce up our shared spaces was not only rewarding but also created a strong sense of community. It's incredible what we can achieve when we come together. Proud to be part of a community that cares about keeping our neighborhoods clean and vibrant.", participation_id: @partitipation1.id)
+@testimonial = Testimonial.create(content: "I am truly grateful to have been part of the Food Drive for the Needy. Witnessing the collective efforts of our community to bring essential nourishment to those facing food insecurity has been incredibly inspiring. This initiative goes beyond filling plates; it fills hearts with hope and reminds us of the strength in unity. Seeing the smiles on the faces of those who received the support reassures me that together, we can make a meaningful impact. The Food Drive for the Needy is more than just a campaign; it's a testament to the compassion and generosity that bind us together. Proud to be part of a community that cares.", participation_id: @partitipation5.id)
