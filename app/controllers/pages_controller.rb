@@ -21,11 +21,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @tree_quantity = Event.where(action: "Trees Planted", user_id: current_user.id).sum(:quantity)
-    @people_quantity = Event.where(action: "Peoples Helped", user_id: current_user.id).sum(:quantity)
-    @batiment_quantity = Event.where(action: "Batiment built", user_id: current_user.id).sum(:quantity)
-    @animal_quantity = Event.where(action: "Animal saved", user_id: current_user.id).sum(:quantity)
-    @litter_quantity = Event.where(action: "Litter Cleaned", user_id: current_user.id).sum(:quantity)
+    @tree_quantity = Event.where(action: "Trees to Plant", user_id: current_user.id).sum(:quantity)
+    @people_quantity = Event.where(action: "Peoples to Help", user_id: current_user.id).sum(:quantity)
+    @batiment_quantity = Event.where(action: "Batiment to Build", user_id: current_user.id).sum(:quantity)
+    @animal_quantity = Event.where(action: "Animal to save", user_id: current_user.id).sum(:quantity)
+    @litter_quantity = Event.where(action: "Litter to Clean", user_id: current_user.id).sum(:quantity)
 
     if params[:search].present? && params[:search] != ""
       @participations = participated_event_search

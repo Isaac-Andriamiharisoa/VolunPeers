@@ -28,17 +28,17 @@
 }
 
 .card-col-2 {
+  min-height: calc(80vh - 100px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 50px;
   justify-items: center;
-  align-items: center;
   margin: auto;
 }
 
 .card {
   width: $card-width;
-  height: calc($card-width * 50%);
+  height: 300px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: 20px;

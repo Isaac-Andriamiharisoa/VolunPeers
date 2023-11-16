@@ -132,12 +132,14 @@
 
 <div class="testimonials my-5" data-controller="caroussel">
   <div class="caroussel" data-caroussel-target="caroussel">
-    <i class="caroussel-button-right fa-solid fa-angle-left" data-caroussel-target="next" data-action="click->caroussel#next"></i>
+    <div class="caroussel-button-right">
+      <i class="fa-solid fa-angle-left" data-caroussel-target="next" data-action="click->caroussel#next"></i>
+    </div>
     <ul data-caroussel-target="slides">
       <% @testimonials.each do |testimonial| %>
         <li class="slide">
           <div class="testimonial">
-            <div class="testimonial-text-container text-left col-3">
+            <div class="testimonial-text-container text-left">
               <h3 class="title">A testimonial for</h3>
               <h2 class="objective-subtitle">
                 <%= testimonial.participation.event.title %>
@@ -146,7 +148,7 @@
                 " <%= testimonial.content %> "
               </p>
               <h5 class="testimonial-author">
-                - <%= testimonial.participation.user.username %>
+                - <%= testimonial.participation.user.first_name %> <%= testimonial.participation.user.last_name %>
               </h5>
             </div>
 
@@ -159,6 +161,8 @@
         </li>
       <% end %>
     </ul>
-    <i class="caroussel-button-right fa-solid fa-angle-right" data-caroussel-target="next" data-action="click->caroussel#next"></i>
+    <div class="caroussel-button-right">
+      <i class="fa-solid fa-angle-right" data-caroussel-target="next" data-action="click->caroussel#next"></i>
+    </div>
   </div>
 </div>

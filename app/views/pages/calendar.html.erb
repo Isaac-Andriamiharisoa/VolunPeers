@@ -18,13 +18,11 @@
       <div class="card">
         <%= link_to event_path(participation.event) do %>
 
-          <div class="card-img-container">
             <% if participation.event.photo.attached? %>
-              <%= cl_image_tag participation.event.photo.key, alt: "event image", class: "card-img-top"%>
+              <div class="card-img-container" style="background-image: url('<%= participation.event.photo.url %>');"></div>
             <% else %>
-              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+              <div class="card-img-container" style="background-image: url('<%= asset_path("logo-space.png") %>');"></div>
             <% end %>
-          </div>
 
           <div class="card-body">
             <h3 class="card-title">
