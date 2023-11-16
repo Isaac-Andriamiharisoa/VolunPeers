@@ -11,8 +11,12 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @exist_participation = Participation.where(event_id: params[:id])
-    @participation = Participation.new
+    @exist_participation = Participation.find_by(event_id: params[:id], user: current_user)
+    if @exist_participation
+      @participation = @exist_participation
+    else
+      @participation = Participation.new
+    end
     @owner = User.find(@event.user_id)
     @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end

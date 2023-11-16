@@ -11,31 +11,63 @@
   border-radius: 5px;
   text-decoration: none;
   color: #3A1701;
+
 }
 
-.event-card-picture {
-  width: 200px;
+.event-card-pic-container {
+  width: 275px;
+  height: 200px;
   border-radius: 5px;
+  background-size: cover;
+  background-position: center;
 }
 
 .event-card-icons {
   width: 15%;
   height: 80.5%;
-  display: inline-grid;
+  display: flex;
   border-radius: 10px;
   box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25) inset;
   background-color: #E8E7D8;
-  align-content: space-evenly;
+  justify-content: space-around;
   justify-items: center;
+  flex-direction: column;
   padding: 2%;
+
+  .event-card-icons-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .event-card-icons-country {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding: 15px 0px;
+  }
+
+  p {
+    margin: 0;
+  }
 }
 
-.event-card-details h1 {
+.event-card-details {
+  width: 50%;
+  height: 85%;
+  overflow: clip;
+
+  h1 {
   font-family: 'Rowdies', sans-serif;
-}
+  overflow: hidden;
+  }
 
-.event-card-details p {
+  p {
   font-family: 'Manrope', sans-serif;
+  }
+
 }
 
 .event-card-icons p {

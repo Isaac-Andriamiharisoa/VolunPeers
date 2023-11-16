@@ -2,10 +2,12 @@
 <div class="show-banner-container">
 
   <div class="show-ban-pic">
-    <% if current_user.photo.attached? %>
-      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture"%>
+
+    <% if @event.photo.attached? %>
+      <div class="event-card-picture" style="background-image: url('<%= cl_image_path @event.photo.key, secure: true %>');"></div>
     <% else %>
-      <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
+      <div class="event-card-picture" style="background-image: url('<%= asset_url("placeholder-image.png") %>');"></div>
+
     <% end %>
   </div>
 
@@ -14,13 +16,6 @@
       <div class="show-ban-action-icons">
         <%= link_to events_path do %>
           <i class="arrow fa-solid fa-arrow-left-long" style="color: #ffffff;  font-size: 150%;"></i>
-        <% end %>
-
-        <% if can? :destroy, @event%>
-          <%= link_to "V",
-            event_path(@event),
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "trashcan"
-          %>
         <% end %>
       </div>
 
@@ -42,8 +37,23 @@
       </div>
 
       <div class="show-banner-icon">
-        <i class="fa-solid fa-handshake-angle fa-2xl" style="color: #FFFFFF;"></i>
-        <p><%= @event.participations.count %></p>
+        <% case @event.action %>
+          <% when 'Trees to Plant' %>
+            <i class="fa-solid fa-seedling fa-2xl"></i>
+
+          <% when 'People to Help' %>
+            <i class="fa-solid fa-user-injured fa-2xl"></i>
+
+          <% when 'Batiment to Build' %>
+            <i class="fa-solid fa-house-crack fa-2xl"></i>
+
+          <% when 'Animal to Save' %>
+            <i class="fa-solid fa-paw fa-2xl"></i>
+
+          <% when 'Litter to Clean' %>
+            <i class="fa-solid fa-recycle fa-2xl"></i>
+        <% end %>
+        <p><%= @event.quantity %></p>
       </div>
 
     </div>
@@ -51,10 +61,18 @@
     <div class="show-ban-buttons-container">
 
       <div class="show-ban-button">
-        <%= simple_form_for [@event, @participation] do |f| %>
-          <%= f.submit "Participate", class: "button button-primary" %>
+
+        <% if @exist_participation %>
+          <button class="participation-button-disable">Participating</button>
+        <% else %>
+          <%= simple_form_for [@event, @participation] do |f| %>
+            <%= f.submit "Participate", class: "participation-button", id:"participateButton",  data: { status: "participate" }  %>
+          <% end %>
         <% end %>
+
       </div>
+                      <!-- Your existing HTML code -->
+
 
       <div class="show-ban-button">
         <% if can? :update, @event %>
