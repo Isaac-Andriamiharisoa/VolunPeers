@@ -27,7 +27,10 @@ export default class extends Controller {
             this.timestampTargets[i].innerHTML = moment(this.latestMessageTargets[i].querySelector('i').innerHTML).fromNow()
             this.latestMessageTargets[i].innerHTML = this.latestMessageTargets[i].querySelector('p').innerText
             this.chatFieldTargets[i].value = ""
-            this.scrollContentTargets[i].scrollBy(0, Number.MAX_SAFE_INTEGER)
+            // this.scrollContentTargets[i].scrollBy(0, Number.MAX_SAFE_INTEGER)
+            this.scrollContentTargets.forEach(e => {
+              e.scrollTop = e.scrollHeight; // Scroll to the bottom
+            });
             this.formatDateTime()
           }
         }
@@ -77,23 +80,23 @@ export default class extends Controller {
         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
       },
     })
-      .then(response => {
-        if (response.ok) {
-          // Assuming you want to remove the messages from the UI after deletion
-          this.latestMessagesTargets.forEach((target, i) => {
-            if (this.chatrooms[i] == chatroomId) {
-              target.innerHTML = ""; // Clear messages in the UI
-            }
-          });
+    .then(response => {
+      if (response.ok) {
+        // Assuming you want to remove the messages from the UI after deletion
+        this.latestMessagesTargets.forEach((target, i) => {
+          if (this.chatrooms[i] == chatroomId) {
+            target.innerHTML = ""; // Clear messages in the UI
+          }
+        });
 
-          console.log('Conversation deleted successfully.');
-        } else {
-          console.error('Error deleting conversation.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+        console.log('Conversation deleted successfully.');
+      } else {
+        console.error('Error deleting conversation.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
 
 }
