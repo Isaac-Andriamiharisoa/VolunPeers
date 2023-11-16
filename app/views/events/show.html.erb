@@ -2,10 +2,12 @@
 <div class="show-banner-container">
 
   <div class="show-ban-pic">
+
     <% if @event.photo.attached? %>
       <div class="event-card-picture" style="background-image: url('<%= cl_image_path @event.photo.key, secure: true %>');"></div>
     <% else %>
       <div class="event-card-picture" style="background-image: url('<%= asset_url("placeholder-image.png") %>');"></div>
+
     <% end %>
   </div>
 

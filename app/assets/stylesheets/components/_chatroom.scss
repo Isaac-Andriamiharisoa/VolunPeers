@@ -1,6 +1,7 @@
 #colum_style {
-    height: inherit;
-    overflow: auto;
+  height: inherit;
+  overflow: auto;
+  background: #E8E7D8;
 }
 
 #chatroom_name{
@@ -12,27 +13,25 @@
   padding-left: 20px;
   margin: 20px;
 }
+.custom-border {
+  border-bottom: 1px solid black;
+  opacity: 50%;
+}
 
-// .container-fluid {
-//   height: 100vh;
-//   overflow: hidden;
-// }
 .chatroom {
   height: calc(100vh - 118px);
 }
 .input-group.rounded {
-  // margin: 20px;
   width: 100%;
   align-content: center;
-  // padding-right: 20px;
 }
-
 
 // <!-- Col -6 C.hat Messages -->//{}
 
 .messages_container {
   position: relative;
   height: inherit;
+  color:#3A1700;
 }
 
 .scrollable-content {
@@ -47,10 +46,11 @@
   padding: 30px 30px 5px 30px;
   overflow-y: auto;
   max-height: 500px;
-  background: #f4f1f1;
+  background: white;
   margin-top: 20px;
   max-height: calc(100% - 60px);
   overflow-y: auto;
+  border-radius: 20px;
 }
 
 .scrollable-content::-webkit-scrollbar {
@@ -68,20 +68,25 @@
 }
 
 .text_field {
-  margin: 2em;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+
+  .btn {
+    border-radius: 10px;
+  }
+}\
+
+.textfield{
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .message {
   color: #3A1700;
 }
 // Col -3 Event Sidebar//
-.container_side {
-  background: #E8E7D8;
-}
 
 .custom-divider {
   border: 1px solid black;
@@ -140,7 +145,7 @@
   font-style: light;
   font-weight: 100;
   line-height: normal;
-  margin: 0 20px 20px 20px;
+  margin: 0 30px 20px 20px;
 }
 
 #sidebar_delete {
@@ -155,5 +160,21 @@
 
 .clickable {
   cursor: pointer;
-  color: blue;
+  color: #0D6EFD;
+}
+
+.right-message {
+  text-align: right;
+  // width: 70%;
+  // // // max-width: 400px;
+  // border-radius: 14px;
+  // // padding: 10px;
+  // margin-left: auto;
+  // // width: fit-content;
+  // // // min-height: 80px;
+  // background-color: lightblue;
+}
+
+.left-message {
+  text-align: left;
 }
