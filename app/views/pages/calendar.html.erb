@@ -21,7 +21,7 @@
             <% if participation.event.photo.attached? %>
               <div class="card-img-container" style="background-image: url('<%= participation.event.photo.url %>');"></div>
             <% else %>
-              <div class="card-img-container" style="background-image: url('<%= asset_path("logo-space.png") %>');"></div>
+              <div class="card-img-container" style="background-image: url('<%= asset_path("placeholder-image.png") %>');"></div>
             <% end %>
 
           <div class="card-body">

@@ -22,7 +22,7 @@
         <% if event.photo.attached? %>
           <div class="event-card-pic-container" style="background-image: url('<%= cl_image_path event.photo.key, secure: true %>');"></div>
         <% else %>
-          <div class="event-card-pic-container" style="background-image: url('<%= asset_url("logo-space.png") %>');"></div>
+          <div class="event-card-pic-container" style="background-image: url('<%= asset_url("placeholder-image.png") %>');"></div>
         <% end %>
 
 

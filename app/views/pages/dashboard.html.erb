@@ -68,7 +68,7 @@
             <% if created_event.photo.attached? %>
               <div class="card-img-holder" style="background-image: url('<%= cl_image_path created_event.photo.key, secure: true %>');"></div>
             <% else %>
-              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+              <%= image_tag "placeholder-image.png", alt: "A planet", class: "card-img-top" %>
             <% end %>
           </div>
 
@@ -116,7 +116,7 @@
             <% if participation.event.photo.attached? %>
               <div class="card-img-holder" style="background-image: url('<%= cl_image_path participation.event.photo.key, secure: true %>');"></div>
             <% else %>
-              <%= image_tag "logo-space.png", alt: "A planet", class: "card-img-top" %>
+              <%= image_tag "placeholder-image.png", alt: "A planet", class: "card-img-top" %>
             <% end %>
           </div>
 
