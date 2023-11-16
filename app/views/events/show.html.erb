@@ -2,7 +2,11 @@
 <div class="show-banner-container">
 
   <div class="show-ban-pic">
-    <%= cl_image_tag "mdbg196rgmiuhq3bssnf9p7nqvnz" %>
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag @event.photo.key, alt: "dropdown menu", class: "event-card-picture"%>
+    <% else %>
+      <%= image_tag "logo-space.png", alt: "A planet", class: "event-card-picture" %>
+    <% end %>
   </div>
 
   <div class="show-ban-details">

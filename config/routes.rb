@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   root "pages#home"
   get "calendar", to: "pages#calendar"
   get "dashboard", to: "pages#dashboard"
+  get "aboutus", to: "pages#aboutus"
+  
   resources :testimonials, only: %i[new create]
 
   resources :chatrooms, only: :index do
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :chatrooms do
     delete :delete_conversation, on: :member
-    
+
     resources :participations, only: %i[create destroy]
   end
 

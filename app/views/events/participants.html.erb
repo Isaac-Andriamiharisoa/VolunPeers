@@ -1,27 +1,25 @@
-<div class="row mt-5">
-    <div class="col-md-6 offset-md-3">
-      <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Avatar</th>
-              <th scope="col">Name Of Participants</th>
-              <th scope="col">Date Join</th>
-              <th scope="col">Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @participants.each do |user| %>
-              <tr>
-                <td>
-                  <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
-                        alt="avatar" class="avatar">
-                </td>
-                <td><%= user.first_name %> <%= user.last_name %></td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-            <% end %>
-          </tbody>
-      </table>
+<% participant_count = @participants.size %>
+<div class="heading">Participants - <%= participant_count %></div>
+
+
+<% @participants.each do |user| %>
+  <div class="container text-center">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <div class="col">
+        <div class="p-3"  style="text-align: -webkit-center;">
+          <div>
+            <img
+              src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
+              alt="avatar" class="d-flex align-self-center rounded-circle" width="60" height="60" style="drop-shawdow: 10px">
+          </div>
+          <div class="name">
+            <%= user.first_name %> <%= user.last_name %>
+          </div>
+          <div class="username">
+            <%= user.username%>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+<% end %>
