@@ -5,7 +5,7 @@ class ParticipationsController < ApplicationController
     @participation.event_id = params[:event_id].to_i
     @participation.user = current_user
     @participation.save
-    redirect_to event_path(@participation.event_id)
+    redirect_to event_path(@participation.event_id), notice: "You are now contributing to this cause!"
   end
 
   def destroy

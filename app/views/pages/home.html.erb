@@ -1,5 +1,5 @@
 <div class="banner d-flex flex-column justify-content-center align-items-center">
-  <h1 class="text-center page-title pb-4">
+  <h1 class="text-center page-title home-title">
     "Where Hearts Unite, Change Ignites.
     <br>
     Make a differrence!"
@@ -10,7 +10,7 @@
 <div class="countdown d-flex justify-content-center col-12" data-controller="countdown">
   <div class="countdown-container col-8 px-4 d-flex justify-content-around">
     <div class="countdown-text col-4 d-flex flex-column justify-content-center align-items-center">
-      <h2 class="my-2 ps-5">
+      <h2 class="text-center">
         <%= @event.title %>
       </h2>
       <%= link_to "Help us", event_path(@event), class: "my-2 button button-primary" %>
@@ -89,9 +89,11 @@
       <div class="col-5 card-number">
         <h2 class="w-100">
           <% if @volunteers_count.between?(0, 9) %>
-            0
+            0<%= @volunteers_count %>
+          <% else %>
+            <%= @volunteers_count %>
           <% end %>
-          <%= @volunteers_count %></h2>
+          </h2>
       </div>
       <div class="col-7 card-stat-item">
         <h4>Volunteers</h4>
@@ -103,9 +105,11 @@
       <div class="col-5 card-number">
         <h2 class="w-100">
           <% if @events_count.between?(0, 9) %>
-          0
+            0<%= @events_count %>
+          <% else %>
+            <%= @events_count %>
           <% end %>
-          <%= @events_count %></h2>
+        </h2>
       </div>
       <div class="col-7 card-stat-item">
         <h4>Events</h4>
@@ -116,13 +120,15 @@
     <div class="card-text-stat mx-3" data-floating-card-target="card3" data-action="click->floating-card#animate">
       <div class="col-5 card-number">
         <h2 class="w-100">
-        <% if @hoster_count.between?(0, 9) %>
-          0
-        <% end %>
-        <%= @hoster_count %></h2>
+          <% if @hoster_count.between?(0, 9) %>
+            0<%= @hoster_count %>
+          <% else %>
+            <%= @hoster_count %>
+          <% end %>
+          </h2>
       </div>
       <div class="col-7 card-stat-item">
-        <h4>Hosters</h4>
+        <h4>NGOs</h4>
         <p>Community Admins</p>
       </div>
     </div>

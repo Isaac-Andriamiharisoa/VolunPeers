@@ -1,0 +1,9 @@
+<div class="message right-message">
+  <div id="message-<%= message.id %>">
+    <small>
+      <strong><%= "#{message.user.username} " %></strong>
+      <i class="datetime" data-original-date="<%= message.created_at %>"><%= message.created_at %></i>
+    </small>
+    <p><%= message.content %></p>
+  </div>
+</div>

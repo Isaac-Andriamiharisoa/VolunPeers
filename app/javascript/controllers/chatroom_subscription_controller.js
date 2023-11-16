@@ -24,7 +24,6 @@ export default class extends Controller {
             console.log(data)
             this.latestMessagesTargets[i].innerHTML += data
             this.latestMessageTargets[i].innerHTML = data
-            console.log(this.latestMessageTargets[i].querySelector('i').innerHTML)
             this.timestampTargets[i].innerHTML = moment(this.latestMessageTargets[i].querySelector('i').innerHTML).fromNow()
             this.latestMessageTargets[i].innerHTML = this.latestMessageTargets[i].querySelector('p').innerText
             this.chatFieldTargets[i].value = ""
