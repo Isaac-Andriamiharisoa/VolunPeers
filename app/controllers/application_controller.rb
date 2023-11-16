@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: exception.message
   end
 
+  # def default_url_options do
+  #   host: ENV["DOMAIN"] || "localhost:3000"
+  # end
+
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name username contact photo role])
