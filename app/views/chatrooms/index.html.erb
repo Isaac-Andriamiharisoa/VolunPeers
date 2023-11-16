@@ -4,6 +4,7 @@
       <div class="row chatroom">
         <div class="col-md-3" id="colum_style">
             <h1 id="chatroom_name">Community Forum</h1>
+
           <div class="input-group rounded">
               <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
@@ -30,7 +31,6 @@
                       <p class="small text-muted mb-1" data-chatroom-subscription-target="timestamp">
                         <%= chatroom.messages.last&.created_at %>
                       </p>
-                      <span class="badge bg-danger rounded-pill float-end">3</span>
                     </div>
                   </a>
                 </li>
@@ -46,7 +46,13 @@
               <div class="messages_container">
                 <div class="scrollable-content" data-chatroom-subscription-target="scrollContent">
                   <% chatroom.messages.each do |message| %>
-                    <%= render partial: 'messages/message', locals: { message: } %>
+                    <% if message.user == current_user %>
+                      <div class="message right-message">
+                    <% else %>
+                      <div class="message left-message">
+                    <% end %>
+                      <%= render partial: 'messages/message', locals: { message: message, current_user: current_user } %>
+                    </div>
                   <% end %>
                   <div data-chatroom-subscription-target="latestMessages"></div>
                 </div>
@@ -55,16 +61,17 @@
                   <%= simple_form_for [chatroom, @message], html: {class: "d-flex"} do |f| %>
                     <%= f.input :content,
                       label: false,
-                      placeholder: "Type your message here...",
+                      placeholder: "Type your message",
                       input_html: {class: "textfield", "data-chatroom-subscription-target": "chatField"},
                       wrapper_html: {class: "flex-grow-1"}
                     %>
-                    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+                    <%= f.submit "Send", class: "btn btn-primary mb-3 ms-2" %>
                   <% end %>
                 </div>
               </div>
             </div>
           <% end %>
+
         <!-- Col -3 Side Bar -->
         <% @chatrooms.each do |chatroom| %>
           <div class="col-md-3 container_side event-<%= chatroom.id %>" id="colum_style">
@@ -94,15 +101,15 @@
             </div>
             <div id="side_description_title">Description</div>
             <div id="side_description_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac nulla tincidunt, sodales ante a, posuere est. Aliquam..See More </div>
+            <div id="sidebar_block" class="clickable">List of Participants</div>
             <div id="sidebar_delete" class="clickable" data-action="click->chatroom-subscription#deleteConversation" data-chatroom-id="<%= chatroom.id %>">
               Delete Conversation
             </div>
-            <div id="sidebar_block">Block Community</div>
           </div>
         </div>
       <% end %>
     </div>
+  </div>
 </div>
-
 <!-- Add this in your head tag or before the closing body tag -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"></script>

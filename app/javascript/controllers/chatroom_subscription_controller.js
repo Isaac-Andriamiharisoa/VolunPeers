@@ -40,6 +40,7 @@ export default class extends Controller {
     this.formatDateTime()
   }
 
+
   formatDateTime() {
     document.querySelectorAll('.datetime').forEach(elem => {
       elem.innerHTML = moment(elem.dataset.originalDate).fromNow()

@@ -152,6 +152,7 @@
               </h5>
             </div>
 
+
             <% if testimonial.participation.user.photo.attached %>
               <div class="testimonial-img-container" style="background-image: url('<%= testimonial.participation.user.photo.url %>');"></div>
             <% else %>
@@ -163,6 +164,7 @@
     </ul>
     <div class="caroussel-button-right">
       <i class="fa-solid fa-angle-right" data-caroussel-target="next" data-action="click->caroussel#next"></i>
+
     </div>
   </div>
 </div>
