@@ -68,7 +68,7 @@
       <div class="form-event-row-5">
 
         <div class="form-action">
-          <%= f.input :action, as: :select, collection: ['Trees Planted', 'People Helped', 'Batiment Built', 'Animal Saved', 'Litter Cleaned' ] %>
+          <%= f.input :action, as: :select, collection: ['Trees to Plant', 'People to Help', 'Batiment to Build', 'Animal to Save', 'Litter to Clean' ] %>
         </div>
 
 
@@ -81,7 +81,7 @@
 
       <div class="form-description">
         <p>Description</p>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, placeholder: "min 150 - max 2000 Character" %>
       </div>
 
       <div class="form-button">
