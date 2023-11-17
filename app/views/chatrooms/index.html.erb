@@ -17,14 +17,18 @@
                 <li class="p-2 border-bottom" data-action="click->chatroom-subscription#selectChat:prevent" data-chatroom-id="<%= chatroom.id %>">
                   <a href="#!" class="d-flex justify-content-between">
                     <div class="d-flex flex-row">
-                      <div>
-                        <img
-                          src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"
-                          alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60" height="60">
-                      </div>
-                      <div class="pt-1">
+                        <% if chatroom.event.photo.attached? %>
+                          <div class="avatar-large d-flex align-items-center"
+                            style="background-image: url('<%= chatroom.event.photo.url %>');">
+                          </div>
+                        <% else %>
+                          <div class="avatar-large align-items-center"
+                            style="background-image: url('<%= asset_path('placeholder-image.png') %>');">
+                          </div>
+                        <% end %>
+                      <div class="pt-1 chat-text">
                         <p class="fw-bold mb-0"><%= chatroom.name %></p>
-                        <p class="small text-muted" data-chatroom-subscription-target="latestMessage"><%= chatroom.messages.last.content if chatroom.messages.last %></p>
+                        <p class="small text-muted latest-message" data-chatroom-subscription-target="latestMessage"><%= chatroom.messages.last.content if chatroom.messages.last %></p>
                       </div>
                     </div>
                     <div class="pt-1">
@@ -74,7 +78,12 @@
         <% @chatrooms.each do |chatroom| %>
           <div class="col-md-3 container_side event-<%= chatroom.id %>" id="colum_style">
             <div id="sidebar_img">
-              <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a">
+              <% if chatroom.event.photo.attached? %>
+                <%= cl_image_tag chatroom.event.photo.key, secure: true %>
+              <% else %>
+                <%= image_tag asset_url("placeholder-image.png"), alt: "place holder image" %>
+              <% end %>
+              <%# <img src="https://img.freepik.com/free-photo/group-happy-african-volunteers-with-garbage-bags-cleaning-area-park-africa-volunteering-charity-people-ecology-concept_627829-351.jpg?w=996&t=st=1699610526~exp=1699611126~hmac=0763d013d8868f54feed4b4d5d54ffe5d531b7ea0bbe5448baead88d29d24a8a"> %>
             </div>
             <div class="sidebar_title">
               <div class="text-center"><%= chatroom.name %></div>

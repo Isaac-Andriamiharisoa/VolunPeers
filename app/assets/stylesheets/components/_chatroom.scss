@@ -148,7 +148,8 @@
   line-height: normal;
   margin: 0 30px 20px 20px;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-line-clamp: 4;
+  /* Number of lines to show */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -170,4 +171,16 @@
 
 .left-message {
   text-align: left;
+}
+
+.chat-text {
+  width: 220px;
+  padding: 10px 5px;
+
+  .latest-message {
+    width: calc(95% - 10px);
+    white-space: nowrap;       /* Prevents the text from wrapping to the next line */
+    overflow: hidden;          /* Hides any content that overflows the container */
+    text-overflow: ellipsis;
+  }
 }
