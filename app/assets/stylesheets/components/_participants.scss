@@ -25,3 +25,8 @@
   font-weight: lighter;
   font-style: italic;
 }
+
+.participants-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}

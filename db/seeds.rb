@@ -13,10 +13,10 @@ User.destroy_all
 Event.destroy_all
 Participation.destroy_all
 
-puts "creating 33 users..."
-@bob = User.create(first_name: "Bob", last_name: "Sullivan", username: "Monster Bob", contact: 1234566789, email: "Bob@email.com", password: "123456", role: 'normal')
-@alice = User.create(first_name: "Alice", last_name: "Wonder", username: "Wonder Alice", contact: 0123123013, email: "Alice@email.com", password: "123456", role: "normal")
-@john = User.create(first_name: "John", last_name: "Doe", username: "John Doe", contact: 1234123412, email: "John@email.com", password: "123456", role: "normal")
+puts "creating 100 users..."
+@bob = User.create(first_name: "Bob", last_name: "Sullivan", username: "Monster Bob", contact: 1234566789, email: "Bob@email.com", password: "123456", role: 'owner')
+@alice = User.create(first_name: "Alice", last_name: "Wonder", username: "Wonder Alice", contact: 0123123013, email: "Alice@email.com", password: "123456", role: "owner")
+@john = User.create(first_name: "John", last_name: "Doe", username: "John Doe", contact: 1234123412, email: "John@email.com", password: "123456", role: "owner")
 
 def generate_email(options = {})
   first_name = options[:firstName] || Faker::Name.first_name
@@ -30,25 +30,6 @@ def generate_email(options = {})
     "#{first_name}#{last_name}#{Faker::Number.number(digits: 2)}@#{provider}"
   end
 end
-
-30.times do |i|
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  username = "#{first_name} #{last_name}"
-  contact = Faker::PhoneNumber.cell_phone.gsub(/\D/, '').to_i
-  email = generate_email({ firstName: first_name, lastName: last_name, provider: '.dev' })
-  password = "123456"
-
-  User.create(
-    first_name: first_name,
-    last_name: last_name,
-    username: username,
-    contact: contact,
-    email: email,
-    password: password
-  )
-end
-puts "Created 33 user 🥂"
 
 puts "creating events"
 @event1 = Event.create(
@@ -111,6 +92,30 @@ puts "creating events"
   action: "Trees to Plant",
   quantity: 35
 )
+
+100.times do |i|
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  username = "#{first_name} #{last_name}"
+  contact = Faker::PhoneNumber.cell_phone.gsub(/\D/, '').to_i
+  email = generate_email({ firstName: first_name, lastName: last_name, provider: '.dev' })
+  password = "123456"
+  event = Event.all.sample
+  participation = Participation.new(event: event)
+
+
+  user = User.create(
+    first_name: first_name,
+    last_name: last_name,
+    username: username,
+    contact: contact,
+    email: email,
+    password: password,
+  )
+  participation.user = user
+  participation.save
+end
+puts "Created 100 user 🥂"
 
 puts "creating partitipations"
 @partitipation1 = Participation.create(user_id: @bob.id, event_id: @event1.id)
