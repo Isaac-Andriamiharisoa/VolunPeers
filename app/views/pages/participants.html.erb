@@ -2,27 +2,21 @@
   <% participant_count = @participants.size %>
   <div class="heading">Participants - <%= participant_count %></div>
 
-  <% @participants.each do |user| %>
-    <div class="container text-center">
-      <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <div class="col">
-          <div class="p-3"  style="text-align: -webkit-center;">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <% if current_user.photo.attached? %>
-                  <%= image_tag user.photo.url, alt: "text", class: "avatar-large" %>
-                <% else %>
-                  <%= image_tag asset_path('placeholder-image.png'), alt: "text", class: "avatar-large" %>
-                <% end %>
-            </div>
-            <div class="name">
-              <%= user.first_name %> <%= user.last_name %>
-            </div>
-            <div class="username">
-              <%= user.username%>
-            </div>
+  <div class="container text-center participants-container">
+    <% @participants.each do |user| %>
+        <div>
+          <% if current_user.photo.attached? %>
+            <%= image_tag user.photo.url, alt: "text", class: "avatar-large" %>
+          <% else %>
+            <%= image_tag asset_path('placeholder-image.png'), alt: "text", class: "avatar-large" %>
+          <% end %>
+          <div class="name">
+            <%= user.first_name %> <%= user.last_name %>
+          </div>
+          <div class="username">
+            <%= user.username%>
           </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
