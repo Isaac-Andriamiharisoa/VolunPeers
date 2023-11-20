@@ -159,7 +159,7 @@
             </div>
 
 
-            <% if testimonial.participation.user.photo.attached %>
+            <% if testimonial.participation.user.photo.attached? %>
               <div class="testimonial-img-container" style="background-image: url('<%= testimonial.participation.user.photo.url %>');"></div>
             <% else %>
               <div class="testimonial-img-container" style="background-image: url('<%= asset_path('placeholder-image-2.png') %>');"></div>
