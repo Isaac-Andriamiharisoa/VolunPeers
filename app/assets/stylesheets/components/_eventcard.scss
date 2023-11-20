@@ -72,8 +72,12 @@
   overflow: hidden;
   }
 
-  p {
-  font-family: 'Manrope', sans-serif;
+  .card-description {
+    font-family: 'Manrope', sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
 }
