@@ -8,7 +8,12 @@ export default class extends Controller {
     ids: String
   }
 
-  static targets = ["latestMessages", "latestMessage", "cleartextField", "chatField", "scrollContent", "timestamp"]
+  static targets = ["latestMessages",
+                "latestMessage",
+                "cleartextField",
+                "chatField",
+                "scrollContent",
+                "timestamp"]
 
   connect() {
     this.timestampTargets.forEach(target => {
@@ -41,7 +46,6 @@ export default class extends Controller {
     this.clearInactiveChatrooms()
     this.formatDateTime()
   }
-
 
   formatDateTime() {
     document.querySelectorAll('.datetime').forEach(elem => {

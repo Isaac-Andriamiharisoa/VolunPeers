@@ -5,6 +5,11 @@ class ChatroomsController < ApplicationController
     @hide_footer = true
   end
 
+  def show
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
+  end
+
   def delete_conversation
     @chatroom = Chatroom.find(params[:id])
     @chatroom.messages.destroy_all

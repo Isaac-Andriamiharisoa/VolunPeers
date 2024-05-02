@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="container__chatroom">
+        <div class="container__chatroom__header">
+            <div class="container__chatroom__header__title">
+                <%= @chatroom.name %>
+            </div>
+        </div>
+        <div class="container__chatroom__messages">
+            <%= render partial: 'components/chat/chat_messages', locals: {chatroom: @chatroom} %>
+        </div>
+        <div class="container__chatroom__footer">
+            <%= render partial: 'components/chat/chat_form', locals: {chatroom: @chatroom} %>
+        </div>
+    </div>
+</div>
+<%= render partial: 'components/chat/chat_messages', locals: {chatroom: @chatroom} %>

@@ -1,0 +1,26 @@
+<div data-controller="chatroom-subscription" class="col-md-6 event-<%= chatroom.id %>" id="colum_style">
+  <div class="messages_container">
+    <div class="scrollable-content" data-chatroom-subscription-target="scrollContent">
+        <% chatroom.messages.each do |message| %>
+        <% if message.user == current_user %>
+            <%= render partial: 'messages/right_message', locals: { message: message, current_user: current_user } %>
+        <% else %>
+            <%= render partial: 'messages/left_message', locals: { message: message, current_user: current_user } %>
+        <% end %>
+        <% end %>
+        <div data-chatroom-subscription-target="latestMessages"></div>
+    </div>
+
+    <div class="text_field mt-auto p-3">
+        <%= simple_form_for [chatroom, @message], html: {class: "d-flex"} do |f| %>
+        <%= f.input :content,
+            label: false,
+            placeholder: "Type your message",
+            input_html: {class: "textfield", "data-chatroom-subscription-target": "chatField"},
+            wrapper_html: {class: "flex-grow-1"}
+        %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3 ms-2" %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :testimonials, only: %i[new create]
 
-  resources :chatrooms, only: :index do
+  resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
 

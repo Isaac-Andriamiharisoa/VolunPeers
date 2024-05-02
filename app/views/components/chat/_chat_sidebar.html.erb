@@ -1,0 +1,10 @@
+<div class="sidebar sidebar--chat">
+  <div class="sidebar__header">
+    <h1>Chatrooms</h1>
+  </div>
+  <div class="sidebar__content">
+    <% chatrooms.each do |chatroom| %>
+      <%= render partial: 'components/chat/chat_list', locals: { chatroom: chatroom } %>
+    <% end %>
+  </div>
+</div>

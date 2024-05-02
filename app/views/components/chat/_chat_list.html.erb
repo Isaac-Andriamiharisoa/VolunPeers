@@ -1,0 +1,21 @@
+<div class="chatroom__container"></div>
+    <div class="chatroom__photo">
+        <% if chatroom.event.photo.attached? %>
+            <div class="avatar-large d-flex align-items-center"
+                style="background-image: url('<%= chatroom.event.photo.url %>');">
+            </div>
+        <% else %>
+            <div class="avatar-large align-items-center"
+                style="background-image: url('<%= asset_path('placeholder-image.png') %>');">
+            </div>
+        <% end %>
+    </div>
+
+    <div class="chatroom__content">
+        <p><%= chatroom.name %></p>
+        <p class="small text-muted latest-message" data-chatroom-subscription-target="latestMessage"><%= chatroom.messages.last.content if chatroom.messages.last %></p>
+        <p class="small text-muted mb-1" data-chatroom-subscription-target="timestamp">
+            <%= chatroom.messages.last&.created_at %>
+        </p>
+    </div>
+</div>
