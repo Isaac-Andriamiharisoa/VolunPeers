@@ -1,186 +1,42 @@
-/* General Styles */
-#colum_style {
-  height: inherit;
-  overflow: auto;
-  background: #e8e7d8;
+.chat {
+  &__container {
+    width: 100%;
+    min-height: 100vh;
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  &__sidebar {
+    grid-column: span 2;
+  }
+
+  &__chatroom-container {
+    grid-column: span 8;
+    height: 70vh;
+  }
+  
+  &__message-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 25px;
+    overflow: scroll;
+  }
+
+  &__event-description {
+    grid-column: span 2;
+  }
 }
 
-/* Chatroom Styles */
-#chatroom_name {
-  color: #3a1700;
-  font-size: 28px;
-  font-family: Rowdies;
-  font-weight: 300;
-  word-wrap: break-word;
-  padding-left: 20px;
-  margin: 20px;
-}
-
-.custom-border {
-  border-bottom: 1px solid black;
-  opacity: 50%;
-}
-
-.chatroom {
-  height: calc(100vh - 118px);
-}
-
-.input-group.rounded {
-  width: 100%;
-  align-content: center;
-}
-
-/* Messages Container Styles */
-.messages_container {
-  position: relative;
-  height: inherit;
-  color: #3a1700;
-}
-
-.scrollable-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 121px;
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+.image-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   overflow: hidden;
-  padding: 30px 30px 5px 30px;
-  overflow-y: auto;
-  max-height: 500px;
-  background: white;
-  margin-top: 20px;
-  max-height: calc(100% - 60px);
-  overflow-y: auto;
-  border-radius: 20px;
-}
 
-.scrollable-content::-webkit-scrollbar {
-  width: 0.1em;
-}
-
-.scrollable-content::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.scrollable-content {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-}
-
-.text_field {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.text_field .btn {
-  border-radius: 10px;
-}
-
-.textfield {
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.message {
-  color: #3a1700;
-}
-
-/* Event Sidebar Styles */
-.custom-divider {
-  border: 1px solid black;
-  margin: 1em 0.5em;
-}
-
-#sidebar_img img {
-  border-radius: 15%;
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.sidebar_title {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Rowdies;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  margin: 0 auto;
-  display: block;
-}
-
-#sidebar_subtitle {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Manrope;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 32px;
-  text-align: center;
-}
-
-#notification_title {
-  padding-left: 40px;
-}
-
-#side_description_title {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Rowdies;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  margin: 20px 20px 10px 20px;
-}
-
-#side_description_text {
-  color: #3a1700;
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: light;
-  font-weight: 100;
-  line-height: normal;
-  margin: 0 30px 20px 20px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  /* Number of lines to show */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-#sidebar_delete,
-#sidebar_block {
-  font-size: 14px;
-  margin: 0 0 20px 20px;
-}
-
-.clickable {
-  cursor: pointer;
-  color: #0d6efd;
-}
-
-.right-message {
-  text-align: right;
-}
-
-.left-message {
-  text-align: left;
-}
-
-.chat-text {
-  width: 220px;
-  padding: 10px 5px;
-
-  .latest-message {
-    width: calc(95% - 10px);
-    white-space: nowrap;       /* Prevents the text from wrapping to the next line */
-    overflow: hidden;          /* Hides any content that overflows the container */
-    text-overflow: ellipsis;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

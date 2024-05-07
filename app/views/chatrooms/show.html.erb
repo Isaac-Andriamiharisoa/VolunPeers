@@ -1,0 +1,22 @@
+<div class="chat__container">
+  <div class="chat__sidebar">
+    <%= render 'components/chat/chat_sidebar', chatrooms: @chatrooms %>
+  </div>
+
+  <div class="chat__chatroom-container">
+    <%= render partial: 'components/chat/chat_container', locals: { chatroom: @chatroom } %>
+    <%= simple_form_for [@chatroom, @message] do |f| %>
+      <%= f.input :content,
+          label: false,
+          placeholder: "Type your message",
+          input_html: {class: "textfield", "data-chatroom-subscription-target": "chatField"},
+          wrapper_html: {class: "flex-grow-1"}
+      %>
+      <%= f.submit "Send", class: "btn btn-primary mb-3 ms-2" %>
+    <% end %>
+  </div>
+
+  <div class="chat__event-description">
+    <%= render 'components/chat/chat_description' %>
+  </div>
+</div>

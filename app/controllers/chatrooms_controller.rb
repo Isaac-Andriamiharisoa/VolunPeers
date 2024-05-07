@@ -1,8 +1,8 @@
 class ChatroomsController < ApplicationController
-  def index
+  def show
     @chatrooms = current_user.participated_chatrooms
+    @chatroom = Chatroom.find(params[:id])
     @message = Message.new
-    @hide_footer = true
   end
 
   def delete_conversation
