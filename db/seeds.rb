@@ -144,7 +144,7 @@ users = [@bob, @alice, @john]
 10.times do |i|
   Message.create(
       id: i,
-      content: Faker::Lorem.sentence(word_count: 5, supplemental: true) ,
+      content: Faker::Lorem.sentence(word_count: 10, supplemental: true) ,
       chatroom_id: @chat1.id,
       user_id: users.sample.id,
       created_at: Time.now,

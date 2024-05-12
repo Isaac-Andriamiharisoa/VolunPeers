@@ -1,5 +1,7 @@
-<% if message.user == current_user %>
-    <%= render partial: 'messages/right_message', locals: { message: message, current_user: current_user } %>
-<% else %>
-    <%= render partial: 'messages/left_message', locals: { message: message, current_user: current_user } %>
-<% end %>
+<div class="message__container">
+    <% if message.user == current_user %>
+        <%= render partial: 'messages/right_message', locals: { message: message, current_user: current_user } %>
+    <% else %>
+        <%= render partial: 'messages/left_message', locals: { message: message, current_user: current_user } %>
+    <% end %>
+</div>

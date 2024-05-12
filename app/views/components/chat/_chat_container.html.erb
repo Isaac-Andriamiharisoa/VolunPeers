@@ -1,5 +1,5 @@
-<div class="chat__message-container">
-<% @chatroom.messages.each do |message| %>
-    <%= render partial: 'components/chat/chat_message_list', locals: { message: message } %>
-<% end %>
+<div class="chat__messages-container">
+    <% @chatroom.messages.each do |message| %>
+        <%= render partial: 'components/chat/chat_message_list', locals: { message: message } %>
+    <% end %>
 </div>
