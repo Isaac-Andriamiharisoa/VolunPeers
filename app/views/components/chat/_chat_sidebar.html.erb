@@ -1,11 +1,19 @@
 <% chatrooms.each do |chatroom| %>
-<div class="image-container" style="width: 50px; height: 50px;">
-    <% if chatroom.event.photo.attached? %>
-        <%= cl_image_tag chatroom.event.photo.key, secure: true %>
-    <% else %>
-        <%= image_tag asset_url("placeholder-image.png"), alt: "place holder image" %>
-    <% end %>
-</div>
-    <%= chatroom.name %>
-    <%= chatroom.messages.last&.created_at %>
+    <div class="chatroom__item">
+        <div class="image-container" style="width: 50px; height: 50px;">
+            <% if chatroom.event.photo.attached? %>
+                <%= cl_image_tag chatroom.event.photo.key, secure: true %>
+            <% else %>
+                <%= image_tag asset_url("placeholder-image.png"), alt: "place holder image" %>
+            <% end %>
+        </div>
+        <div class="chatroom__text">
+            <div class="chatroom__title">
+                <%= chatroom.name %>
+            </div>
+            <div class="chatroom__last-message">
+                <%= chatroom.messages.last&.created_at %>
+            </div>
+        </div>
+    </div>
 <% end %>

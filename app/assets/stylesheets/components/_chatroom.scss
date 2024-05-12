@@ -9,6 +9,8 @@
 
   &__sidebar {
     grid-column: span 3;
+    padding: 25px;
+    font-size: clamp(12px, 14px, 18px);
   }
 
   &__chatroom-container {
@@ -19,7 +21,7 @@
   &__textfield {
     width: calc(100% - 100px);
     margin: 0 50px;
-    padding: 15px 15px;
+    margin: 15px 15px;
     border-radius: 15px;
     background-color: $dark-white;
     outline: none;
@@ -35,6 +37,34 @@
   &__event-description {
     grid-column: span 3;
   }
+}
+
+.chatroom {
+    &__item {
+      height: 50px;
+      max-height: 60px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      margin: 15px 0;
+    }
+    
+    &__text {
+      height: 100%;
+      width: 100%;
+      padding: 0 10px;
+      font-size: clamp(10px, 14px, 18px);
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+    
+    &__title, &__last-message {
+      max-width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-wrap: nowrap;
+    }
 }
 
 .message {
@@ -60,6 +90,8 @@
 .image-container {
   width: 50px;
   height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 50%;
   overflow: hidden;
 

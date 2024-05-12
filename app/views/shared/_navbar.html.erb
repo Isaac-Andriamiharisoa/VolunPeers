@@ -1,3 +1,5 @@
+<% chatroom_id = Chatroom.first.id %>
+
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon py-4">
   <div class="container-fluid d-flex justify-content-between">
     <%= link_to root_path, class: "navbar-brand d-flex justify-content-center ms-5" do %>
@@ -27,7 +29,7 @@
             <%= link_to "Agenda", calendar_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Chatrooms", chatrooms_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
+            <%= link_to "Chatrooms", chatroom_path(chatroom_id), class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
           </li>
           <li class="nav-item">
             <%= link_to "About us", about_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5" %>
