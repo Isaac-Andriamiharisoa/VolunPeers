@@ -1,0 +1,17 @@
+.participant-container
+  - participant_count = @participants.size
+  .heading
+    | Participants - 
+    = participant_count
+  .container.text-center.participants-container
+    - @participants.each do |user|
+      div
+        - if current_user.photo.attached?
+          = image_tag user.photo.url, alt: "text", class: "avatar-large"
+        - else
+          = image_tag asset_path('placeholder-image.png'), alt: "text", class: "avatar-large"
+        .name
+          = user.first_name
+          = user.last_name
+        .username
+          = user.username

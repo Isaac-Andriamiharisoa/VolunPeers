@@ -13,11 +13,7 @@ class PagesController < ApplicationController
   end
 
   def calendar
-    if params[:search].present? && params[:search] != ""
-      @participations = participated_event_search
-    else
-      @participations = global_events
-    end
+    @participations = participation_search
   end
 
   def about
@@ -35,39 +31,29 @@ class PagesController < ApplicationController
     @batiment_quantity = Event.where(action: "Batiment to Build", user_id: current_user.id).sum(:quantity)
     @animal_quantity = Event.where(action: "Animal to save", user_id: current_user.id).sum(:quantity)
     @litter_quantity = Event.where(action: "Litter to Clean", user_id: current_user.id).sum(:quantity)
-
-    if params[:search].present? && params[:search] != ""
-      @participations = participated_event_search
-    else
-      @participations = global_events
-    end
+    @participations = participation_search
     @events_count = past_events.count
     @past_events = past_events
-
-    if params[:created_search].present? && params[:created_search] != ""
-      @created_events = search_created_events
-    else
-      @created_events = created_events
-    end
+    @created_events = created_events_search
   end
 
   private
 
-  def global_events
-    Participation.joins(:event).where(participations: { user_id: current_user.id })
+  def participation_search
+    if params[:search].present? && params[:search] != ""
+      participations = Participation.global_search(params[:search])
+      participations.joins(:event).where(participations: { user_id: current_user.id })
+    else
+      Participation.joins(:event).where(participations: { user_id: current_user.id })
+    end
   end
 
-  def participated_event_search
-    participations = Participation.global_search(params[:search])
-    participations.joins(:event).where(participations: { user_id: current_user.id })
-  end
-
-  def created_events
-    Event.where(user_id: current_user.id)
-  end
-
-  def search_created_events
-    Event.search_by_title_and_description(params[:created_search]).where(user_id: current_user.id)
+  def created_events_search
+    if params[:created_search].present? && params[:created_search] != ""
+      Event.search_by_title_and_description(params[:created_search]).where(user_id: current_user.id)
+    else
+      Event.where(user_id: current_user.id)
+    end
   end
 
   def past_events

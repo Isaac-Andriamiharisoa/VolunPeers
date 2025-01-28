@@ -1,0 +1,30 @@
+.search-container.col-12
+  .search-text.col-4
+    |  My Agenda 
+  .search-bar.col-4
+    = form_with(url: calendar_path, method: "get") do |f|
+      = f.button type:"submit", class: "button-search" do
+        i.fa.fa-search
+      = f.text_field :search, placeholder: "Search", class: "search-field"
+.card-col-2.col-8.mt-5.mb-5
+  - @participations.each do |participation|
+    .card
+      = link_to event_path(participation.event) do
+        - if participation.event.photo.attached?
+          |  <div class="card-img-container" style="background-image: url('
+          = participation.event.photo.url
+          | ');">
+        - else
+          |  <div class="card-img-container" style="background-image: url('
+          = asset_path("placeholder-image.png")
+          | ');">
+        .card-body
+          h3.card-title
+            = participation.event.title
+          h6.card-date
+            = participation.event.start_date.strftime("%d-%m-%Y")
+            |  to 
+            = participation.event.end_date.strftime("%d-%m-%Y")
+          p.card-description
+            = participation.event.description
+          = link_to "Cancel participation", event_participation_path(participation.event, participation), data: { turbo_method: :delete }, class: "button-primary-revert"

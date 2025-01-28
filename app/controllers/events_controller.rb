@@ -5,18 +5,14 @@ class EventsController < ApplicationController
     if params[:search] && params[:search] != ""
       @events = Event.where('title ILIKE ? OR description ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     else
-      @events = Event.all
+      @events = Event.all.limit(500)
     end
   end
 
   def show
     @event = Event.find(params[:id])
     @exist_participation = Participation.find_by(event_id: params[:id], user: current_user)
-    if @exist_participation
-      @participation = @exist_participation
-    else
-      @participation = Participation.new
-    end
+    @participation = @exist_participation || Participation.new
     @owner = User.find(@event.user_id)
     @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end
@@ -31,9 +27,7 @@ class EventsController < ApplicationController
 
     if @event.save
       @participation = Participation.new
-      @participation.user = current_user
-      @participation.event = @event
-      @participation.save
+      @participation.update(user: current_user, event: @event).save
       current_user.update(role: 'owner') if current_user.normal?
       redirect_to event_path(@event)
     else

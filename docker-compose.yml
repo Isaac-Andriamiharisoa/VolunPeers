@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/volun_peers_development
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - .:/app
+
+volumes:
+  dbdata:
+
+code --install-extension ms-vscode.sublime-keybindings --profile 'ROR dev'
+code --install-extension emmanuelbeziat.vscode-great-icons --profile 'ROR dev'
+code --install-extension github.github-vscode-theme --profile 'ROR dev'
+code --install-extension MS-vsliveshare.vsliveshare --profile 'ROR dev'
+code --install-extension rebornix.ruby --profile 'ROR dev'
+code --install-extension dbaeumer.vscode-eslint --profile 'ROR dev'
+code --install-extension Rubymaniac.vscode-paste-and-indent --profile 'ROR dev'
+code --install-extension alexcvzz.vscode-sqlite --profile 'ROR dev'
+code --install-extension anteprimorac.html-end-tag-labels --profile 'ROR dev'

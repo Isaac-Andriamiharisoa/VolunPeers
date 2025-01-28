@@ -85,3 +85,7 @@ group :test do
 end
 
 gem "byebug", "~> 11.1"
+
+gem "html2slim", "~> 0.2.0"
+
+gem "slim-rails", "~> 3.6"

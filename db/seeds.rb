@@ -43,7 +43,6 @@ puts "creating 100 users..."
 
 
   user = User.create(
-    id: i,
     first_name: first_name,
     last_name: last_name,
     username: username,
@@ -63,7 +62,6 @@ puts "Created 100 user 🥂"
 
 puts "creating events"
 @event1 = Event.create(
-  id: 1,
   title: "Community Cleanup Day",
   description: "Join us for a day of environmental stewardship! Help clean up our community parks, streets, and public spaces. Together, we can make a lasting impact.",
   start_time: "09:00",
@@ -79,7 +77,6 @@ puts "creating events"
 )
 
 @event2 = Event.create(
-  id: 2,
   title: "Food Drive for the Needy",
   description: "Be part of something bigger! Contribute to our food drive, ensuring that no one in our community goes hungry. Your generosity can make a significant difference.",
   start_time: "10:00",
@@ -95,7 +92,6 @@ puts "creating events"
 )
 
 @event3 = Event.create(
-  id: 3,
   title: "Youth Mentorship Program",
   description: "Empower the next generation! Volunteer as a mentor in our youth program. Share your knowledge and experiences to inspire and guide young minds toward success.",
   start_time: "11:00",
@@ -112,7 +108,6 @@ puts "creating events"
 
 
 @event4 = Event.create(
-  id: 4,
   title: "Senior Companionship Project",
   description: "Connect with seniors in our community! Join our companionship project to spend quality time with older adults. Your friendship can bring joy and warmth to their lives.",
   start_time: "12:00",
@@ -128,22 +123,21 @@ puts "creating events"
 )
 
 puts "creating partitipations"
-@partitipation1 = Participation.create(id: 1,user_id: @bob.id, event_id: @event1.id)
-@partitipation2 = Participation.create(id: 2,user_id: @alice.id, event_id: @event4.id)
-@partitipation3 = Participation.create(id: 3,user_id: @john.id, event_id: @event1.id)
-@partitipation4 = Participation.create(id: 4,user_id: @bob.id, event_id: @event2.id)
-@partitipation5 = Participation.create(id: 5,user_id: @alice.id, event_id: @event2.id)
+@partitipation1 = Participation.create(user_id: @bob.id, event_id: @event1.id)
+@partitipation2 = Participation.create(user_id: @alice.id, event_id: @event4.id)
+@partitipation3 = Participation.create(user_id: @john.id, event_id: @event1.id)
+@partitipation4 = Participation.create(user_id: @bob.id, event_id: @event2.id)
+@partitipation5 = Participation.create(user_id: @alice.id, event_id: @event2.id)
 
 puts "creating chatrooms"
-@chat1 = Chatroom.create(id: 1, name: @event1.title, event_id: @event1.id, created_at: Time.now, updated_at: Time.now)
-@chat2 = Chatroom.create(id: 2, name: @event2.title, event_id: @event2.id, created_at: Time.now, updated_at: Time.now)
-@chat3 = Chatroom.create(id: 3, name: @event3.title, event_id: @event3.id, created_at: Time.now, updated_at: Time.now)
+@chat1 = Chatroom.create(name: @event1.title, event_id: @event1.id, created_at: Time.now, updated_at: Time.now)
+@chat2 = Chatroom.create(name: @event2.title, event_id: @event2.id, created_at: Time.now, updated_at: Time.now)
+@chat3 = Chatroom.create(name: @event3.title, event_id: @event3.id, created_at: Time.now, updated_at: Time.now)
 
 puts "creating messages"
 users = [@bob, @alice, @john]
 10.times do |i|
   Message.create(
-      id: i,
       content: Faker::Lorem.sentence(word_count: 10, supplemental: true) ,
       chatroom_id: @chat1.id,
       user_id: users.sample.id,

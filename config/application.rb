@@ -11,6 +11,7 @@ module VolunPeers
     config.generators do |generate|
       generate.assets false
       generate.helper false
+      generate.template_engine :slim
       generate.test_framework :test_unit, fixture: false
     end
     # Initialize configuration defaults for originally generated Rails version.

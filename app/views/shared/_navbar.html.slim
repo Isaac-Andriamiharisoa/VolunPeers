@@ -1,0 +1,3 @@
+- chatroom_id = Chatroom.first.id
+- image_path = current_user ? current_user.photo.url : asset_path('placeholder-image.png')
+= navbar(chatroom_id)

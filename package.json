@@ -1,0 +1,8 @@
+{
+  "name": "VolunPeers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Isaac-Andriamiharisoa/VolunPeers.git",
+  "author": "Isaac Andriamiharisoa <nyainaisaac@gmail.com>",
+  "license": "MIT"
+}

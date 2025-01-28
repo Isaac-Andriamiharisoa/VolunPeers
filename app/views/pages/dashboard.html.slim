@@ -1,0 +1,98 @@
+.stat-section.col-12.d-flex.justify-content-center
+  .complete.col-2.d-flex.flex-column.justify-content-center.align-items-center
+    h1 #{ @events_count }
+    h4 Completed events
+  .icon-container.col-6
+    .icon-items
+      i.fa-solid.fa-tree
+      p #{ @tree_quantity}
+      p Trees planted
+    .icon-items
+      i.fa-solid.fa-person
+      p
+        = @people_quantity
+      p
+        | People helped
+    .icon-items
+      i.fa-solid.fa-house-circle-check
+      p
+        = @batiment_quantity
+      p
+        | Batiment built
+    .icon-items
+      i.fa-solid.fa-shield-dog
+      p
+        = @animal_quantity
+      p
+        | Animal saved
+    .icon-items
+      i.fa-solid.fa-recycle
+      p
+        = @litter_quantity
+        |  t
+      p
+        | Litter cleaned
+    - @past_events.each do |past_event|
+      .icon-items
+        .completed-event-container
+          h6
+            | -Completed-
+          = past_event.title
+.search-container-white.col-12
+  .search-text.col-4
+    |  My Causes 
+  .search-bar.col-4
+    = form_with(url: dashboard_path, method: "get") do |f|
+      = f.button type:"submit", class: "button-search" do
+        i.fa.fa-search
+      = f.text_field :created_search, placeholder: "Search", class: "search-field"
+
+.card-container.created-events-container.col-8.my-5
+  - @created_events.each do |created_event|
+    .card-col
+      = link_to event_path(created_event) do
+        .card-img-container
+          - if created_event.photo.attached?
+            |  <div class="card-img-holder" style="background-image: url('
+            = cl_image_path created_event.photo.key, secure: true
+            | ');">
+          - else
+            = image_tag "placeholder-image.png", alt: "A planet", class: "card-img-top"
+    .card-body
+      h4.card-title
+        = created_event.title
+      p.card-date
+        = created_event.start_date.strftime("%d-%m-%Y")
+        |  to 
+        = created_event.end_date.strftime("%d-%m-%Y")
+      .card-button.d-flex.flex-column
+        = link_to "Delete event", event_path(created_event), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert"
+
+.search-container-white.col-12
+  .search-text.col-4
+    |  My Participations 
+  .search-bar.col-4
+    = form_with(url: dashboard_path, method: "get") do |f|
+      = f.button type:"submit", class: "button-search" do
+        i.fa.fa-search
+      = f.text_field :search, placeholder: "Search", class: "search-field"
+.card-container.col-8.my-5
+  - @participations.each do |participation|
+    .card-col
+      = link_to event_path(participation.event) do
+        .card-img-container
+          - if participation.event.photo.attached?
+            |  <div class="card-img-holder" style="background-image: url('
+            = cl_image_path participation.event.photo.key, secure: true
+            | ');">
+          - else
+            = image_tag "placeholder-image.png", alt: "A planet", class: "card-img-top"
+    .card-body
+      h4.card-title
+        = participation.event.title
+      p.card-date
+        |  Start date: 
+        = participation.event.start_date
+      .card-button.d-flex.flex-column
+        .card-button.d-flex.flex-column
+          = link_to "Cancel participation", event_participation_path(participation.event, participation), data: { turbo_method: :delete, turbo_confirm: ("Are you sure?") }, class: "button-primary-revert"
