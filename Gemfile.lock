@@ -136,17 +136,37 @@ GEM
       railties (>= 3.2)
     drb (2.1.1)
       ruby2_keywords
+    elastic-transport (8.3.5)
+      faraday (< 3)
+      multi_json
+    elasticsearch (8.17.1)
+      elastic-transport (~> 8.3)
+      elasticsearch-api (= 8.17.1)
+    elasticsearch-api (8.17.1)
+      multi_json
+    elasticsearch-model (8.0.0)
+      activesupport (> 3)
+      elasticsearch (~> 8)
+      hashie
+    elasticsearch-rails (8.0.0)
     error_highlight (0.6.0)
     erubi (1.12.0)
     execjs (2.9.1)
     faker (3.2.1)
       i18n (>= 1.8.11, < 2)
+    faraday (2.12.2)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     ffi (1.16.3)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -163,6 +183,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.9.1)
+    logger (1.6.5)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -180,7 +202,10 @@ GEM
     mini_portile2 (2.8.8)
     minitest (5.20.0)
     msgpack (1.7.2)
+    multi_json (1.15.0)
     mutex_m (0.1.2)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.1)
       date
       net-protocol
@@ -299,6 +324,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    uri (1.0.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -329,6 +355,8 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  elasticsearch-model (~> 8.0)
+  elasticsearch-rails (~> 8.0)
   error_highlight (>= 0.6.0)
   faker
   font-awesome-sass (~> 6.1)

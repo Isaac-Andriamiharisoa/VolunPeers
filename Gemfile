@@ -83,3 +83,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "elasticsearch-model", "~> 8.0"
+gem "elasticsearch-rails", "~> 8.0"
