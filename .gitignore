@@ -41,3 +41,9 @@
 .DS_Store
 .env*
 .env
+
+# ignore byebug history
+.byebug_history
+
+# ignore cursor history
+.history

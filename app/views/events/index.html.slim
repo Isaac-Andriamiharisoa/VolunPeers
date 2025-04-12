@@ -1,0 +1,46 @@
+.eventindex
+  .search-container-white.col-12
+    .search-text.col-4
+      | Causes
+
+    .search-bar.col-4
+      = form_with(url: events_path, method: "get") do |f|
+        = f.button type: "submit", class: "button-search" do
+          i.fa.fa-search
+        = f.text_field :search, placeholder: "Search", class: "search-field"
+
+  .event-container
+    - @events.each do |event|
+      = link_to event_path(event), class: "event-card" do
+        - if event.photo.attached?
+          .event-card-pic-container style="background-image: url('#{cl_image_path event.photo.key, secure: true}');"
+        - else
+          .event-card-pic-container style="background-image: url('#{asset_url("placeholder-image.png")}');"
+
+        .event-card-details
+          h1 = event.title
+          br
+          p.card-description = event.description
+
+        .event-card-icons
+          .event-card-icons-stats.icons
+            p = event.start_date.strftime("%d %^b")
+            i.fa-regular.fa-calendar-days.fa-2xl style="color: #3a1700;"
+
+          .event-card-icons-country.icons
+            p = event.country
+            i.fa-solid.fa-location-dot.fa-2xl style="color: #3a1700;"
+
+          .event-card-icons-stats.icons
+            p = event.quantity
+            - case event.action
+            - when 'Trees to Plant'
+              i.fa-solid.fa-seedling.fa-2xl
+            - when 'People to Help'
+              i.fa-solid.fa-user-injured.fa-2xl
+            - when 'Batiment to Build'
+              i.fa-solid.fa-house-crack.fa-2xl
+            - when 'Animal to Save'
+              i.fa-solid.fa-paw.fa-2xl
+            - when 'Litter to Clean'
+              i.fa-solid.fa-recycle.fa-2xl 

@@ -1,0 +1,9 @@
+div data-controller="chatroom-subscription" data-chatroom-subscription-ids-value="#{@chatrooms.map { |c| c.id }.join(',')}"
+    .container-fluid
+        .row.chatroom
+            = render 'sidebar', locals: { chatrooms: @chatrooms }
+            = turbo_frame "messages_container_#{chatroom.id}" do
+                = render 'messages', locals: { chatrooms: @chatroom }
+            = render 'description', locals: { chatrooms: @chatroom }
+
+script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"

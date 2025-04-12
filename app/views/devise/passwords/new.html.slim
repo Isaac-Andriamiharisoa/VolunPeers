@@ -1,0 +1,13 @@
+.form-container.col-4.d-flex.justify-content-center
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    h1.page-title Forgot your password?
+    .form-inputs
+      = f.input :email, \
+        required: true, \
+        autofocus: true, \
+        input_html: { autocomplete: "email" }
+
+    .form-actions
+      = f.button :submit, "Send request", class: "button button-primary"
+      = link_to "Log in", new_user_session_path, class: "button-primary-revert"
+      = link_to "Sign up", new_user_session_path, class: "button-primary-revert" 

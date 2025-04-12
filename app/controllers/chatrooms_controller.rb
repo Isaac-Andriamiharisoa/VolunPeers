@@ -1,8 +1,17 @@
 class ChatroomsController < ApplicationController
   def index
     @chatrooms = current_user.participated_chatrooms
+    @chatroom = params[:id].present? ? Chatroom.find(params[:id]) : @chatrooms.first
     @message = Message.new
     @hide_footer = true
+  end
+
+  def show
+    @chatroom = Chatroom.includes(:messages).find(params[:id])
+    @message = Message.new
+    @hide_footer = true
+
+    render turbo_stream: :index, locals: {chatroom: @chatroom}
   end
 
   def delete_conversation

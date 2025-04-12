@@ -1,0 +1,25 @@
+.col-md-3.container_side class="event-#{chatroom.id}" id="colum_style"
+    #sidebar_img
+    - if chatroom.event.photo.attached?
+        = cl_image_tag chatroom.event.photo.key, secure: true
+    - else
+        = image_tag asset_url("placeholder-image.png"), alt: "place holder image"
+    .sidebar_title
+    .text-center = chatroom.name
+    #sidebar_subtitle By Sabrina Terrese
+    div
+    .custom-padding-row
+        hr.custom-divider
+    .row
+        #notification_title.col-8
+        | Notifications
+        .col-4
+        input type="checkbox" data-toggle="switchbutton" checked=true data-onstyle="primary" data-offstyle="secondary" data-size="xs"
+    div
+        .custom-padding-row
+        hr.custom-divider
+    #side_description_title Description
+    #side_description_text = chatroom.event.description
+    = link_to "List of participants", event_participants_path(chatroom.event), id: "sidebar_block"
+    #sidebar_delete.clickable data-action="click->chatroom-subscription#deleteConversation" data-chatroom-id=chatroom.id
+        | Delete Conversation

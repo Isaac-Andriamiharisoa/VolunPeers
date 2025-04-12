@@ -83,3 +83,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+gem "byebug", "~> 11.1"
+
+gem "slim-rails", "~> 3.7"
