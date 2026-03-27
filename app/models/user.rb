@@ -18,6 +18,6 @@ class User < ApplicationRecord
   end
 
   def participated_chatrooms
-    participations.map { |p| p.event.chatroom }
+    Chatroom.joins(event: :participations).where(participations: { user_id: id })
   end
 end
