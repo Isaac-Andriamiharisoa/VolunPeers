@@ -1,0 +1,82 @@
+div data-controller="chatroom-subscription" data-chatroom-subscription-ids-value="#{@chatrooms.map { |c| c.id }.join(',')}" data-chatroom-subscription-current-user-id-value="#{current_user.id}"
+  / Col-3 Community Forum
+  .container-fluid
+    .row.chatroom
+      .col-md-3#colum_style
+        h1#chatroom_name Community Forum
+
+        .input-group.rounded
+          input.form-control.rounded type="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+          span.input-group-text.border-0#search-addon
+            i.fas.fa-search
+
+        div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;"
+          ul.list-unstyled.mb-0
+            - @chatrooms.each do |chatroom|
+              li.p-2.border-bottom data-action="click->chatroom-subscription#selectChat:prevent" data-chatroom-id="#{chatroom.id}"
+                a.d-flex.justify-content-between href="#!"
+                  .d-flex.flex-row
+                    - if chatroom.event.photo.attached?
+                      .avatar-large.d-flex.align-items-center style="background-image: url('#{chatroom.event.photo.url}');"
+                    - else
+                      .avatar-large.align-items-center style="background-image: url('#{asset_path('placeholder-image.png')}');"
+
+                    .pt-1.chat-text
+                      p.fw-bold.mb-0= chatroom.name
+                      p.small.text-muted.latest-message data-chatroom-subscription-target="latestMessage"
+                        = chatroom.messages.last.content if chatroom.messages.last
+
+                  .pt-1
+                    p.small.text-muted.mb-1 data-chatroom-subscription-target="timestamp"
+                      = chatroom.messages.last&.created_at
+
+      / Col-6 Chat Messages
+      - @chatrooms.each do |chatroom|
+        .col-md-6 class="event-#{chatroom.id}" id="colum_style"
+          .messages_container
+            .scrollable-content data-chatroom-subscription-target="scrollContent"
+              - chatroom.messages.each do |message|
+                - if message.user == current_user
+                  = render partial: 'messages/right_message', locals: { message: message, current_user: current_user }
+                - else
+                  = render partial: 'messages/left_message', locals: { message: message, current_user: current_user }
+
+              div data-chatroom-subscription-target="latestMessages"
+
+            .text_field.mt-auto.p-3
+              = simple_form_for [chatroom, @message], html: { class: "d-flex" } do |f|
+                = f.input :content,
+                  label: false,
+                  placeholder: "Type your message",
+                  input_html: { class: "textfield", "data-chatroom-subscription-target": "chatField" },
+                  wrapper_html: { class: "flex-grow-1" }
+                = f.submit "Send", class: "btn btn-primary mb-3 ms-2"
+
+      / Col-3 Side Bar
+      - @chatrooms.each do |chatroom|
+        .col-md-3.container_side class="event-#{chatroom.id}" id="colum_style"
+          #sidebar_img
+            - if chatroom.event.photo.attached?
+              = cl_image_tag chatroom.event.photo.key, secure: true
+            - else
+              = image_tag asset_url("placeholder-image.png"), alt: "place holder image"
+
+          .sidebar_title
+            .text-center= chatroom.name
+          #sidebar_subtitle By Sabrina Terrese
+          div
+            .custom-padding-row
+              hr.custom-divider
+            .row
+              .col-8#notification_title Notifications
+              .col-4
+                input type="checkbox" data-toggle="switchbutton" checked="checked" data-onstyle="primary" data-offstyle="secondary" data-size="xs"
+            div
+              .custom-padding-row
+                hr.custom-divider
+
+          #side_description_title Description
+          #side_description_text= chatroom.event.description
+          = link_to "List of participants", event_participants_path(chatroom.event), id: "sidebar_block"
+          #sidebar_delete.clickable data-action="click->chatroom-subscription#deleteConversation" data-chatroom-id="#{chatroom.id}"
+            | Delete Conversation

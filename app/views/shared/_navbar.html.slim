@@ -1,0 +1,45 @@
+.navbar.navbar-expand-sm.navbar-light.navbar-lewagon.py-4
+  .container-fluid.d-flex.justify-content-between
+    = link_to root_path, class: "navbar-brand d-flex justify-content-center ms-5" do
+      = inline_svg("logo", width: "50", height: "50")
+
+    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+
+    .collapse.navbar-collapse.col-10 id="navbarSupportedContent"
+      ul.navbar-nav.me-auto.col-12.d-flex.justify-content-between.align-items-center
+        - if user_signed_in?
+          .link-container.col-10.d-flex.justify-content-center
+            li.nav-item.active
+              = link_to "Home", root_path, class: "nav-link px-5 text-center text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "Causes", events_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "Agenda", calendar_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "Chatrooms", chatrooms_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "About us", about_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+
+          li.nav-item.dropdown.d-flex.justify-content-center.col-1.pe-2
+            - if current_user.photo.attached?
+              a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{current_user.photo.url}');"
+            - else
+              a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{asset_path('placeholder-image.png')}');"
+
+            .dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown"
+              = link_to "Dashboard", dashboard_path, class: "dropdown-item"
+              = link_to "Add a cause", new_event_path, class: "dropdown-item"
+              = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
+              = link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"
+
+        - else
+          .link-container.col-10.d-flex.justify-content-center
+            li.nav-item.active
+              = link_to "Home", root_path, class: "nav-link px-5 text-center text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "Causes", events_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+            li.nav-item
+              = link_to "About us", about_path, class: "nav-link px-5 text-center border-start border-1 border-light text-light text-bold text-center fs-5"
+          li.nav-item
+            = link_to "Login", new_user_session_path, class: "nav-link px-5 text-center text-light text-bold text-center fs-5"

@@ -1,0 +1,9 @@
+.form-container.col-4.d-flex.justify-content-center
+  = simple_form_for @testimonial do |f|
+    h1.page-title Add a Testimonial
+    .form-inputs
+      = f.text_area :content, required: true, class: "form-control string", placeholder: "Say something here"
+
+    .form-actions
+      = f.button :submit, "Add", class: "button button-primary"
+      = link_to "Cancel", chatrooms_path, class: "button-primary-revert"

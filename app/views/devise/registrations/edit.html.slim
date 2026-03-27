@@ -1,0 +1,45 @@
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container col-5 p-5" }) do |f|
+  .form-header.col-12
+    h2.page-title Edit your profile
+    .form-profile-img
+      - if current_user.photo.attached?
+        .avatar-jumbo#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{current_user.photo.url}');"
+      - else
+        .avatar-jumbo#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{asset_path('placeholder-image-2.png')}');"
+      h5= current_user.username
+
+  = f.error_notification
+  .form-inputs.col-12
+    .first-form
+      .form-col-2
+        .column-1
+          = f.input :first_name, autofocus: true
+          = f.input :username
+        .column-2
+          = f.input :last_name
+          = f.input :contact
+      .form-col-1
+        = f.input :email, required: true
+        = f.input :photo, as: :file, hint: "leave it blank if you don't want to change it"
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        p Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+    .second-form
+      = f.input :password,
+                label: "New password",
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" }
+      = f.input :password_confirmation,
+                label: "Confirm new password",
+                required: false,
+                input_html: { autocomplete: "new-password" }
+      = f.input :current_password,
+                hint: "we need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" }
+
+  .form-actions.col-12
+    = f.button :submit, "Update", class: "button button-primary"
+    = link_to "Cancel", dashboard_path, class: "button-primary-revert"
+    = button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "You are deleting your account, Are you sure?" }, method: :delete, class: "button-red-revert"

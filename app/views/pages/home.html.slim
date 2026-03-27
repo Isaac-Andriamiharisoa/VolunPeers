@@ -1,0 +1,116 @@
+.banner.d-flex.flex-column.justify-content-center.align-items-center
+  h1.text-center.page-title.home-title
+    | "Where Hearts Unite, Change Ignites.
+    br
+    | Make a differrence!"
+  = link_to "Join a cause", events_path, class: "button button-banner"
+
+- if @event
+  .countdown.d-flex.justify-content-center.col-12 data-controller="countdown"
+    .countdown-container.col-8.px-4.d-flex.justify-content-around
+      .countdown-text.col-4.d-flex.flex-column.justify-content-center.align-items-center
+        h2.text-center= @event.title
+        = link_to "Help us", event_path(@event), class: "my-2 button button-primary"
+      .countdown-date.col-7.d-flex.justify-content-around.align-items-center.text-center
+        .countdown-date.col-7.d-flex.justify-content-around.align-items-center.text-center
+          input type="hidden" name="days" data-countdown-target="daysLeft" value="#{@event.start_date}"
+          input type="hidden" name="days" data-countdown-target="timeLeft" value="#{@event.start_time.strftime("%H:%M:%S")}"
+          .dates.col-3
+            h1 data-countdown-target="days" 0
+        .dates.col-3
+          h1 data-countdown-target="hours" 00
+          p hours
+        .dates.col-3
+          h1 data-countdown-target="minutes" 00
+          p minutes
+        .dates.col-3
+          h1 data-countdown-target="seconds" 00
+          p seconds
+
+.objective.col-12.d-flex.flex-column.align-items-center
+  .objective-container
+    h3.title.text-center Our Objectives
+    h2.objective-subtitle.text-center
+      | "Make an Impact by Volunteering for Causes
+      br
+      | You Care About! Your Time and Skills Can
+      br
+      | Transform Lives."
+  .card-container.col-8.d-flex.justify-content-center
+    .card-no-border.p-3.mt-4.text-center
+      = inline_svg("icon-direct-help", width: "64", height: "62")
+      h3.card-title Direct help
+      p.card-text.mt-4.px-5
+        | Helping empower people to make a difference, even if it is just in a small way
+
+    .card-no-border.p-3.mt-4.text-center
+      = inline_svg("icon-raising-awareness", width: "56", height: "64")
+      h3.card-title Raising awareness
+      p.card-text.mt-4.px-5
+        | Your voice and your actions matter, and you can make a difference in the world.
+
+    .card-no-border.p-3.mt-4.text-center
+      = inline_svg("logo", width: "64", height: "64")
+      h3.card-title Giving information
+      p.card-text.mt-4.px-5
+        | People who are passionate about a cause are the ones who can make the most difference
+
+.stats.col-12.d-flex.justify-content-center.align-items-center.my-5
+  .stat-container.col-8.d-flex.justify-content-around.align-items-center data-controller="floating-card"
+    .card-text-stat.mx-3 data-floating-card-target="card1" data-action="click->floating-card#animate"
+      .col-5.card-number
+        h2.w-100
+          - if @volunteers_count.between?(0, 9)
+            | 0
+            = @volunteers_count
+          - else
+            = @volunteers_count
+      .col-7.card-stat-item
+        h4 Volunteers
+        p Active members
+
+    .card-text-stat.mx-3 data-floating-card-target="card2" data-action="click->floating-card#animate"
+      .col-5.card-number
+        h2.w-100
+          - if @events_count.between?(0, 9)
+            | 0
+            = @events_count
+          - else
+            = @events_count
+      .col-7.card-stat-item
+        h4 Events
+        p Worldwide
+
+    .card-text-stat.mx-3 data-floating-card-target="card3" data-action="click->floating-card#animate"
+      .col-5.card-number
+        h2.w-100
+          - if @hoster_count.between?(0, 9)
+            | 0
+            = @hoster_count
+          - else
+            = @hoster_count
+      .col-7.card-stat-item
+        h4 NGOs
+        p Community Admins
+
+.testimonials.my-5 data-controller="caroussel"
+  .caroussel data-caroussel-target="caroussel"
+    .caroussel-button-right
+      i.fa-solid.fa-angle-left data-caroussel-target="next" data-action="click->caroussel#next"
+    ul data-caroussel-target="slides"
+      - @testimonials.each do |testimonial|
+        li.slide
+          .testimonial
+            .testimonial-text-container.text-left
+              h3.title A testimonial for
+              h2.objective-subtitle= testimonial.participation.event.title
+              p.testimonial-text= testimonial.content
+              h5.testimonial-author= "#{testimonial.participation.user.first_name} #{testimonial.participation.user.last_name}"
+
+            - if testimonial.participation.user.photo.attached?
+              .testimonial-img-container style="background-image: url('#{testimonial.participation.user.photo.url}');"
+            - else
+              .testimonial-img-container style="background-image: url('#{asset_path('placeholder-image-2.png')}');"
+
+    .caroussel-button-right
+      i.fa-solid.fa-angle-right data-caroussel-target="next" data-action="click->caroussel#next"

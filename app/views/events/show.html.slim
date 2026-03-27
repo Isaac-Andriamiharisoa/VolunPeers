@@ -1,0 +1,103 @@
+- content_for :meta_title, "#{@event.title} is on #{DEFAULT_META["meta_product_name"]}"
+- content_for :meta_description, @event.description
+- if @event.photo.attached?
+  - content_for :meta_image, cl_image_path(@event.photo.url)
+- else
+  - content_for :meta_image, asset_url("placeholder-image.png")
+
+.show-banner-container
+  .show-ban-pic
+    - if @event.photo.attached?
+      .event-card-picture style="background-image: url('#{cl_image_path(@event.photo.key, secure: true)}');"
+    - else
+      .event-card-picture style="background-image: url('#{asset_url("placeholder-image.png")}');"
+
+  .show-ban-details
+    .show-ban-title
+      .show-ban-action-icons
+        = link_to events_path do
+          i.arrow.fa-solid.fa-arrow-left-long style="color: #ffffff; font-size: 150%;"
+
+      h1= @event.title
+      p by #{@owner.username}
+    .show-ban-icons-container
+      .show-banner-icon
+        i.fa-regular.fa-calendar-days.fa-2xl style="color: #FFFFFF;"
+        p= @event.start_date.strftime("%d %^b")
+      .show-banner-icon
+        i.fa-solid.fa-location-dot.fa-2xl style="color: #FFFFFF;"
+        p= @event.country
+      .show-banner-icon
+        - case @event.action
+        - when 'Trees to Plant'
+          i.fa-solid.fa-seedling.fa-2xl
+        - when 'People to Help'
+          i.fa-solid.fa-user-injured.fa-2xl
+        - when 'Batiment to Build'
+          i.fa-solid.fa-house-crack.fa-2xl
+        - when 'Animal to Save'
+          i.fa-solid.fa-paw.fa-2xl
+        - when 'Litter to Clean'
+          i.fa-solid.fa-recycle.fa-2xl
+
+        p= @event.quantity
+    .show-ban-buttons-container
+      .show-ban-button
+        - if @exist_participation
+          button.participation-button-disable Participating
+        - else
+          = simple_form_for [@event, @participation] do |f|
+            = f.submit "Participate", class: "participation-button", id: "participateButton", data: { status: "participate" }
+
+      .show-ban-button
+        - if can? :update, @event
+          = link_to "Edit Event", edit_event_path(@event), class: "extra-button"
+
+        - if current_user.participations.map(&:event).include?(@event)
+          = link_to "Message", chatrooms_path, class: "extra-button"
+
+.show-info-container
+  .info-container-1
+    .show-info-des
+      h5 Description
+      .show-des-details
+        = @event.description
+    .show-info-loc
+      h5 Location
+      .show-loc-map
+        div data-controller="map" data-map-markers-value="#{@markers.to_json}" data-map-api-key-value="#{ENV['MAPBOX_API_KEY']}"
+          div data-map-target="content" style="width: 300px; height: 320px; box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;"
+        .show-loc-addr
+          p.map-text
+            = @event.address
+          = inline_svg("icon-map-marker", width: "50", height: "50")
+  .info-container-2
+    .show-info-details
+      h5 Details
+      .show-details-time
+        p
+          strong From #{@event.start_date.strftime("%A %d %B %Y")} - #{@event.start_time.strftime("%H:%M")}
+        p
+          strong To #{@event.end_date.strftime("%A %d %B %Y")} - #{@event.end_time.strftime("%H:%M")}
+    .show-info-participants
+      h5 No. of Participants
+      .show-participants-num
+        h6= @event.participations.count
+        = inline_svg("icon-participants", width: "70", height: "45")
+  .info-container-3
+    .show-info-share
+      h5 Share with friends
+      .show-share-media
+        .social-icons
+          a href="https://www.facebook.com/"
+            i.fa-brands.fa-facebook-f.fa-2xl style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"
+        .social-icons
+          a href="https://www.instagram.com/"
+            i.fa-brands.fa-instagram.fa-2xl style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"
+        .social-icons
+          a href="https://twitter.com/"
+            i.fa-brands.fa-x-twitter.fa-2xl style="color: #f3f2e7; width: 50%; height: 50%; border-radius: 50%; font-size: 2em;"
+    .show-info-questions
+      h5 Questions
+      .show-questions-contact
+        p Contact Number: #{@event.contact}

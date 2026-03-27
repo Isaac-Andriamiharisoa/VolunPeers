@@ -1,0 +1,48 @@
+.create-events
+  .form-banner
+    h1= "Edit page for #{@event.title}"
+
+  .event-form
+    = simple_form_for @event do |f|
+      .form-title
+        = f.input :title
+
+      .form-event-row-1
+        .form-start-date
+          = f.input :start_date
+        .form-start-time
+          = f.input :start_time
+
+      .form-event-row-2
+        .form-end-date
+          = f.input :end_date
+        .form-end-time
+          = f.input :end_time
+
+      .form-event-row-3
+        .form-country
+          = f.input :country
+        .form-address
+          = f.input :address
+
+      .form-event-row-4
+        .form-photo
+          = f.input :photo, as: :file
+        .form-contact
+          = f.input :contact
+
+      .form-event-row-5
+        .form-action
+          = f.input :action, as: :select, collection: ['Trees to Plant', 'People to Help', 'Batiment to Build', 'Animal to Save', 'Litter to Clean']
+        .form-quantity
+          = f.input :quantity
+
+      .form-description
+        p Description
+        = f.text_area :description, placeholder: "min 150 - max 2000 Character"
+
+      .form-button
+        = f.submit
+
+      .back
+        = link_to "Cancel", :back
