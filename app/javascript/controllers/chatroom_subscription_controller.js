@@ -5,7 +5,8 @@ import moment from "moment"
 // Connects to data-controller="chatroom-subscription"
 export default class extends Controller {
   static values = {
-    ids: String
+    ids: String,
+    currentUserId: Number
   }
 
   static targets = ["latestMessages", "latestMessage", "cleartextField", "chatField", "scrollContent", "timestamp"]
@@ -22,7 +23,14 @@ export default class extends Controller {
         {
           received: data => {
             console.log(data)
-            this.latestMessagesTargets[i].innerHTML += data
+            const temp = document.createElement('div')
+            temp.innerHTML = data
+            const messageEl = temp.querySelector('.message')
+            if (messageEl) {
+              const senderId = parseInt(messageEl.dataset.userId)
+              messageEl.classList.add(senderId === this.currentUserIdValue ? 'right-message' : 'left-message')
+            }
+            this.latestMessagesTargets[i].innerHTML += temp.innerHTML
             this.latestMessageTargets[i].innerHTML = data
             this.timestampTargets[i].innerHTML = moment(this.latestMessageTargets[i].querySelector('i').innerHTML).fromNow()
             this.latestMessageTargets[i].innerHTML = this.latestMessageTargets[i].querySelector('p').innerText
