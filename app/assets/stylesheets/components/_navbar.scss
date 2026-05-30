@@ -5,6 +5,11 @@
   padding: 10px 20px;
   background-color: $primary-color;
 
+  &__start {
+    width: 100%;
+    height: 100%;
+  }
+
   &__start-link {
     display: flex;
     justify-content: center;
@@ -13,9 +18,9 @@
     max-height: 40px;
   }
 
-  &__start {
-    width: 100%;
-    height: 100%;
+  &__logo {
+    width: 50px;
+    height: 50px;
   }
 
   &__content {
@@ -29,7 +34,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $primary-color;
   }
 
   &__link {
@@ -37,11 +41,6 @@
     color: white;
     margin: 0 10px;
     padding: 0;
-  }
-
-  &__logo {
-    width: 50px;
-    height: 50px;
   }
 
   &__actions {
