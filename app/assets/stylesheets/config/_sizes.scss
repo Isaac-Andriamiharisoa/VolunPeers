@@ -1,0 +1,22 @@
+// Spacing — covers the 5/10/20/30/50/100px pattern used across components
+$space-xs:  5px;
+$space-sm:  10px;
+$space-md:  20px;
+$space-lg:  30px;
+$space-xl:  50px;
+$space-2xl: 100px;
+
+// Typography — covers every font-size in use (12, 14, 16, 18, 20, 36px)
+$text-xs:   12px;
+$text-sm:   14px;
+$text-base: 1rem;
+$text-md:   18px;
+$text-lg:   20px;
+$text-2xl:  36px;
+
+// Border radius — 5px most common; 2/8/20px and 50% also present
+$radius-sm:   2px;
+$radius-md:   5px;
+$radius-lg:   8px;
+$radius-xl:   20px;
+$radius-full: 50%;
