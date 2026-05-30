@@ -21,6 +21,7 @@ export default class extends Controller {
   }
 
   disconnect() {
+    document.removeEventListener("turbo:before-cache", this._onBeforeCache)
     this.close()
   }
 }
