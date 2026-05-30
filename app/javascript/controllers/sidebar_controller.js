@@ -14,4 +14,8 @@ export default class extends Controller {
     this.overlayTarget.classList.remove("app-navbar__overlay--visible")
     document.body.style.overflow = ""
   }
+
+  disconnect() {
+    this.close()
+  }
 }
