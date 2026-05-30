@@ -1,34 +1,57 @@
 .app-navbar
-  .app-navbar__start
-    = link_to root_path, class: "app-navbar__start-link" do
-      = inline_svg("logo", class: "app-navbar__logo")
+  .app-navbar__desktop
+    .app-navbar__start
+      = link_to root_path, class: "app-navbar__start-link" do
+        = inline_svg("logo", class: "app-navbar__logo")
 
-    / button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-    /   span.navbar-toggler-icon
+      button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
 
-  .app-navbar__content
-    .app-navbar__links
-      - if user_signed_in?
-        - signed_in_links.each do |link, path|
-          = link_to link, path, class: "app-navbar__link"
+    .app-navbar__content
+      .app-navbar__links
+        - if user_signed_in?
+          - signed_in_links.each do |link, path|
+            = link_to link, path, class: "app-navbar__link"
 
-      - else
-        - signed_out_links.each do |link, path|
-          = link_to link, path, class: "app-navbar__link"
-
-  .app-navbar__actions
-    - if user_signed_in?
-      .app-navbar__action.dropdown
-        - if current_user.photo.attached?
-          a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{current_user.photo.url}');"
         - else
-          a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{asset_path('placeholder-image.png')}');"
+          - signed_out_links.each do |link, path|
+            = link_to link, path, class: "app-navbar__link"
 
-        .dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown"
+    .app-navbar__actions
+      - if user_signed_in?
+        .app-navbar__action.dropdown
+          - if current_user.photo.attached?
+            a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{current_user.photo.url}');"
+          - else
+            a.avatar-bordered#navbarDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{asset_path('placeholder-image.png')}');"
+
+          .dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown"
+            = link_to "Dashboard", dashboard_path, class: "dropdown-item"
+            = link_to "Add a cause", new_event_path, class: "dropdown-item"
+            = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
+            = link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"
+      - else
+        .app-navbar__action
+          = link_to "Login", new_user_session_path
+
+  .app-navbar__mobile-bar
+    button.app-navbar__hamburger data-action="click->sidebar#open"
+      span
+      span
+      span
+    = link_to root_path, class: "app-navbar__mobile-logo" do
+      = inline_svg("logo", class: "app-navbar__logo")
+    - if user_signed_in?
+      .app-navbar__mobile-actions.dropdown
+        - if current_user.photo.attached?
+          a.avatar-bordered#mobileNavDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{current_user.photo.url}');"
+        - else
+          a.avatar-bordered#mobileNavDropdown href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-image: url('#{asset_path('placeholder-image.png')}');"
+
+        .dropdown-menu.dropdown-menu-end aria-labelledby="mobileNavDropdown"
           = link_to "Dashboard", dashboard_path, class: "dropdown-item"
           = link_to "Add a cause", new_event_path, class: "dropdown-item"
           = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
           = link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"
     - else
-      .app-navbar__action
-        = link_to "Login", new_user_session_path
+      = link_to "Login", new_user_session_path, class: "app-navbar__mobile-login"
