@@ -2,13 +2,5 @@
   button.app-navbar__sidebar-close data-action="click->sidebar#close"
     | ×
   nav.app-navbar__sidebar-nav
-    - if user_signed_in?
-      = link_to "Home", root_path, class: "app-navbar__sidebar-link #{current_page?(root_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "Causes", events_path, class: "app-navbar__sidebar-link #{current_page?(events_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "Agenda", calendar_path, class: "app-navbar__sidebar-link #{current_page?(calendar_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "Chatrooms", chatrooms_path, class: "app-navbar__sidebar-link #{current_page?(chatrooms_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "About us", about_path, class: "app-navbar__sidebar-link #{current_page?(about_path) ? 'app-navbar__sidebar-link--active' : ''}"
-    - else
-      = link_to "Home", root_path, class: "app-navbar__sidebar-link #{current_page?(root_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "Causes", events_path, class: "app-navbar__sidebar-link #{current_page?(events_path) ? 'app-navbar__sidebar-link--active' : ''}"
-      = link_to "About us", about_path, class: "app-navbar__sidebar-link #{current_page?(about_path) ? 'app-navbar__sidebar-link--active' : ''}"
+    - (user_signed_in? ? signed_in_links : signed_out_links).each do |label, path|
+      = link_to label, path, class: class_names("app-navbar__sidebar-link", "app-navbar__sidebar-link--active" => current_page?(path))
