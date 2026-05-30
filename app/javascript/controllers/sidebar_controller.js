@@ -3,6 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["sidebar", "overlay"]
 
+  connect() {
+    this._onBeforeCache = () => this.close()
+    document.addEventListener("turbo:before-cache", this._onBeforeCache)
+  }
+
   open() {
     this.sidebarTarget.classList.add("app-navbar__sidebar--open")
     this.overlayTarget.classList.add("app-navbar__overlay--visible")
