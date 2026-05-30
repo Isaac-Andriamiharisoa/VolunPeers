@@ -69,7 +69,7 @@
   background-color: $primary-color;
   transform: translateX(-100%);
   transition: transform 0.25s ease;
-  z-index: 1050;
+  z-index: 1065;
   padding: $space-md;
 
   &--open {
@@ -82,7 +82,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 1040;
+  z-index: 1055;
 
   &--visible {
     display: block;
@@ -95,7 +95,8 @@
   color: white;
   font-size: $text-lg;
   cursor: pointer;
-  float: right;
+  display: block;
+  margin-left: auto;
   margin-bottom: $space-sm;
 }
 
@@ -103,7 +104,6 @@
   display: flex;
   flex-direction: column;
   margin-top: $space-md;
-  clear: both;
 }
 
 .app-navbar__sidebar-link {
@@ -132,7 +132,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: $space-xs;
   padding: $space-xs;
 
   span {
