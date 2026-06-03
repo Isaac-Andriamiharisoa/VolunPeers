@@ -5,6 +5,12 @@
   padding: 10px 20px;
   background-color: $primary-color;
 
+  &__desktop {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
   &__start {
     display: flex;
     justify-content: center;
