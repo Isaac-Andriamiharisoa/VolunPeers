@@ -30,6 +30,19 @@
     align-items: center;
   }
 
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &__start-link {
     display: flex;
     justify-content: center;
@@ -41,6 +54,11 @@
   &__logo {
     width: 50px;
     height: 50px;
+
+    &--mobile {
+      width: 28px;
+      height: 28px;
+    }
   }
 
   &__links {
@@ -61,27 +79,55 @@
     justify-content: center;
     flex: 1 0 auto;
   }
-}
 
-// --- Mobile sidebar & overlay (always in DOM, off-screen/hidden by default) ---
-
-.app-navbar__sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 75%;
-  max-width: 280px;
-  background-color: $primary-color;
-  transform: translateX(-100%);
-  transition: transform 0.25s ease;
-  z-index: 1065;
-  padding: $space-md;
-
-  &--open {
-    transform: translateX(0);
+  &__desktop .avatar-bordered {
+    width: 50px;
+    height: 50px;
   }
 }
+
+// --- Top dropdown (always in DOM, off-screen by default) ---
+
+.app-navbar__nav-dropdown {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: $primary-color;
+  transform: translateY(-110%);
+  transition: transform 0.25s ease;
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--open {
+    transform: translateY(0);
+  }
+}
+
+.app-navbar__nav-dropdown-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.app-navbar__nav-dropdown-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: $text-lg;
+  text-decoration: none;
+
+  &--active {
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+    padding-bottom: 2px;
+  }
+}
+
+// --- Overlay ---
 
 .app-navbar__overlay {
   display: none;
@@ -94,37 +140,6 @@
   &--visible {
     display: block;
     pointer-events: auto;
-  }
-}
-
-.app-navbar__sidebar-close {
-  background: none;
-  border: none;
-  color: white;
-  font-size: $text-lg;
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  margin-bottom: $space-sm;
-}
-
-.app-navbar__sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  margin-top: $space-md;
-}
-
-.app-navbar__sidebar-link {
-  color: rgba(255, 255, 255, 0.8);
-  padding: $space-sm $space-xs;
-  border-left: 3px solid transparent;
-  text-decoration: none;
-  font-size: $text-md;
-
-  &--active {
-    color: white;
-    font-weight: bold;
-    border-left-color: white;
   }
 }
 
@@ -167,7 +182,20 @@
   font-size: $text-sm;
 }
 
+.avatar-bordered--mobile {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px;
+}
+
 // --- Responsive breakpoint ---
+
+@media (min-width: 768px) {
+  .app-navbar__hamburger,
+  .app-navbar__nav-dropdown {
+    display: none;
+  }
+}
 
 @media (max-width: 767px) {
   .app-navbar__desktop {
@@ -179,6 +207,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: $space-xs $space-sm;
+  }
+
+  .app-navbar__nav-dropdown {
+    top: 48px;
   }
 }

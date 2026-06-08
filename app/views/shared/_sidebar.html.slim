@@ -1,6 +1,0 @@
-.app-navbar__sidebar data-sidebar-target="sidebar"
-  button.app-navbar__sidebar-close data-action="click->sidebar#close"
-    | ×
-  nav.app-navbar__sidebar-nav
-    - (user_signed_in? ? signed_in_links : signed_out_links).each do |label, path|
-      = link_to label, path, class: class_names("app-navbar__sidebar-link", "app-navbar__sidebar-link--active" => current_page?(path))
