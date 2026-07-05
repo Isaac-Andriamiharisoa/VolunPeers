@@ -1,4 +1,4 @@
-.messages data-chatroom-subscription-target="scrollContent"
+.messages
   .messages__container data-chatroom-subscription-target="latestMessages"
     - chatroom.messages.each do |message|
       = render partial: 'messages/message', locals: { message: message }

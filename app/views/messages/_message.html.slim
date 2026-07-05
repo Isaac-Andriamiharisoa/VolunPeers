@@ -1,7 +1,7 @@
-- message_class = message.user == current_user ? 'right-message' : 'left-message'
+- message_modifier = message.user == current_user ? 'message--right' : 'message--left'
 
-.message class=message_class data-user-id="#{message.user_id}"
-  small
-    strong= "#{message.user.username} "
-    i.datetime data-original-date==message.created_at = message.created_at
-  p= message.content
+.message class=message_modifier data-user-id="#{message.user_id}"
+  small.message__meta
+    strong.message__author= "#{message.user.username} "
+    i.message__time.datetime data-original-date==message.created_at = message.created_at
+  p.message__body= message.content
