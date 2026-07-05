@@ -1,0 +1,59 @@
+/* Messages Container Styles */
+.messages {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    color: #3a1700;
+    background-color: white;
+  }
+
+  &__form {
+    width: 100%;
+  }
+}
+
+.message {
+  color: #3a1700;
+  padding: 15px;
+  margin: 10px 0;
+  max-width: 60%;
+  width: fit-content;
+  background-color: $light-gray;
+  border-radius: 15px;
+
+  &.right-message {
+    align-self: flex-end;
+  }
+
+  &.left-message {
+    align-self: flex-start;
+  }
+}
+
+.text_field {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.text_field .btn {
+  border-radius: 10px;
+}
+
+.textfield {
+  border-radius: 10px;
+  padding: 20px;
+}

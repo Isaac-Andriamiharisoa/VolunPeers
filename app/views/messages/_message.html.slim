@@ -1,6 +1,7 @@
-div.message data-user-id="#{message.user_id}"
-  #message-= message.id
-    small
-      strong= "#{message.user.username} "
-      i.datetime data-original-date==message.created_at = message.created_at
-    p= message.content
+- message_class = message.user == current_user ? 'right-message' : 'left-message'
+
+.message class=message_class data-user-id="#{message.user_id}"
+  small
+    strong= "#{message.user.username} "
+    i.datetime data-original-date==message.created_at = message.created_at
+  p= message.content
