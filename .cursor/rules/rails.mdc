@@ -1,0 +1,37 @@
+---
+description: Rails conventions and stack for VolunPeers
+alwaysApply: true
+---
+
+# VolunPeers
+
+Volunteer coordination platform: events, chat, and user management.
+
+## Stack
+- Rails 7.1, Ruby 3.3.9, PostgreSQL, Redis (Action Cable)
+- Devise (authentication), Pundit (authorization)
+- Hotwire (Turbo + Stimulus), Bootstrap 5, Slim templates, Sass
+- Cloudinary (image uploads), Geocoder (location search)
+
+## Project conventions
+- Authorize every controller action with a Pundit policy; never trust params for access control.
+- Views are Slim — keep logic out of templates; use helpers/presenters.
+- Real-time chat runs on Action Cable channels backed by Redis.
+- Use Stimulus controllers for JS behavior and Turbo Streams for partial updates — avoid ad-hoc jQuery/vanilla JS.
+- Location features go through Geocoder scopes, not manual lat/lng math.
+
+<!-- shared:rails-conventions -->
+## General Rails conventions
+- Prefix all Rails/rake/test commands with `bundle exec`.
+- Follow RuboCop; run `bundle exec rubocop -a` before finishing. Match the existing `.rubocop.yml`.
+- 2-space indent, no tabs. Thin controllers, RESTful routes; push logic into models, POROs, or service objects.
+- Use strong parameters. Never build SQL via string interpolation — use parameter binding / ActiveRecord query methods.
+- Rely on Rails auto-escaping in views; avoid `raw`/`html_safe` on user-supplied data.
+
+## Testing
+- Framework is **Minitest** (`test/`). Do NOT introduce RSpec.
+- Run `bundle exec rails test` (single file: `bundle exec rails test test/models/user_test.rb`); system tests: `bundle exec rails test:system`.
+- Add or extend tests for every behavior change; use fixtures in `test/fixtures/`.
+
+## Before finishing
+- `bundle exec rubocop -a` clean, `bundle exec rails test` green, and `bundle exec brakeman` for security-sensitive changes.
