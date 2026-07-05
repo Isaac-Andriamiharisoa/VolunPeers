@@ -29,8 +29,10 @@ export default class extends Controller {
             if (messageEl) {
               const senderId = parseInt(messageEl.dataset.userId)
               messageEl.classList.add(senderId === this.currentUserIdValue ? 'right-message' : 'left-message')
+              messageEl.classList.add('message--new') // triggers the appear animation
             }
-            this.latestMessagesTargets[i].innerHTML += temp.innerHTML
+            // Append without rebuilding existing nodes, so only the new message animates
+            this.latestMessagesTargets[i].insertAdjacentHTML('beforeend', temp.innerHTML)
             this.latestMessageTargets[i].innerHTML = data
             this.timestampTargets[i].innerHTML = moment(this.latestMessageTargets[i].querySelector('i').innerHTML).fromNow()
             this.latestMessageTargets[i].innerHTML = this.latestMessageTargets[i].querySelector('p').innerText
