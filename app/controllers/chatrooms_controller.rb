@@ -1,7 +1,6 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = current_user.participated_chatrooms
-    @message = Message.new
+    @chatrooms = current_user.participated_chatrooms.includes(:messages)
     @hide_footer = true
   end
 
