@@ -30,6 +30,20 @@
   align-content: center;
 }
 
+/* Conversation list selection */
+ul.list-unstyled li[data-chatroom-id] {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(58, 23, 0, 0.05);
+  }
+
+  &.active {
+    background-color: rgba(58, 23, 0, 0.1);
+  }
+}
+
 /* Event Sidebar Styles */
 .custom-divider {
   border: 1px solid black;

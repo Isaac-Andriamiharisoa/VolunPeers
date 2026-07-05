@@ -35,19 +35,39 @@ export default class extends Controller {
             this.timestampTargets[i].innerHTML = moment(this.latestMessageTargets[i].querySelector('i').innerHTML).fromNow()
             this.latestMessageTargets[i].innerHTML = this.latestMessageTargets[i].querySelector('p').innerText
             this.chatFieldTargets[i].value = ""
-            // this.scrollContentTargets[i].scrollBy(0, Number.MAX_SAFE_INTEGER)
-            this.scrollContentTargets.forEach(e => {
-              e.scrollTop = e.scrollHeight; // Scroll to the bottom
-            });
+            this.scrollChatToBottom(i)
             this.formatDateTime()
           }
         }
       )
     })
     this.currentChatroom = this.chatrooms[0]
-    this.scrollContentTargets.forEach(e => e.scrollBy(0, Number.MAX_SAFE_INTEGER))
     this.clearInactiveChatrooms()
+    this.setActiveListItem()
+    this.scrollActiveToBottom()
     this.formatDateTime()
+  }
+
+  // Scroll one chatroom's message list down to its latest message
+  scrollChatToBottom(index) {
+    const container = this.latestMessagesTargets[index]
+    if (container) container.scrollTop = container.scrollHeight
+  }
+
+  // Scroll the visible chatroom(s) to the bottom once the layout is settled
+  scrollActiveToBottom() {
+    requestAnimationFrame(() => {
+      this.latestMessagesTargets.forEach(container => {
+        container.scrollTop = container.scrollHeight
+      })
+    })
+  }
+
+  // Highlight the currently selected conversation in the sidebar list
+  setActiveListItem() {
+    document.querySelectorAll('li[data-chatroom-id]').forEach(li => {
+      li.classList.toggle('active', li.dataset.chatroomId == this.currentChatroom)
+    })
   }
 
 
@@ -70,6 +90,8 @@ export default class extends Controller {
   selectChat(event) {
     this.currentChatroom = event.target.closest('li').dataset.chatroomId
     this.clearInactiveChatrooms()
+    this.setActiveListItem()
+    this.scrollActiveToBottom()
   }
 
   deleteConversation(event) {
