@@ -1,0 +1,10 @@
+= turbo_frame_tag "conversation", class: "chatroom__conversation" do
+  - if chatroom
+    .chatroom__content
+      = render 'messages', chatroom: chatroom
+    .chatroom__details
+      = render 'details', chatroom: chatroom
+  - else
+    .chatroom__content.chatroom__empty
+      p.chatroom__empty-text No conversations yet.
+      p.chatroom__empty-hint Join an event to start chatting with other volunteers.

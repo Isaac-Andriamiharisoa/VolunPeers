@@ -1,15 +1,18 @@
-.messages
-  .messages__container data-chatroom-subscription-target="latestMessages"
-    - chatroom.messages.each do |message|
-      = render partial: 'messages/message', locals: { message: message }
+= turbo_stream_from chatroom
+.messages data-controller="conversation" data-conversation-current-user-id-value="#{current_user.id}"
+  .messages__list id="messages_#{chatroom.id}" data-conversation-target="list"
+    - if chatroom.messages.any?
+      - chatroom.messages.each do |message|
+        = render partial: 'messages/message', locals: { message: message }
+    - else
+      .messages__empty
+        | No messages yet — say hello.
 
-  .messages__form.mt-auto.p-3
-    - @message = Message.new
-    = simple_form_for [chatroom, @message], html: { class: "d-flex" } do |f|
+  .messages__composer
+    = simple_form_for [chatroom, Message.new], html: { class: "messages__form", data: { action: "turbo:submit-end->conversation#reset" } } do |f|
       = f.input :content,
         label: false,
-        placeholder: "Type your message",
-        input_html: { class: "messages__input", data: { chatroom_subscription_target: "chatField" } },
-        wrapper_html: { class: "flex-grow-1" }
-
-      = f.submit "Send", class: "messages__submit btn btn-primary mb-3 ms-2"
+        placeholder: "Write a message…",
+        input_html: { class: "messages__input", autocomplete: "off" },
+        wrapper_html: { class: "messages__field" }
+      = f.submit "Send", class: "messages__send"

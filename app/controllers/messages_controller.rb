@@ -1,15 +1,12 @@
 class MessagesController < ApplicationController
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
-    @message = Message.new(message_params)
-    @message.chatroom_id = @chatroom.id
+    @chatroom = current_user.participated_chatrooms.find(params[:chatroom_id])
+    @message = @chatroom.messages.new(message_params)
     @message.user = current_user
 
+    # The message broadcasts itself to the chatroom's Turbo Stream on commit
+    # (see Message#after_create_commit), so we only acknowledge the request here.
     if @message.save
-      ChatroomChannel.broadcast_to(
-        @chatroom,
-        render_to_string(partial: "message", locals: { message: @message })
-      )
       head :no_content
     else
       head :unprocessable_entity

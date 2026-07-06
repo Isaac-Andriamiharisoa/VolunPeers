@@ -2,7 +2,6 @@ require "test_helper"
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  include ActionCable::TestHelper
 
   setup do
     @user = create_user
@@ -22,10 +21,16 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal @chatroom, message.chatroom
   end
 
-  test "create broadcasts the rendered message to the chatroom stream" do
-    assert_broadcasts(ChatroomChannel.broadcasting_for(@chatroom), 1) do
-      post chatroom_messages_url(@chatroom), params: { message: { content: "Ping" } }
-    end
+  test "the broadcast message partial renders without a current_user" do
+    # Turbo broadcasts render the partial outside any request, so it must not
+    # depend on current_user; bubble alignment happens client-side instead.
+    message = @chatroom.messages.create!(content: "Broadcast safe", user: @user)
+    html = ApplicationController.render(partial: "messages/message", locals: { message: message })
+
+    assert_includes html, "Broadcast safe"
+    assert_includes html, %(data-user-id="#{@user.id}")
+    refute_includes html, "message--left"
+    refute_includes html, "message--right"
   end
 
   test "create requires an authenticated user" do

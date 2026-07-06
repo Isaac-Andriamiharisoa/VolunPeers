@@ -1,24 +1,43 @@
 require "application_system_test_case"
 
-# These cover the load-time chat behaviours that do not depend on live
-# ActionCable delivery (the test cable adapter does not push to browser
-# websockets). Live append / auto-scroll on broadcast is covered by the
-# controller broadcast assertion in MessagesControllerTest.
+# Covers the load-time chat behaviours that don't depend on live ActionCable
+# delivery (the test cable adapter doesn't push to browser websockets). The
+# broadcast partial rendering is covered in MessagesControllerTest.
 class ChatroomsTest < ApplicationSystemTestCase
   setup do
     @password = "password123"
     @user = create_user(password: @password)
     @chatroom = create_chatroom_with_participant(@user)
-    15.times { |n| @chatroom.messages.create!(user: @user, content: "Seed message #{n}") }
+    50.times { |n| @chatroom.messages.create!(user: @user, content: "Seed message #{n}") }
   end
 
   test "opens with the first conversation active and scrolled to the latest message" do
     sign_in_through_ui
 
-    assert_selector "li[data-chatroom-id='#{@chatroom.id}'].active"
+    assert_selector "a.chatroom__list-item--active"
+    assert_selector "turbo-frame#conversation .message", minimum: 1
 
-    assert scrolled_to_bottom?(@chatroom),
-           "expected the messages container to be scrolled to the bottom on load"
+    assert scrolled_to_bottom?,
+           "expected the messages list to be scrolled to the bottom on load"
+  end
+
+  test "a message appended to the open conversation gets the appear animation" do
+    sign_in_through_ui
+
+    # Simulate a Turbo Stream broadcast appending a message to the list.
+    execute_script(<<~JS)
+      const list = document.querySelector("#messages_#{@chatroom.id}");
+      const el = document.createElement("div");
+      el.className = "message";
+      el.dataset.userId = "#{@user.id}";
+      el.dataset.createdAt = new Date().toISOString();
+      el.innerHTML = '<div class="message__group">' +
+        '<div class="message__bubble"><p class="message__body">Live ping</p></div></div>';
+      list.appendChild(el);
+    JS
+
+    # The conversation controller decorates it: side class + the appear animation.
+    assert_selector "#messages_#{@chatroom.id} .message.message--new.message--right", text: "Live ping"
   end
 
   private
@@ -35,12 +54,10 @@ class ChatroomsTest < ApplicationSystemTestCase
     visit chatrooms_path
   end
 
-  def scrolled_to_bottom?(chatroom)
+  def scrolled_to_bottom?
     page.evaluate_script(<<~JS)
       (() => {
-        const el = document.querySelector(
-          ".event-#{chatroom.id} [data-chatroom-subscription-target='latestMessages']"
-        );
+        const el = document.querySelector("#messages_#{@chatroom.id}");
         if (!el) return false;
         const overflowing = el.scrollHeight > el.clientHeight;
         const atBottom = Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop) < 5;

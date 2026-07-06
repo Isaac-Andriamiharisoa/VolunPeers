@@ -1,133 +1,327 @@
-/* General Styles */
-#colum_style {
-  height: inherit;
-  overflow: auto;
-  background: #e8e7d8;
-}
-
-/* Chatroom Styles */
-#chatroom_name {
-  color: #3a1700;
-  font-size: 28px;
-  font-family: Rowdies;
-  font-weight: 300;
-  word-wrap: break-word;
-  padding-left: 20px;
-  margin: 20px;
-}
-
-.custom-border {
-  border-bottom: 1px solid black;
-  opacity: 50%;
-}
-
-.chatroom {
-  height: calc(100vh - 118px);
-}
-
-.input-group.rounded {
-  width: 100%;
-  align-content: center;
-}
-
-/* Conversation list selection */
-ul.list-unstyled li[data-chatroom-id] {
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-
-  &:hover {
-    background-color: rgba(58, 23, 0, 0.05);
-  }
-
-  &.active {
-    background-color: rgba(58, 23, 0, 0.1);
-  }
-}
-
-/* Event Sidebar Styles */
-.custom-divider {
-  border: 1px solid black;
-  margin: 1em 0.5em;
-}
-
-#sidebar_img img {
-  border-radius: 15%;
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.sidebar_title {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Rowdies;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  margin: 0 auto;
-  display: block;
-}
-
-#sidebar_subtitle {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Manrope;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 32px;
-  text-align: center;
-}
-
-#notification_title {
-  padding-left: 40px;
-}
-
-#side_description_title {
-  color: var(--Light-Primary, #3a1700);
-  font-family: Rowdies;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  margin: 20px 20px 10px 20px;
-}
-
-#side_description_text {
-  color: #3a1700;
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: light;
-  font-weight: 100;
-  line-height: normal;
-  margin: 0 30px 20px 20px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  /* Number of lines to show */
-  -webkit-box-orient: vertical;
+/* Chat pages are a fixed-height app shell. The body needs a *definite* height
+   (not just min-height) so the flex children can be constrained and the inner
+   regions — cause list, message list — become the only scroll areas. Scoped to
+   chat pages so other pages keep their min-height sticky-footer behaviour. */
+body.chatroom-shell {
+  height: 100vh;
   overflow: hidden;
 }
 
-#sidebar_delete,
-#sidebar_block {
-  font-size: 14px;
-  margin: 0 0 20px 20px;
+/* Caps the chat UI to the space the flex-column body leaves under the navbar
+   and clamps it, so the page itself never scrolls — only the cause list and
+   the message list (their own overflow-y regions) do. */
+.chatroom-page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
 }
 
-.clickable {
-  cursor: pointer;
-  color: #0d6efd;
-}
+.chatroom {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
 
-.chat-text {
-  width: 220px;
-  padding: 10px 5px;
+  &__sidebar {
+    max-width: 400px;
+    width: 25%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
-  .latest-message {
-    width: calc(95% - 10px);
-    white-space: nowrap;       /* Prevents the text from wrapping to the next line */
-    overflow: hidden;          /* Hides any content that overflows the container */
+  &__sidebar-header {
+    color: #3a1700;
+    font-family: Rowdies;
+    font-size: 28px;
+    font-weight: 300;
+    word-wrap: break-word;
+    padding: 20px 20px 10px;
+  }
+
+  &__sidebar-body {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  &__search-form {
+    margin: 0 0 20px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba(58, 23, 0, 0.05);
+    }
+
+    &--active {
+      background-color: rgba(58, 23, 0, 0.08);
+    }
+  }
+
+  &__list-item-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__list-item-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  &__metadata-title {
+    color: #3a1700;
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  &__metadata-timestamp {
+    flex-shrink: 0;
+    color: #9a9a9a;
+    font-family: Manrope;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  &__list-item-message {
+    color: #8a8a8a;
+    font-family: Manrope;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__conversation {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__empty {
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  &__empty-text {
+    color: #3a1700;
+    font-family: Rowdies;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  &__empty-hint {
+    max-width: 280px;
+    color: #9a9a9a;
+    font-family: Manrope;
+    font-size: 14px;
+  }
+
+  &__details {
+    width: 280px;
+    flex-shrink: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    overflow-y: auto;
+    background: $surface;
+  }
+
+  &__details-image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+  }
+
+  &__details-title {
+    margin-top: 16px;
+    color: #3a1700;
+    font-family: Rowdies;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  &__details-subtitle {
+    margin-top: 4px;
+    color: #8a8a8a;
+    font-family: Manrope;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__details-divider {
+    height: 1px;
+    margin: 20px 0;
+    border: 0;
+    background: rgba(58, 23, 0, 0.12);
+  }
+
+  &__details-notifications {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__details-notifications-label {
+    color: #3a1700;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &__details-toggle {
+    position: relative;
+    flex-shrink: 0;
+    width: 28px;
+    height: 16px;
+    cursor: pointer;
+
+    input {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  &__details-toggle-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: #c9c8bb;
+    transition: background 0.15s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s ease;
+    }
+  }
+
+  input:checked + &__details-toggle-track {
+    background: #0086ea;
+
+    &::after {
+      transform: translateX(12px);
+    }
+  }
+
+  &__details-description-title {
+    color: #3a1700;
+    font-family: Rowdies;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  &__details-description {
+    margin-top: 8px;
+    color: #3a1700;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__details-see-more {
+    display: inline-block;
+    margin-top: 4px;
+    color: #0d6efd;
+    font-family: Manrope;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__details-links {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__details-link {
+    color: #0d6efd;
+    font-family: Manrope;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Bootstrap input-group override for the sidebar search field */
+.input-group.rounded {
+  width: 100%;
+  align-content: center;
 }

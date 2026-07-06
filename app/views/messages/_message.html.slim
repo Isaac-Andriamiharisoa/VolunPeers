@@ -1,7 +1,13 @@
-- message_modifier = message.user == current_user ? 'message--right' : 'message--left'
-
-.message class=message_modifier data-user-id="#{message.user_id}"
-  small.message__meta
-    strong.message__author= "#{message.user.username} "
-    i.message__time.datetime data-original-date==message.created_at = message.created_at
-  p.message__body= message.content
+/ Side (left/right) is set client-side by the conversation controller from
+/ data-user-id, so the same broadcast HTML aligns correctly for every viewer.
+.message data-user-id="#{message.user_id}" data-created-at="#{message.created_at.iso8601}"
+  .message__avatar
+    - if message.user.photo.attached?
+      = cl_image_tag message.user.photo.key, secure: true, alt: message.user.username, class: 'message__avatar-img'
+    - else
+      span.message__avatar-fallback= message.user.username.to_s.first&.upcase
+  .message__group
+    span.message__author= message.user.username
+    .message__bubble
+      p.message__body= message.content
+    small.message__time= message.created_at.strftime('%-l:%M %p')

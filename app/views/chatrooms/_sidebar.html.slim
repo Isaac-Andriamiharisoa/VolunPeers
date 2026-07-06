@@ -1,0 +1,26 @@
+.chatroom__sidebar
+  .chatroom__sidebar-header
+    | Community Forum
+  .chatroom__sidebar-body
+    .chatroom__search-form
+      .input-group.rounded
+        input.form-control.rounded type="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+        span.input-group-text.border-0#search-addon
+          i.fas.fa-search
+    .chatroom__list
+      - @chatrooms.each do |chatroom|
+        = link_to chatroom_path(chatroom), class: "chatroom__list-item#{' chatroom__list-item--active' if chatroom == @active_chatroom}", data: { turbo_frame: 'conversation', action: 'chatroom-nav#select' } do
+          - if chatroom.event.photo.attached?
+            = cl_image_tag chatroom.event.photo.key, secure: true, alt: chatroom.name, class: 'chatroom__list-item-avatar'
+          - else
+            = image_tag asset_url("placeholder-image.png"), alt: chatroom.name, class: 'chatroom__list-item-avatar'
+
+          .chatroom__list-item-content
+            .chatroom__metadata
+              .chatroom__metadata-title
+                = chatroom.name
+              .chatroom__metadata-timestamp
+                - if chatroom.messages.last
+                  = l chatroom.messages.last.created_at, format: :short
+            .chatroom__list-item-message
+              = chatroom.messages.last.content if chatroom.messages.last

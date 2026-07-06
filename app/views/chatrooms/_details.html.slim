@@ -1,0 +1,31 @@
+- if chatroom.event.photo.attached?
+  = cl_image_tag chatroom.event.photo.key, secure: true, alt: chatroom.name, class: 'chatroom__details-image'
+- else
+  = image_tag asset_url("placeholder-image.png"), alt: chatroom.name, class: 'chatroom__details-image'
+
+.chatroom__details-title
+  = chatroom.name
+.chatroom__details-subtitle
+  | By Sabrina Terrace
+
+hr.chatroom__details-divider
+
+.chatroom__details-notifications
+  .chatroom__details-notifications-label
+    | Notifications
+  label.chatroom__details-toggle
+    input type="checkbox" checked="checked"
+    span.chatroom__details-toggle-track
+
+hr.chatroom__details-divider
+
+.chatroom__details-description-title
+  | Description
+.chatroom__details-description
+  = chatroom.event.description
+a.chatroom__details-see-more href="#"
+  | See More
+
+.chatroom__details-links
+  = link_to "List of participants", event_participants_path(chatroom.event), class: 'chatroom__details-link'
+  = link_to "Delete conversation", delete_conversation_chatroom_path(chatroom), class: 'chatroom__details-link', data: { turbo_method: :delete, turbo_frame: '_top', turbo_confirm: 'Delete all messages in this conversation?' }
