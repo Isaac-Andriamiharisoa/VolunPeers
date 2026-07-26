@@ -1,12 +1,215 @@
-.navbar-lewagon {
-  background-color: #132A13;
+.app-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: $primary-color;
+
+  &__desktop {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__start-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  &__logo {
+    width: 50px;
+    height: 50px;
+
+    &--mobile {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    list-style: none;
+    color: white;
+    margin: 0 10px;
+    padding: 0;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+    flex: 1 0 auto;
+  }
+
+  &__desktop .avatar-bordered {
+    width: 50px;
+    height: 50px;
+  }
 }
 
+// --- Top dropdown (always in DOM, off-screen by default) ---
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.app-navbar__nav-dropdown {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: $primary-color;
+  transform: translateY(-110%);
+  transition: transform 0.25s ease;
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--open {
+    transform: translateY(0);
+  }
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 60px;
+.app-navbar__nav-dropdown-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.app-navbar__nav-dropdown-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: $text-lg;
+  text-decoration: none;
+
+  &--active {
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+    padding-bottom: 2px;
+  }
+}
+
+// --- Overlay ---
+
+.app-navbar__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1055;
+  pointer-events: none;
+
+  &--visible {
+    display: block;
+    pointer-events: auto;
+  }
+}
+
+// --- Mobile top bar (hidden on desktop) ---
+
+.app-navbar__mobile-bar {
+  display: none;
+}
+
+.app-navbar__hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  padding: $space-xs;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: $radius-sm;
+  }
+}
+
+.app-navbar__mobile-logo {
+  display: flex;
+  align-items: center;
+}
+
+.app-navbar__mobile-actions {
+  display: flex;
+  align-items: center;
+}
+
+.app-navbar__mobile-login {
+  color: white;
+  font-size: $text-sm;
+}
+
+.avatar-bordered--mobile {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px;
+}
+
+// --- Responsive breakpoint ---
+
+@media (min-width: 768px) {
+  .app-navbar__hamburger,
+  .app-navbar__nav-dropdown {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .app-navbar__desktop {
+    display: none;
+  }
+
+  .app-navbar__mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .app-navbar__nav-dropdown {
+    top: 48px;
+  }
 }
